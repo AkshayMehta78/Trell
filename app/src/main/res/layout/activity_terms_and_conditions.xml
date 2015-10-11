@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/toolLayout">
+    <include
+        layout="@layout/layout_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#7fff"
+        android:paddingLeft="@dimen/padding_normal"
+        android:paddingRight="@dimen/padding_normal"
+        android:scrollbars="none"
+        android:layout_below="@+id/toolLayout"
+        android:layout_marginTop="@dimen/margin_xxlarge"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/text_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tnc_detail"
+                android:textColor="@color/primary_text_color" />
+
+            <TextView
+                style="@style/heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/service_header" />
+
+            <TextView
+                style="@style/text_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/service_desc"
+                android:textColor="@color/primary_text_color" />
+
+            <TextView
+                style="@style/heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/content_header" />
+
+            <TextView
+                style="@style/text_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/content_desc"
+                android:textColor="@color/primary_text_color" />
+
+            <TextView
+                style="@style/heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/third_header" />
+
+            <TextView
+                style="@style/text_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/third_desc"
+                android:textColor="@color/primary_text_color" />
+
+            <TextView
+                style="@style/heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/desidime_privacy_header" />
+
+            <TextView
+                style="@style/text_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/desidime_privacy_desc"
+                android:textColor="@color/primary_text_color" />
+
+            <TextView
+                style="@style/heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/desidime_account_header" />
+
+            <TextView
+                style="@style/text_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/desidime_account_desc"
+                android:textColor="@color/primary_text_color" />
+
+            <TextView
+                style="@style/heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+
+                android:text="@string/member_header" />
+
+            <TextView
+                style="@style/text_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/member_desc"
+                android:textColor="@color/primary_text_color" />
+
+            <TextView
+                style="@style/heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/indemnity_header" />
+
+            <TextView
+                style="@style/text_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/indemnity_desc"
+                android:textColor="@color/primary_text_color" />
+
+            <TextView
+                style="@style/heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/violations_header" />
+
+            <TextView
+                style="@style/text_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/violations_desc"
+                android:textColor="@color/primary_text_color" />
+
+            <TextView
+                style="@style/heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/effective_header" />
+
+            <TextView
+                style="@style/text_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/effective_desc"
+                android:textColor="@color/primary_text_color" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

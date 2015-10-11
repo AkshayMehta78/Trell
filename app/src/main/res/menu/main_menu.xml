@@ -1,0 +1,32 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/explore"
+        android:icon="@drawable/ic_cast_dark"
+        android:orderInCategory="100"
+        android:title="@string/explore"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/notifications"
+        android:icon="@drawable/ic_notification_bell"
+        android:orderInCategory="100"
+        android:title="@string/notification_title"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_person"
+        android:orderInCategory="100"
+        android:title="@string/profile"
+        app:showAsAction="always" />
+
+
+    <item
+        android:id="@+id/create"
+        android:icon="@drawable/ic_create_geochat"
+        android:orderInCategory="100"
+        android:title="@string/create"
+        app:showAsAction="always" />
+</menu>

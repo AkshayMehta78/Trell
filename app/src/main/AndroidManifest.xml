@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="app.geochat" >
+
+    <!-- Required Permissions -->
+
+
+    <!-- permission so the Android application can interact with server. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- To retrieve the account name (email) as part of sign-in -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!-- To retrieve OAuth 2.0 tokens or invalidate tokens to disconnect a user's Google account from an app. -->
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- To read google account information -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="app.desidime.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <!--for fetching location-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- Permissions for GCM Integration -->
+    <permission
+        android:name="app.geochat.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="app.geochat.permission.C2D_MESSAGE" />
+    <!--
+    permission so the application can keep the processor from sleeping when a message is received.
+    Optional—use only if the app wants to keep the device from sleeping.
+    -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- permission so the Android application can register and receive messages. -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <!--
+    permission to prevent other Android applications from registering and receiving the Android application's messages.
+    The permission name must exactly match this pattern—otherwise the Android application will not receive the messages.
+    -->
+
+    <application
+        android:name=".DesidimeApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+
+
+        <activity
+            android:name="app.geochat.ui.activities.SplashScreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:noHistory="true"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="app.geochat.LoginActivity"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_login" >
+        </activity>
+
+
+        <activity
+            android:name="app.geochat.ui.activities.BaseActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/title_activity_home" >
+        </activity>
+        <activity
+            android:name="app.geochat.ui.activities.HomeActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/title_activity_userhome" >
+        </activity>
+
+        <activity
+            android:name="app.geochat.ui.activities.TermsAndConditionActivity"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/termsandconditions" >
+        </activity>
+
+        <activity
+            android:name="app.geochat.ui.activities.CreateGeoChatActivity"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+
+        <activity
+            android:name="app.geochat.ui.activities.CheckInActivity"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize" >
+        </activity>
+
+        <activity
+            android:name="app.geochat.ui.activities.ChatActivity"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+
+        <activity
+            android:name="app.geochat.ui.activities.SelectPhotoActivity"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+
+        <!-- Facebook -->
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.LoginActivity"
+            android:label="@string/facebook_login"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="app.geochat" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDp5u0Z3h9abid8puEy-sqdrFLZ3fONHN8" />
+
+        <service
+            android:name="app.geochat.gcm.GcmIntentService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+
+
+    </application>
+
+
+
+
+</manifest>

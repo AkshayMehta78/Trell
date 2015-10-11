@@ -1,0 +1,176 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="coupon_min_height">100.0dip</dimen>
+    <dimen name="normal_padding_size">5dp</dimen>
+    <dimen name="normal_big_btn_text_size">18sp</dimen>
+
+    <!-- Flat UI Button -->
+    <dimen name="fbutton_default_conner_radius">8dp</dimen>
+    <dimen name="fbutton_default_padding_left">10dp</dimen>
+    <dimen name="fbutton_default_padding_right">10dp</dimen>
+    <dimen name="fbutton_default_padding_top">5dp</dimen>
+    <dimen name="fbutton_default_padding_bottom">5dp</dimen>
+    <dimen name="fbutton_default_shadow_height">4dp</dimen>
+    <dimen name="normal_heading_text_size">22sp</dimen>
+
+    <!-- Text sizes -->
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_medium">14sp</dimen>
+    <dimen name="text_size_large">16sp</dimen>
+    <dimen name="text_size_xlarge">26sp</dimen>
+    <dimen name="text_size_xxlarge">36sp</dimen>
+    <dimen name="profile_text_size_medium">14sp</dimen>
+
+    <!-- Pager sliding tab strip -->
+    <dimen name="pager_tab_strip_button_size">48dp</dimen>
+    <dimen name="pager_tab_text_size">10sp</dimen>
+    <dimen name="pager_tab_padding">5dp</dimen>
+    <dimen name="fb_button_min_width">100dp</dimen>
+    <dimen name="fb_button_min_height">40dp</dimen>
+
+    <!-- Coupon Detail -->
+    <dimen name="website_image_width">100dp</dimen>
+    <dimen name="website_image_height">80dp</dimen>
+    <dimen name="coupon_detail_height">100dp</dimen>
+    <dimen name="coupon_holder_padding_bottom">10dp</dimen>
+    <dimen name="show_more_website_text_view_height">50dp</dimen>
+
+    <!-- Deals List Item -->
+    <dimen name="deals_list_item_height">130dp</dimen>
+    <dimen name="buy_now_button_width">160dp</dimen>
+    <dimen name="min_image_height">100dp</dimen>
+
+    <!-- About us -->
+    <dimen name="about_us">10dp</dimen>
+    <dimen name="view_height">3dp</dimen>
+    <dimen name="text_view_height">50dp</dimen>
+    <dimen name="footer_view_height">35dp</dimen>
+
+    <!-- Padding -->
+    <dimen name="padding_left">10dp</dimen>
+    <dimen name="padding_left_small">3dp</dimen>
+
+    <!-- Navigation Drawer -->
+    <dimen name="navdrawer_width">240dp</dimen>
+
+    <!-- Actionbar -->
+    <dimen name="actionbar_title_size">18sp</dimen>
+
+    <!-- Grid values -->
+    <dimen name="grid_horizontal_spacing">10dp</dimen>
+    <dimen name="grid_vertical_spacing">10dp</dimen>
+    <dimen name="grid_padding_left">3dp</dimen>
+    <dimen name="grid_padding_right">3dp</dimen>
+    <dimen name="grid_text_view_size">30dp</dimen>
+
+    <!-- Forum Thread Pagination -->
+    <dimen name="forum_page_navigation_height">100dp</dimen>
+    <dimen name="forum_pager_margin_top">130dp</dimen>
+    <dimen name="forum_pager_margin_bottom">50dp</dimen>
+    <dimen name="normal_edit_text_size">15sp</dimen>
+    <dimen name="normal_tab_btn_text_size">16sp</dimen>
+
+    <!-- Categories -->
+    <dimen name="categoriesTVHeight">50dp</dimen>
+    <dimen name="desc_stext_view_height">150dp</dimen>
+
+    <!-- Messages -->
+
+    <dimen name="msg_textsize">16dp</dimen>
+    <dimen name="msg_desc_textsize">14dp</dimen>
+
+    <!-- Store's page -->
+    <dimen name="header_height">200dp</dimen>
+    <dimen name="min_header_height">250dp</dimen>
+    <dimen name="header_logo_size">150dp</dimen>
+    <dimen name="store_header_height">250dp</dimen>
+
+
+    <!-- Setting values -->
+    <dimen name="setting_drawable_padding">25dp</dimen>
+    <dimen name="setting_ll_height">50dp</dimen>
+    <dimen name="setting_tv_top_margin">25dp</dimen>
+
+    <!-- Notification setting values -->
+
+    <dimen name="setting_noti_ll_margin_top">50dp</dimen>
+    <dimen name="setting_noti_tv_heght">50dp</dimen>
+    <dimen name="setting_noti_tv_bottom_margin">25dp</dimen>
+    <dimen name="setting_noti_save_btn_height">55dp</dimen>
+
+
+    <!-- Top products -->
+    <dimen name="list_item_height">100dp</dimen>
+    <dimen name="top_product_image_view_height">80dp</dimen>
+    <dimen name="padding_profile">20dp</dimen>
+
+    <!--misc -->
+    <dimen name="padding_normal">5dp</dimen>
+    <dimen name="padding_large">10dp</dimen>
+    <dimen name="padding_xlarge">15dp</dimen>
+    <dimen name="padding_xxlarge">30dp</dimen>
+
+    <dimen name="margin_normal">5dp</dimen>
+    <dimen name="margin_large">10dp</dimen>
+    <dimen name="margin_xlarge">15dp</dimen>
+    <dimen name="margin_xxlarge">20dp</dimen>
+
+
+
+
+
+    <dimen name="store_image_view_width">80dp</dimen>
+    <dimen name="store_image_view_height">60dp</dimen>
+    <!-- Filters -->
+    <dimen name="filterViewHeight">50dp</dimen>
+
+    <!-- Price Comparison -->
+    <dimen name="price_comparison_image_view_width">30dp</dimen>
+
+    <!-- Profile -->
+    <dimen name="profileInfoBgRLMarginLeft">10dp</dimen>
+    <dimen name="profileInfoBgRLPaddingLeft">7dp</dimen>
+
+
+
+
+    <dimen name="profileBecomeFanButtonMarginBottom">5dp</dimen>
+    <dimen name="profileBecomeFanButtonMarginLeft">5dp</dimen>
+    <dimen name="profileBecomeFanButtonPaddingLeft">6dp</dimen>
+    <dimen name="profileBecomeFanButtonPaddingRight">6dp</dimen>
+    <dimen name="profileSendMessageButtonMarginBottom">5dp</dimen>
+    <dimen name="profileSendMessageButtonMarginLeft">90dp</dimen>
+    <dimen name="profileSendMessageButtonPaddingLeft">6dp</dimen>
+    <dimen name="profileSendMessageButtonPaddingRight">6dp</dimen>
+
+    <dimen name="profileImageIVWidth">90dp</dimen>
+    <dimen name="profileImageIVHeight">90dp</dimen>
+
+
+    <dimen name="profilePagerMarginTop">-5dp</dimen>
+    <dimen name="profilePagerPaddingLeft">5dp</dimen>
+    <dimen name="profilePagerPaddingRight">5dp</dimen>
+    <dimen name="fanCountTVMarginRight">2dp</dimen>
+    <dimen name="fanCountTVMarginTop">2dp</dimen>
+
+    <!-- Profile Achievements -->
+    <dimen name="achievementTVWidth">130dp</dimen>
+    <dimen name="achievementTVPaddingLeft">7dp</dimen>
+
+
+    <!-- Login -->
+    <dimen name="large_edit_text_size">23sp</dimen>
+
+    <!-- Nav drawer profile tab -->
+    <dimen name="profile_tab_height">120dp</dimen>
+    <dimen name="profile_tab_padding">24dp</dimen>
+    <dimen name="profile_image_size">40dp</dimen>
+
+    <dimen name="dialog_height_val">100dp</dimen>
+
+    <dimen name="keyline_1">16dp</dimen>
+    <dimen name="progress_bar">20dp</dimen>
+</resources>

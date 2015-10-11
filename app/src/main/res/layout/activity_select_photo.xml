@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:card_view="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include
+        layout="@layout/layout_tool_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"></include>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_normal"
+        card_view:cardBackgroundColor="@color/window_background"
+        card_view:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_margin="@dimen/margin_normal"
+        >
+
+        <TextView
+            android:id="@+id/cameraTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/padding_normal"
+            android:text="@string/camera"
+            android:gravity="center"
+            android:background="@color/primary"
+            android:textColor="@color/white"
+            android:layout_marginRight="@dimen/margin_normal"
+            />
+
+        <TextView
+            android:id="@+id/allPhotosTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/padding_normal"
+            android:text="@string/allphotos"
+            android:gravity="center"
+            android:background="@color/primary"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:background="@color/window_background"
+        android:divider="@null"
+        android:layout_margin="@dimen/margin_normal"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
+
+</LinearLayout>

@@ -1,0 +1,144 @@
+<resources>
+    <!-- App theme -->
+    <color name="primary">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="primary_light">#BBDEFB</color>
+    <color name="accent">#FF5252</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#B6B6B6</color>
+    <color name="window_background">#FFFFFF</color>
+
+    <!--Login Screen -->
+    <color name="version_no">#F44336</color>
+    <color name="app_name">#F44336</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Misc Colors -->
+    <color name="blueTextColor">#4bafe4</color>
+    <color name="transparent_white">#7fff</color>
+    <color name="focusblueTextColor">#219bdb</color>
+    <color name="text_white">#FFFFFF</color>
+
+
+<!--
+    //old desidime colors
+-->
+    <color name="list_item_title">#fff</color>
+    <color name="list_item_color">#6F6F6F</color>
+    <color name="list_background">#303030</color>
+    <color name="list_background_pressed">#992416</color>
+    <color name="list_divider">#272727</color>
+    <color name="counter_text_bg">#626262</color>
+    <color name="counter_text_color">#c5c4c4</color>
+    <color name="background_tab_pressed">#6633B5E5</color>
+    <color name="app_background_color">#E7E7E7</color>
+    <color name="coupon_title_color">#222222</color>
+    <color name="transparent_holo_light_blue">#4433b5e5</color>
+    <color name="color_1">#2CB5F2</color>
+    <color name="color_2">#57C8FA</color>
+    <color name="color_3">#33B5E5</color>
+
+    <color name="color_4">#25AADB</color>
+    <color name="color_5">#56C6F0</color>
+    <color name="color_6">#78D7FA</color>
+    <color name="color_scheme_3_1">#B6DB49</color>
+    <color name="color_scheme_3_2">#99CC00</color>
+    <color name="color_scheme_3_3">#8ABD00</color>
+    <color name="color_scheme_3_4">#7CAF00</color>
+    <color name="light_grey">#5e5e5e</color>
+    <color name="carrot_red">#FF3232</color>
+    <color name="fbutton_default_color">#3eadeb</color>
+    <color name="fbutton_default_shadow_color">#ff3493c8</color>
+    <color name="fbutton_color_turquoise">#1abc9c</color>
+    <color name="fbutton_color_green_sea">#16a085</color>
+    <color name="fbutton_color_emerald">#2ecc71</color>
+    <color name="fbutton_color_nephritis">#27ae60</color>
+    <color name="fbutton_color_peter_river">#3498db</color>
+    <color name="fbutton_color_belize_hole">#2980b9</color>
+    <color name="fbutton_color_amethyst">#9b59b6</color>
+    <color name="fbutton_color_wisteria">#8e44ad</color>
+    <color name="fbutton_color_wet_asphalt">#34495e</color>
+    <color name="fbutton_color_midnight_blue">#2c3e50</color>
+    <color name="fbutton_color_sun_flower">#f1c40f</color>
+    <color name="fbutton_color_orange">#f39c12</color>
+    <color name="fbutton_color_carrot">#e67e22</color>
+    <color name="fbutton_color_pumpkin">#d35400</color>
+    <color name="fbutton_color_alizarin">#e74c3c</color>
+    <color name="fbutton_color_pomegranate">#c0392b</color>
+    <color name="fbutton_color_clouds">#ecf0f1</color>
+    <color name="fbutton_color_silver">#bdc3c7</color>
+    <color name="fbutton_color_concrete">#95a5a6</color>
+    <color name="fbutton_color_asbestos">#7f8c8d</color>
+    <color name="fbutton_color_transparent">@android:color/transparent</color>
+    <color name="header_bg">#404040</color>
+    <color name="active_btn_bg">#e36e25</color>
+    <color name="dark_grey">#5e5e5e</color>
+    <color name="grey_border">#dadada</color>
+    <color name="light_grey_bg">#f5f5f5</color>
+    <color name="coupon_small_text_color">#757373</color>
+
+    <color name="primary_text_color">#000000</color>
+
+
+    <color name="sky_blue">#36a4e3</color>
+
+    <!-- Splash screen color -->
+    <color name="pink_color">#e43a45</color>
+
+    <!-- Flat UI Colors -->
+    <color name="flat_grey">#bdc3c7</color>
+    <color name="flat_shadow">#2c3e50</color>
+    <color name="flat_white">#ecf0f1</color>
+
+
+    <!-- Deals Colors -->
+    <color name="deals_blue">#37a6e1</color>
+    <color name="deals_footer">#f2f2f2</color>
+    <color name="light_text">#A6A6A6</color>
+
+    <!-- Forum Colors -->
+    <color name="forum_fotter_color">#f2f2f2</color>
+    <color name="separator_color">#cccccc</color>
+    <color name="forum_title_color">#37a6e1</color>
+
+
+    <!-- Profile tab  -->
+    <color name="profile_tab_text_color">#deffffff</color>
+    <color name="session_photo_scrim">#3000</color>
+
+    <!-- Messages color  -->
+    <color name="message_separator">#1A000000</color>
+    <color name="create_message_separator">#B7B7B7</color>
+    <color name="create_message_to_bg">#D7D7D7</color>
+    <color name="create_message_text_color">#373737</color>
+
+
+    <!-- Navigation Drawer -->
+    <color name="navdrawer_background">#ffffffff</color>
+    <color name="theme_primary">#3f51b5</color>
+    <color name="navdrawer_text_color_selected">@color/theme_primary</color>
+    <color name="body_text_1">#de000000</color>
+    <color name="navdrawer_text_color">@color/body_text_1</color>
+    <color name="navdrawer_icon_tint_selected">@color/theme_primary</color>
+    <!--
+    <color name="navdrawer_icon_tint">#000000</color>
+
+    -->
+    <color name="navdrawer_icon_tint">#808080</color>
+    <!-- FilterSelector -->
+    <color name="filter_normal">#ffffffff</color>
+
+
+    <!-- list items -->
+    <color name="item_separator">#2aaa</color>
+    <color name="list_item_selected">#D7D7D7</color>
+    <color name="list_item_footer">#fafafa</color>
+    <color name="store_name_selected">#005f7f</color>
+    <color name="html_link_color">#0000EE</color>
+
+    <color name="color_red">#e33b45</color>
+    <color name="color_red_shadow">#b9232c</color>
+
+</resources>

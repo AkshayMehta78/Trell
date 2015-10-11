@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/layout_tool_bar"></include>
+
+
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:background="@color/primary"
+        android:weightSum="2">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="1.6"
+            android:layout_height="fill_parent"
+            android:hint="Please Enter Text "
+            android:id="@+id/textEditTextView"
+            android:padding="@dimen/padding_xlarge"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textEditTextView"
+            android:id="@+id/sendImageView"
+            android:src="@drawable/ic_media_play"
+            android:padding="@dimen/padding_xlarge"
+            />
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/bottomLayout">
+
+        <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/chatListView"
+            android:visibility="gone"
+            ></ListView>
+
+
+        <ProgressBar
+            android:id="@+id/loadingProgressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

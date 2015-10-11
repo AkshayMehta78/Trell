@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_xxlarge"
+                android:descendantFocusability="afterDescendants"
+                android:background="@drawable/card_background_selector"
+                android:padding="@dimen/padding_large">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/userImageImageView"
+        android:src="@drawable/ic_default_profile_pic"
+        app:border_color="@color/white"
+        android:layout_alignParentLeft="true"
+        app:border_width="3dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Akshay"
+        android:id="@+id/userNameTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center"
+        android:layout_below="@+id/userImageImageView"
+        android:layout_alignRight="@+id/userImageImageView"
+        android:layout_alignEnd="@+id/userImageImageView" />
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Daffodils'23"
+        android:textSize="@dimen/text_size_large"
+        android:gravity="top|left|center_vertical"
+        android:textStyle="bold"
+        android:textColor="@color/primary"
+        android:padding="@dimen/padding_large"
+        android:id="@+id/userMessageTextView"
+        android:layout_toRightOf="@+id/userImageImageView"
+        android:layout_toEndOf="@+id/userImageImageView"
+        android:layout_alignBottom="@+id/userNameTextView"
+        android:layout_alignParentTop="true" />
+
+</RelativeLayout>
