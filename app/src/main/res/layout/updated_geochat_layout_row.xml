@@ -2,21 +2,23 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/padding_normal"
-    card_view:cardBackgroundColor="@android:color/white"
-    card_view:cardElevation="2dp">
+    card_view:cardBackgroundColor="@color/white"
+    card_view:cardElevation="4dp">
 
   <RelativeLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content">
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/margin_large">
 
       <RelativeLayout
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
-          android:layout_margin="@dimen/margin_large"
+          android:layout_marginLeft="@dimen/margin_large"
+          android:layout_marginRight="@dimen/margin_large"
+          android:layout_marginBottom="@dimen/margin_large"
           android:id="@+id/headerLayout">
 
           <de.hdodenhof.circleimageview.CircleImageView
@@ -27,7 +29,6 @@
               app:border_color="@color/white"
               android:layout_alignParentLeft="true"
               app:border_width="3dp"/>
-
 
           <TextView
               android:layout_width="wrap_content"
@@ -43,7 +44,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:text="Daffodils'23"
-              android:textSize="@dimen/text_size_large"
+              android:textSize="@dimen/text_size_medium"
               android:gravity="left|center_vertical"
               android:textStyle="bold"
               android:textColor="@color/primary"
@@ -52,8 +53,28 @@
               android:layout_toRightOf="@+id/userImageImageView"
               android:layout_marginLeft="@dimen/margin_xlarge"/>
 
-      </RelativeLayout>
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="4Km"
+              android:textSize="@dimen/text_size_small"
+              android:gravity="left|center_vertical"
+              android:textColor="@color/body_text_1"
+              android:id="@+id/distanceTextView"
+              android:layout_below="@+id/userNameTextView"
+              android:layout_alignParentRight="true"
+              android:layout_marginLeft="@dimen/margin_large"/>
 
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="3h"
+              android:id="@+id/ageTextView"
+              android:layout_alignParentTop="true"
+              android:layout_alignParentRight="true"
+              android:padding="@dimen/padding_normal"/>
+
+      </RelativeLayout>
 
       <RelativeLayout
           android:layout_width="fill_parent"
@@ -61,13 +82,61 @@
           android:id="@+id/bodyLayout"
           android:layout_below="@+id/headerLayout"
           >
+          <TextView
+              android:id="@+id/descriptionTextView"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:maxLines="3"
+              android:layout_margin="@dimen/margin_large"
+              android:lineSpacingExtra="3dp"/>
+
+
+          <TextView
+              android:id="@+id/spannableTagsTextView"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:textSize="@dimen/text_size_large"
+              android:padding="@dimen/padding_normal"
+              android:textStyle="normal"
+              android:layout_below="@+id/descriptionTextView"
+              android:layout_marginBottom="@dimen/margin_large"/>
+
+          <com.anton46.collectionitempicker.CollectionPicker
+              android:id="@+id/collection_picker"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              app:cp_itemBackgroundNormal="@color/color_6"
+              app:cp_itemMargin="10dp"
+              app:cp_textPaddingBottom="5dp"
+              app:cp_textPaddingLeft="5dp"
+              app:cp_textPaddingRight="5dp"
+              app:cp_textPaddingTop="5dp"
+              app:cp_simplified="true"
+              android:layout_below="@+id/descriptionTextView"
+              android:layout_marginBottom="@dimen/margin_large"
+              android:focusable="false"
+              android:visibility="gone"
+              />
 
           <ImageView
               android:id="@+id/geoChatImageView"
               android:layout_width="fill_parent"
               android:layout_height="150dp"
               android:scaleType="fitXY"
+              android:layout_below="@+id/spannableTagsTextView"
               android:src="@drawable/travel_bg"/>
+
+          <TextView
+              android:id="@+id/captionTextView"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:maxLines="1"
+              android:textColor="@color/white"
+              android:textSize="@dimen/text_size_large"
+              android:padding="@dimen/padding_normal"
+              android:textStyle="normal"
+              android:layout_alignBottom="@+id/geoChatImageView"/>
+
       </RelativeLayout>
 
       <RelativeLayout
@@ -75,32 +144,39 @@
           android:layout_height="wrap_content"
           android:id="@+id/footerLayout"
           android:layout_below="@+id/bodyLayout"
+          android:layout_centerVertical="true"
+          android:padding="@dimen/padding_normal"
           android:background="@color/light_grey_bg">
 
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:text="12"
-              android:id="@+id/likesTextView"
+              android:id="@+id/wishListTextView"
               android:padding="@dimen/padding_normal"
-              android:drawableRight="@drawable/ic_liked"
-              android:backgroundTint="@color/color_red"
-              android:backgroundTintMode="src_in"
-              android:drawablePadding="@dimen/padding_large"
               android:gravity="center"
-              android:textColor="@color/primary"/>
+              android:textColor="@color/color_red"/>
 
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:text="55"
               android:id="@+id/commentTextView"
-              android:layout_toRightOf="@+id/likesTextView"
+              android:layout_toRightOf="@+id/wishListTextView"
               android:padding="@dimen/padding_normal"
-              android:drawableRight="@drawable/ic_comments"
-              android:drawablePadding="@dimen/padding_large"
               android:gravity="center"
-              android:textColor="@color/primary"/>
+              android:textColor="@color/color_red"/>
+
+
+          <ImageView
+              android:layout_width="30dp"
+              android:layout_height="30dp"
+              android:layout_alignParentRight="true"
+              android:layout_centerVertical="true"
+              android:tint="@color/primary"
+              android:src="@drawable/ic_more"
+              android:id="@+id/moreImageView"
+              android:padding="@dimen/padding_normal"/>
 
       </RelativeLayout>
 

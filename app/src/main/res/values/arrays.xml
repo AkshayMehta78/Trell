@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="other_more_options">
+        <item name="Share">Share</item>
+        <item name="Follow">Follow</item>
+        <item name="Report Content">Report Content</item>
+    </string-array>
+
+    <string-array name="self_more_options">
+        <item name="Share">Share</item>
+        <item name="Edit post">Edit post</item>
+        <item name="Delete">Delete</item>
+    </string-array>
+</resources>

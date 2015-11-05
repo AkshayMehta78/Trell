@@ -57,9 +57,9 @@ public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecycler
         item = photoItemList.get(i);
         position = i;
         if (!item.isEmpty())
-            Picasso.with(activity).load(new File(item)).into(holder.geoChatImageView);
+            Picasso.with(activity).load(new File(item)).resize(100,100).centerCrop().into(holder.geoChatImageView);
         else
-            Picasso.with(activity).load(R.drawable.travel_bg).into(holder.geoChatImageView);
+            Picasso.with(activity).load(R.drawable.travel_bg).resize(100,100).centerCrop().into(holder.geoChatImageView);
 
         if (selectedList.get(i))
             holder.tickImageView.setVisibility(View.VISIBLE);
@@ -80,7 +80,7 @@ public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecycler
     }
 
     public void addMore() {
-        selectedList.add(true);
+        selectedList.set(0,true);
         notifyDataSetChanged();
     }
 

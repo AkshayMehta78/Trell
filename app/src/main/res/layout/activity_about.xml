@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include
+        layout="@layout/layout_tool_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"></include>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/maxCountTextView"
+        android:text="200"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/padding_large"
+        android:layout_margin="@dimen/margin_large"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/maxCountTextView"
+        android:layout_margin="@dimen/margin_large"
+        android:minLines="10"
+        android:hint="@string/description"
+        android:gravity="top"
+        android:background="@drawable/blue_editext"
+        android:padding="@dimen/padding_large"
+        android:maxLength="200"
+        android:id="@+id/descriptionEditText"
+        android:imeOptions="actionDone|flagNoEnterAction"
+        android:inputType="textMultiLine|textAutoCorrect|textCapSentences">
+        <requestFocus/>
+
+</EditText>
+
+</RelativeLayout>

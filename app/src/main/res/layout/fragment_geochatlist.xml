@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context="app.geochat.ui.fragments.DealFragment">
 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:padding="@dimen/padding_large"
+        android:background="@drawable/blue_editext"
+        android:layout_margin="@dimen/margin_normal"
+        android:layout_below="@+id/toolbar"
+        android:text="@string/select_location"
+        android:textColor="@color/primary_dark"
+        android:gravity="center"
+        android:id="@+id/locationTextView"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listView"
@@ -14,8 +26,8 @@
         android:background="@color/app_background_color"
         android:divider="@null"
         android:visibility="invisible"
+        android:layout_below="@+id/locationTextView"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_below="@+id/toolbar"
         />
 
 

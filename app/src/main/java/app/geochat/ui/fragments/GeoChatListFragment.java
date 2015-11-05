@@ -2,6 +2,7 @@ package app.geochat.ui.fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -11,17 +12,26 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.facebook.android.Util;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import app.geochat.R;
 import app.geochat.beans.GeoChat;
 import app.geochat.beans.SharedPreferences;
 import app.geochat.managers.GeoChatManagers;
 import app.geochat.services.asynctask.LocationService;
+import app.geochat.ui.activities.ChatActivity;
+import app.geochat.ui.activities.CheckInActivity;
+import app.geochat.ui.activities.HomeActivity;
 import app.geochat.ui.adapters.RecyclerViewAdapter;
 import app.geochat.ui.widgets.SpacesItemDecoration;
 import app.geochat.util.CircularProgressView;
+import app.geochat.util.Constants;
 import app.geochat.util.Utils;
 
 /**
@@ -29,7 +39,7 @@ import app.geochat.util.Utils;
  *
  * @author akshay
  */
-public class GeoChatListFragment extends Fragment {
+public class GeoChatListFragment extends Fragment implements View.OnClickListener {
 
     private SharedPreferences mSharedPreferences;
     private RecyclerView mRecylcerlistView;
@@ -37,6 +47,7 @@ public class GeoChatListFragment extends Fragment {
     private GeoChatManagers geoChatManager;
     private RecyclerViewAdapter adapter;
     private View rootView;
+    private TextView locationTextView;
 
     public GeoChatListFragment() {
         // Required empty public constructor
@@ -49,10 +60,15 @@ public class GeoChatListFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_geochatlist, container, false);
 
         getWidgetReferences();
+        setWidgetEvents();
         initialization();
         getAllGeoChats();
 
         return rootView;
+    }
+
+    private void setWidgetEvents() {
+        locationTextView.setOnClickListener(this);
     }
 
     private void initialization() {
@@ -65,16 +81,23 @@ public class GeoChatListFragment extends Fragment {
         mRecylcerlistView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecylcerlistView.addItemDecoration(new SpacesItemDecoration(20));
         loadingProgressBar = (CircularProgressView) rootView.findViewById(R.id.loadingProgressBar);
+        locationTextView = (TextView) rootView.findViewById(R.id.locationTextView);
     }
 
-    private void getAllGeoChats() {
-        geoChatManager.fetchAllGeoChats(getActivity());
+    public void getAllGeoChats() {
+        loadingProgressBar.setVisibility(View.VISIBLE);
+        mRecylcerlistView.setVisibility(View.GONE);
+        double[] locationData = Utils.getLocationDetails(getActivity());
+        geoChatManager.fetchAllGeoChats(getActivity(), locationData[0] + "", locationData[1] + "", Constants.LOCATIONKEYS.REFRESH);
     }
 
-    public void renderGeoChatListView(ArrayList<GeoChat> result) {
+    public void renderGeoChatListView(ArrayList<GeoChat> result, String status) {
         loadingProgressBar.setVisibility(View.GONE);
         mRecylcerlistView.setVisibility(View.VISIBLE);
         if (result.size() > 0) {
+            if (status.equalsIgnoreCase(Constants.LOCATIONKEYS.LOCATIONFEEDS)) {
+                Collections.sort(result, new CustomComparator());
+            }
             adapter = new RecyclerViewAdapter(getActivity(), result);
             mRecylcerlistView.setAdapter(adapter);
         } else
@@ -86,31 +109,86 @@ public class GeoChatListFragment extends Fragment {
         mRecylcerlistView.setVisibility(View.VISIBLE);
     }
 
-
-    public void verifyUser(GeoChat item) {
-        final LocationManager manager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-
-        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-            Utils.showToast(getActivity(), "GPS is disabled. Please Enable to Find your Location.");
-        else {
-            LocationService appLocationService = new LocationService(getActivity());
-            Location gpsLocation = appLocationService.getLocation(LocationManager.GPS_PROVIDER);
-
-            if (gpsLocation != null) {
-                double latitude = gpsLocation.getLatitude();
-                double longitude = gpsLocation.getLongitude();
-                geoChatManager.verifyUserToJoin(latitude, longitude, item.getUserId(), item.getGeoChatId(), item);
-            } else {
-                double latitude = 19.24;
-                double longitude = 72.85;
-                geoChatManager.verifyUserToJoin(latitude, longitude, item.getUserId(), item.getGeoChatId(), item);
-            }
-        }
-    }
-
     @Override
     public void onResume() {
         super.onResume();
+    }
+
+    public void openFullScreenNote(GeoChat item) {
+        Intent chatIntent = new Intent(getActivity(), ChatActivity.class);
+        chatIntent.putExtra(Constants.Preferences.GEOCHAT, item);
+        getActivity().startActivity(chatIntent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (locationTextView == v) {
+            Intent intent = new Intent(getActivity(), CheckInActivity.class);
+            intent.setAction(Constants.LOCATIONKEYS.CHECKIN);
+            startActivityForResult(intent, Constants.LOCATIONKEYS.CHECKINID);
+        }
+    }
+
+
+    /**
+     * Call Back method  to get the location name form other Activity
+     */
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            String location = data.getStringExtra(Constants.LOCATIONKEYS.CHECKIN);
+            String latitude = data.getStringExtra(Constants.LOCATIONKEYS.LATITUDE);
+            String longitude = data.getStringExtra(Constants.LOCATIONKEYS.LONGITUDE);
+
+            locationTextView.setText(location);
+            mRecylcerlistView.setAdapter(null);
+            getLocationWiseGeoNotes(latitude, longitude);
+        }
+    }
+
+    private void getLocationWiseGeoNotes(String latitude, String longitude) {
+        loadingProgressBar.setVisibility(View.VISIBLE);
+        mRecylcerlistView.setVisibility(View.GONE);
+        geoChatManager.fetchAllGeoChats(getActivity(), latitude, longitude, Constants.LOCATIONKEYS.LOCATIONFEEDS);
+    }
+
+    public void refreshGeoNotes() {
+        locationTextView.setText(getString(R.string.select_location));
         getAllGeoChats();
+    }
+
+    public void updateGeoNoteList(int position) {
+        adapter.removeItemFromList(position);
+    }
+
+    public void openFullScreenNoteWithComment(GeoChat item) {
+        Intent chatIntent = new Intent(getActivity(), ChatActivity.class);
+        chatIntent.putExtra(Constants.Preferences.GEOCHAT, item);
+        chatIntent.putExtra(Constants.Preferences.COMMENT, "1");
+        getActivity().startActivity(chatIntent);
+    }
+
+    public class CustomComparator implements Comparator<GeoChat> {
+        @Override
+        public int compare(GeoChat geoChat1, GeoChat geoChat2) {
+            int returnVal = 0;
+            int distance1 = Integer.parseInt(geoChat1.getDistance());
+            int distance2 = Integer.parseInt(geoChat2.getDistance());
+
+
+            if (distance1 < distance2) {
+                returnVal = -1;
+            } else if (distance1 > distance2) {
+                returnVal = 1;
+            } else if (distance1 == distance1) {
+                returnVal = 0;
+            }
+            return returnVal;
+        }
+    }
+
+    public void updateWishList(int position){
+        adapter.updateWishList(position);
     }
 }

@@ -141,7 +141,8 @@ public class LoginManager extends Manager implements Constants.UserInfoKeys, Con
 
         if (!userInfoJSon.isNull(FACEBOOK_ID)) {
             desiDimePreferences.setFacebookId(userInfoJSon.getString(FACEBOOK_ID));
-            String imageUrl = "https://graph.facebook.com/" + userInfoJSon.getString(FACEBOOK_ID) + "/picture?type=small";
+            String imageUrl = "https://graph.facebook.com/" + userInfoJSon.getString(FACEBOOK_ID) + "/picture?type=large";
+            Log.e("imageUrl",imageUrl);
             desiDimePreferences.setFacebookProfilePicture(imageUrl);
             desiDimePreferences.setProfileImage(imageUrl);
         }
@@ -158,7 +159,7 @@ public class LoginManager extends Manager implements Constants.UserInfoKeys, Con
     /*
     Social Login
     */
-    public void executeSocialLogin(final Activity activity, final String mode, final String socialId, final String EmailId, final String deviceToken, final String userName) {
+    public void executeSocialLogin(final Activity activity, final String mode, final String socialId, final String EmailId, final String deviceToken, final String userName, final String facebookProfilePicture) {
         Utils.showProgress(activity);
         // Tag used to cancel the request
         String tag_social_login = "social_login";
@@ -205,6 +206,7 @@ public class LoginManager extends Manager implements Constants.UserInfoKeys, Con
                 params.put(DEVICE_NUMBER, deviceId);
                 params.put(DEVICE_TOKEN,deviceToken);
                 params.put(PLATFORM, Constants.ANDROID);
+                params.put(AVATAR,facebookProfilePicture);
                 params.put(MODE,LoginManager.MODE_FACEBOOK);
                 return params;
             }

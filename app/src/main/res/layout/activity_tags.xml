@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+    <include
+        layout="@layout/layout_tool_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"></include>
+
+    <com.anton46.collectionitempicker.CollectionPicker
+        android:id="@+id/collection_item_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:cp_addIcon="@android:drawable/ic_menu_add"
+        app:cp_cancelIcon="@android:drawable/ic_menu_close_clear_cancel"
+        app:cp_itemBackgroundNormal="@color/primary"
+        app:cp_itemBackgroundPressed="@color/fbutton_color_emerald"
+        app:cp_itemMargin="5dp"
+        app:cp_textPaddingBottom="10dp"
+        app:cp_textPaddingLeft="10dp"
+        app:cp_textPaddingRight="10dp"
+        app:cp_textPaddingTop="10dp"
+        app:cp_simplified="false"
+        android:layout_below="@+id/toolbar"
+        />
+
+        <TextView
+            android:id="@+id/dividerView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_large"
+            android:text="OR"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:layout_below="@+id/collection_item_picker"></TextView>
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_margin="@dimen/margin_large"
+        android:orientation="horizontal"
+        android:layout_below="@+id/dividerView">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:textColor="@color/blueTextColor"
+            android:padding="@dimen/padding_large"
+            android:layout_marginRight="@dimen/margin_large"
+            android:background="@drawable/blue_editext"
+            android:id="@+id/tagEditText"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@drawable/button_selector"
+            android:textColor="@color/white"
+            android:text="@string/add_tag"
+            android:id="@+id/addTagButton"/>
+
+    </LinearLayout>
+</RelativeLayout>

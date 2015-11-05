@@ -1,7 +1,7 @@
 package app.geochat.ui.interfaces;
 
 /**
- * Created by tasneem on 29/7/15.
+ * Created by akshay on 29/7/15.
  */
 public interface MultiDataLoader {
 }

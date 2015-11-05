@@ -19,6 +19,46 @@
             android:id="@+id/container_layout"
             android:layout_below="@+id/toolbar"/>
 
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/primary"
+            android:padding="@dimen/padding_normal"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_refresh"
+                android:id="@+id/refreshImageView"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin_xlarge"
+                android:layout_marginLeft="@dimen/margin_xlarge"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_vote_up"
+                android:layout_toRightOf="@+id/refreshImageView"
+                android:id="@+id/trendingImageView"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin_xlarge"
+                android:layout_marginLeft="@dimen/margin_xlarge"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_create_geochat"
+                android:layout_centerVertical="true"
+                android:id="@+id/createGeoNoteImageView"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/margin_xlarge"
+                android:layout_marginLeft="@dimen/margin_xlarge"/>
+
+        </RelativeLayout>
+
     </RelativeLayout>
 
 

@@ -2,7 +2,7 @@ package app.geochat.util;
 
 /**
  * Image caching used by volley image loader
- * Created by tasneem on 23/7/15.
+ * Created by akshay on 23/7/15.
  */
 import com.android.volley.toolbox.ImageLoader.ImageCache;
 

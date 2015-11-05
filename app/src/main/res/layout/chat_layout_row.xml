@@ -3,9 +3,8 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_xxlarge"
+                android:layout_margin="@dimen/margin_large"
                 android:descendantFocusability="afterDescendants"
-                android:background="@drawable/card_background_selector"
                 android:padding="@dimen/padding_large">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -21,7 +20,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Akshay"
+        android:visibility="gone"
+        android:textColor="@android:color/black"
         android:id="@+id/userNameTextView"
+        android:layout_marginTop="@dimen/margin_normal"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:gravity="center"
@@ -34,15 +36,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Daffodils'23"
-        android:textSize="@dimen/text_size_large"
+        android:textSize="@dimen/text_size_medium"
         android:gravity="top|left|center_vertical"
-        android:textStyle="bold"
-        android:textColor="@color/primary"
-        android:padding="@dimen/padding_large"
+        android:textStyle="normal"
+        android:textColor="@android:color/black"
+        android:padding="@dimen/padding_normal"
         android:id="@+id/userMessageTextView"
         android:layout_toRightOf="@+id/userImageImageView"
-        android:layout_toEndOf="@+id/userImageImageView"
-        android:layout_alignBottom="@+id/userNameTextView"
         android:layout_alignParentTop="true" />
 
 </RelativeLayout>

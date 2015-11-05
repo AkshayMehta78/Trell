@@ -13,27 +13,45 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.location.Location;
+import android.location.LocationManager;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import app.geochat.DesidimeApplication;
 import app.geochat.R;
+import app.geochat.beans.GeoChat;
 import app.geochat.beans.SharedPreferences;
+import app.geochat.services.asynctask.LocationService;
+import app.geochat.ui.activities.AboutLocationActivity;
 import app.geochat.ui.activities.BaseActivity;
 import app.geochat.ui.activities.CheckInActivity;
 import app.geochat.ui.activities.CreateGeoChatActivity;
@@ -43,6 +61,7 @@ import app.geochat.ui.activities.SelectPhotoActivity;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
+import com.anton46.collectionitempicker.Item;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
@@ -54,7 +73,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -85,7 +109,7 @@ public class Utils {
      */
 
     /**
-     * Setting up toolbar without pager
+     * Setting up toolbar for main page
      *
      * @param context
      * @param title
@@ -98,6 +122,23 @@ public class Utils {
         final ActionBar ab = activity.getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
+    }
+
+
+    /**
+     * Setting up toolbar
+     *
+     * @param context
+     * @param title
+     * @param activity
+     */
+    public static void setActivityToolbar(Context context, int title, AppCompatActivity activity) {
+        Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
+        toolbar.setTitle(context.getText(title));
+        activity.setSupportActionBar(toolbar);
+        final ActionBar ab = activity.getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setHomeButtonEnabled(true);
     }
 
     public static void showToast(Context context, String message) {
@@ -366,22 +407,25 @@ public class Utils {
         }.execute(null, null, null);
     }
 
-    public static void createGeoChat(Context context) {
-        Intent intent = new Intent(context, CheckInActivity.class);
-        context.startActivity(intent);
-    }
-
-
     public static ArrayList<String>  getCameraImages(Context context) {
-        ArrayList<String>  result = new  ArrayList<String> ();
-        File file = new File(android.os.Environment.getExternalStorageDirectory(), "/DCIM/Camera");
-        File[] listFile;
-        if (file.isDirectory()) {
-            listFile = file.listFiles();
-            for (int i = 0; i < listFile.length; i++) {
-                result.add(listFile[i].getAbsolutePath());
-            }
+
+        final String[] projection = { MediaStore.Images.Media.DATA };
+        final String selection = MediaStore.Images.Media.BUCKET_ID + " = ?";
+        final String[] selectionArgs = { CAMERA_IMAGE_BUCKET_ID };
+        final Cursor cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                projection,
+                selection,
+                selectionArgs,
+                null);
+        ArrayList<String> result = new ArrayList<String>(cursor.getCount());
+        if (cursor.moveToFirst()) {
+            final int dataColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            do {
+                final String data = cursor.getString(dataColumn);
+                result.add(data);
+            } while (cursor.moveToNext());
         }
+        cursor.close();
         return result;
     }
 
@@ -610,4 +654,236 @@ public class Utils {
 
     }
 
+    public static double[] getUserLocation(Activity activity) {
+        double[] location= new double[2];
+        final LocationManager manager = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            location = null;
+        }
+        else {
+            LocationService appLocationService = new LocationService(activity);
+            Location gpsLocation = appLocationService.getLocation(LocationManager.GPS_PROVIDER);
+
+            if (gpsLocation != null) {
+                location[0] = gpsLocation.getLatitude();
+                location[1] = gpsLocation.getLongitude();
+            }
+        }
+        return location;
+    }
+
+    public static void hide_keyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if(view == null) {
+            view = new View(activity);
+        }
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+
+    public static Uri getImageURI(Context context, Bitmap photo) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        photo.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), photo, "Title", null);
+        return Uri.parse(path);
+    }
+
+    public static void slideUpViewAnimator(Context context, EditText editext) {
+        Animation slide_up = AnimationUtils.loadAnimation(context, R.anim.slide_up_out);
+        editext.startAnimation(slide_up);
+    }
+
+
+
+    public static String dateDiff(Date date) {
+        long oldMillis = date.getTime();
+        long currMillis = System.currentTimeMillis();
+        String msg = null;
+        long diff = java.lang.Math.abs(currMillis - oldMillis);
+        long temp = diff / 60000;
+        if (temp >= 60) {
+            temp = temp / 60;
+            if (temp >= 24) {
+                temp = temp / 24;
+                if (temp > 30) {
+                    temp = temp / 30;
+                    if (temp > 12) {
+                        temp = temp / 12;
+
+                        if (temp == 1) {
+                            msg = temp + " year ago";
+                        } else {
+                            msg = temp + " years ago";
+                        }
+                    } else {
+
+                        if (temp == 1) {
+                            msg = temp + " month ago";
+                        } else {
+                            msg = temp + " months ago";
+                        }
+                    }
+                } else {
+
+                    if (temp == 1) {
+                        msg = temp + " day ago";
+                    } else {
+                        msg = temp + " days ago";
+                    }
+                }
+            } else {
+
+                if (temp == 1) {
+                    msg = temp + " hour ago";
+                } else {
+                    msg = temp + " hours ago";
+                }
+            }
+        } else {
+
+            if (temp == 1) {
+                msg = temp + " min ago";
+            } else {
+                msg = temp + " mins ago";
+            }
+        }
+        return msg;
+    }
+
+    public static Date getDate(String date) {
+
+        String trimdate = date.substring(0, 19);
+        SimpleDateFormat inputFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+        Date parsed = null;
+        try {
+            parsed = inputFormat.parse(trimdate);
+        } catch (ParseException e) {
+
+
+        }
+        outputFormat.format(parsed);
+        return parsed;
+    }
+
+    public static List<Item> getItemListArray(String[] tagsArray) {
+        List<Item> list = new ArrayList<>();
+        if(tagsArray.length>0){
+            for(int i = 0;i<tagsArray.length;i++){
+                list.add(new Item(tagsArray[i],tagsArray[i]));
+            }
+        }
+        return list;
+    }
+
+    public static boolean isMyPost(String userId, Context context) {
+        if(new SharedPreferences(context).getUserId().equalsIgnoreCase(userId))
+            return true;
+        else
+            return false;
+    }
+
+    public static void openShareIntent(GeoChat item, Activity activity) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        Uri uri = Uri.parse(getBitmapFromURl(item.getGeoChatImage(),activity,item.getCity()));
+        shareIntent.setType("*/*");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, item.getDescripton());
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        activity.startActivity(shareIntent);
+    }
+
+
+    public static String getBitmapFromURl(String urlAddress, Activity activity, String city){
+        String path="";
+        try {
+            URL url = new URL(urlAddress);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap immutableBpm = BitmapFactory.decodeStream(input);
+            Bitmap mutableBitmap = immutableBpm.copy(Bitmap.Config.ARGB_8888, true);
+            View view = new View(activity);
+            view.draw(new Canvas(mutableBitmap));
+            path = MediaStore.Images.Media.insertImage(activity.getContentResolver(), mutableBitmap,city , null);
+        } catch(Exception e){
+
+        }
+        return path;
+    }
+
+    public static void reportContent(GeoChat item, Activity activity) {
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto",Constants.ADMINEMAIL, null));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, item.getCheckInLocation() +" - Report");
+        activity.startActivity(Intent.createChooser(emailIntent, "Report Content"));
+    }
+
+    public static Spanned getFormattedTags(String[] tagsArray, final Activity activity) {
+        Spanned finalTags = new SpannableString("");
+        final ForegroundColorSpan span = new ForegroundColorSpan(Color.parseColor("#2196F3"));
+        final RelativeSizeSpan sizeSpan = new RelativeSizeSpan(1.5f);
+        for(int i = 0;i <tagsArray.length; i++){
+            String tag = tagsArray[i];
+            Spannable wordtoSpan = new SpannableString(tag);
+            ClickableSpan clickableSpan = new ClickableSpan() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(activity, "dolor", Toast.LENGTH_LONG).show();
+                }
+            };
+//            wordtoSpan.setSpan(clickableSpan, 0, tag.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            wordtoSpan.setSpan(clickableSpan, 0, tag.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            if(i==2 || i==4 ) {
+                wordtoSpan.setSpan(span, 0, tag.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                wordtoSpan.setSpan(sizeSpan, 0, tag.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            } else {
+                wordtoSpan.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, tag.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+            finalTags = (Spanned) TextUtils.concat(wordtoSpan,"   ",finalTags);
+        }
+        return finalTags;
+    }
+
+
+    public static double[] getLocationDetails(Context context){
+        double[] location = new double[2];
+        double latitude,longitude;
+        LocationService appLocationService = new LocationService(context);
+        Location gpsLocation = appLocationService.getLocation(LocationManager.GPS_PROVIDER);
+
+        if (gpsLocation != null) {
+            latitude = gpsLocation.getLatitude();
+            longitude = gpsLocation.getLongitude();
+
+        } else {
+            gpsLocation = appLocationService.getLocation(LocationManager.NETWORK_PROVIDER);
+            if (gpsLocation != null) {
+                latitude = gpsLocation.getLatitude();
+                longitude = gpsLocation.getLongitude();
+            } else {
+                latitude =19.23;
+                longitude = 72.84;
+            }
+        }
+        location[0] = latitude;
+        location[1] = latitude;
+        return location;
+    }
+
+    public static int getLocationDistance(String noteLat, String noteLong, String loclatitude, String loclongitude) {
+        Location source = new Location("Source");
+        source.setLatitude(Double.parseDouble(loclatitude));
+        source.setLongitude(Double.parseDouble(loclongitude));
+
+        Location destination = new Location("Destination");
+        destination.setLatitude(Double.parseDouble(noteLat));
+        destination.setLongitude(Double.parseDouble(noteLong));
+
+       return  (int)source.distanceTo(destination);
+    }
 }

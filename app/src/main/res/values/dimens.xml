@@ -173,4 +173,6 @@
 
     <dimen name="keyline_1">16dp</dimen>
     <dimen name="progress_bar">20dp</dimen>
+    <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="min_rating_star_bar_height">25dp</dimen>
 </resources>

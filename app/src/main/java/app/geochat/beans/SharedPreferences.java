@@ -5,7 +5,7 @@ import android.content.Context;
 import app.geochat.util.Constants;
 
 /**
- * Created by tasneem on 28/7/15.
+ * Created by akshay on 28/7/15.
  */
 public class SharedPreferences implements Constants.UserInfoKeys,Constants.Preferences,Constants.LoginKeys{
     private static android.content.SharedPreferences mSharedPreferences;

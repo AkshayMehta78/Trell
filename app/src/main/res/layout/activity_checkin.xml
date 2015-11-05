@@ -1,37 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <include
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         layout="@layout/layout_tool_bar"></include>
 
-    <AutoCompleteTextView
-        android:id="@+id/et_feedLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_margin="@dimen/margin_large"
-        android:focusableInTouchMode="true"
-        android:visibility="gone"
-        android:text="" >
-    </AutoCompleteTextView>
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Next"
-        android:id="@+id/btn_Next"
-        android:background="@color/error_color"
-        android:padding="@dimen/padding_large"
-        android:layout_margin="@dimen/margin_large"
-        android:layout_alignParentBottom="true"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="91dp"
-        android:visibility="gone"/>
 
     <ListView
         android:layout_width="wrap_content"
@@ -39,6 +15,45 @@
         android:id="@+id/lv_locations"
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/btn_Next"
+        android:visibility="visible"
         />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerInParent="true"
+        android:id="@+id/mapViewRelativeLayout"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/noLocationImageView"
+            android:src="@drawable/no_location_icon"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/noLocationImageView"
+            android:layout_margin="@dimen/margin_large"
+            android:padding="@dimen/padding_large"
+            android:text="@string/no_location"
+            android:gravity="center"
+            android:id="@+id/errorTextView"
+            />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/errorTextView"
+            android:layout_margin="@dimen/margin_large"
+            android:padding="@dimen/padding_large"
+            android:background="@drawable/button_selector"
+            android:textColor="@color/white"
+            android:id="@+id/mapSearchButton"
+            android:text="@string/mapSearchButton"/>
+    </RelativeLayout>
 </RelativeLayout>

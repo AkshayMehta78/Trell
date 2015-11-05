@@ -26,6 +26,9 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-feature android:name="android.hardware.camera" android:required="false"></uses-feature>
+
+
     <!-- Permissions for GCM Integration -->
     <permission
         android:name="app.geochat.permission.C2D_MESSAGE"
@@ -92,6 +95,7 @@
         <activity
             android:name="app.geochat.ui.activities.CreateGeoChatActivity"
             android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"
             android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
 
@@ -104,11 +108,30 @@
         <activity
             android:name="app.geochat.ui.activities.ChatActivity"
             android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
 
         <activity
             android:name="app.geochat.ui.activities.SelectPhotoActivity"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+
+        <activity
+            android:name="app.geochat.ui.activities.AboutLocationActivity"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+
+        <activity
+            android:name="app.geochat.ui.activities.TagsActivity"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+
+        <activity
+            android:name="app.geochat.ui.activities.MapSearchActivity"
             android:theme="@style/AppTheme"
             android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>

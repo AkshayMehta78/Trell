@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sativa"/>
+
+    <!-- Header aligned to top -->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/locationTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_large"
+            android:drawableLeft="@drawable/down_arrow"
+            android:drawablePadding="@dimen/padding_normal"
+            android:gravity="center"
+            android:padding="@dimen/padding_normal"
+            android:text="Slide up to add comment"
+            android:textSize="@dimen/text_size_large"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+    <!-- Footer aligned to bottom -->
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="0.8"
+            android:layout_height="wrap_content"
+            android:hint="Type your comment"
+            android:background="#0000"
+            android:id="@+id/commentEditText"
+            android:padding="@dimen/padding_large"
+            />
+
+        <ImageView
+            android:id="@+id/sendImageView"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:src="@drawable/send_icon"
+            android:padding="@dimen/padding_normal"
+            android:layout_gravity="center"
+            android:layout_height="fill_parent"/>
+
+    </LinearLayout>
+
+
+    <!-- Body aligned to Center -->
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/header">
+
+        <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/chatListView"
+            ></ListView>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

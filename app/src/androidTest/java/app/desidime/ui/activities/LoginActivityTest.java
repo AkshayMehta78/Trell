@@ -7,7 +7,7 @@ import app.geochat.LoginActivity;
 
 /**
  * Refer : https://developer.android.com/training/activity-testing/activity-basic-testing.html
- * Created by tasneem on 23/7/15.
+ * Created by akshay on 23/7/15.
  */
 public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginActivity> {
 

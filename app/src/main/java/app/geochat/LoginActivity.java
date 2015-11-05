@@ -96,7 +96,7 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
                                 LoginManager loginManager = new LoginManager();
                                 loginManager.saveFacebookUserInfo(userInfoJSon, LoginActivity.this);
                                 if (NetworkManager.isConnectedToInternet(LoginActivity.this)) {
-                                        mLoginManager.executeSocialLogin(LoginActivity.this, LoginManager.MODE_FACEBOOK, mSharedPreferences.getFacebookId(), mSharedPreferences.getFacebookEmailId(), mSharedPreferences.getDeviceToken(),mSharedPreferences.getFacebookName());
+                                        mLoginManager.executeSocialLogin(LoginActivity.this, LoginManager.MODE_FACEBOOK, mSharedPreferences.getFacebookId(), mSharedPreferences.getFacebookEmailId(), mSharedPreferences.getDeviceToken(),mSharedPreferences.getFacebookName(),mSharedPreferences.getFacebookProfilePicture());
                                 }
                             } catch (JSONException e) {
                                 // TODO Auto-generated catch block
@@ -220,7 +220,7 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
                     }
 
                     mLoginManager.saveGoogleUserInfo(this, id, userName, accountName, profilePicUrl, coverPhotourl);
-                    mLoginManager.executeSocialLogin(this, LoginManager.MODE_GOOGLE, mSharedPreferences.getGooglePlusId(), mSharedPreferences.getGooglePlusEmailId(), mSharedPreferences.getDeviceToken(), mSharedPreferences.getGooglePlusName());
+                    mLoginManager.executeSocialLogin(this, LoginManager.MODE_GOOGLE, mSharedPreferences.getGooglePlusId(), mSharedPreferences.getGooglePlusEmailId(), mSharedPreferences.getDeviceToken(), mSharedPreferences.getGooglePlusName(), profilePicUrl);
                     mIntentInProgress = false;
                 } else
                     Utils.showToast(LoginActivity.this, getResources().getString(R.string.something_went_wrong));
@@ -264,6 +264,7 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
     public void loginUser(String loginMode) {
         mSharedPreferences.setLoggedIn(true);
         mSharedPreferences.setLoginMode(loginMode);
+        finish();
         Utils.startHomeActivity(this);
     }
 

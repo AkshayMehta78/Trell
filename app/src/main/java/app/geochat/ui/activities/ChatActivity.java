@@ -1,16 +1,29 @@
 package app.geochat.ui.activities;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import com.anton46.collectionitempicker.CollectionPicker;
+import com.anton46.collectionitempicker.Item;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import app.geochat.R;
 import app.geochat.beans.GeoChat;
@@ -20,6 +33,7 @@ import app.geochat.db.managers.LoginManager;
 import app.geochat.managers.GeoChatManagers;
 import app.geochat.ui.adapters.ChatListAdapter;
 import app.geochat.ui.adapters.RecyclerViewAdapter;
+import app.geochat.util.CircularProgressView;
 import app.geochat.util.Constants;
 import app.geochat.util.Utils;
 
@@ -29,29 +43,103 @@ import app.geochat.util.Utils;
 public class ChatActivity extends AppCompatActivity implements View.OnClickListener {
     private SharedPreferences mSharedPreferences;
     private GeoChat mChatItem;
-    private ListView chatListView;
-    private ProgressBar loadingProgressBar;
+    private CircularProgressView loadingProgressBar;
     private GeoChatManagers mManager;
     private ChatListAdapter adapter;
     private ArrayList<UserChats> result;
     private EditText textEditTextView;
     private ImageView sendImageView;
+    private AppBarLayout mAppBarLayout;
+    private Toolbar mToolbar;
+    private ImageView geoChatImageView;
+    private CollapsingToolbarLayout mCollapsingToolbar;
+
+    private SlidingUpPanelLayout mSlidingLayout;
+    private TextView mLocationTextView,mAboutLocationTextView;
+    private ListView mChatListView;
+    private EditText mCommentEditText;
+    private ImageView mSendImageView;
+    private CollectionPicker mPicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_geochat);
+        setContentView(R.layout.updated_geochat);
         mSharedPreferences = new SharedPreferences(this);
 
         getWidgetReferences();
         setWidgetEvents();
         initialization();
         setToolbar();
+        String isComment = getIntent().getStringExtra(Constants.Preferences.COMMENT);
+        if(isComment!=null){
+            mSlidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
+            setGeoComments();
+        }
+        setNotesData();
+        mSlidingLayout.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View view, float v) {
+
+            }
+
+            @Override
+            public void onPanelCollapsed(View view) {
+                Drawable image = getResources().getDrawable(R.drawable.down_arrow );
+                int h = image.getIntrinsicHeight();
+                int w = image.getIntrinsicWidth();
+                image.setBounds( 0, 0, w, h );
+                mLocationTextView.setText(getString(R.string.slide_up_text));
+                mLocationTextView.setCompoundDrawables(image, null, null, null);
+                mLocationTextView.setCompoundDrawablePadding(5);
+            }
+
+            @Override
+            public void onPanelExpanded(View view) {
+                setGeoComments();
+            }
+
+            @Override
+            public void onPanelAnchored(View view) {
+
+            }
+
+            @Override
+            public void onPanelHidden(View view) {
+
+            }
+        });
+
+
+    }
+
+    private void setGeoComments() {
         getAllChats();
+        mLocationTextView.setText(mChatItem.getCheckInLocation());
+        mLocationTextView.setCompoundDrawables(null, null, null, null);
+    }
+
+    private void setNotesData() {
+        if(!mChatItem.getDescripton().isEmpty()) {
+            mAboutLocationTextView.setText(mChatItem.getDescripton());
+        } else {
+            mAboutLocationTextView.setVisibility(View.GONE);
+        }
+
+        String tags = mChatItem.getTags();
+        String age = Utils.dateDiff(Utils.getDate(mChatItem.getCreatedDateTime()));
+
+        if(!tags.isEmpty() && null!=tags) {
+            String[] tagsArray = tags.split(",");
+            List<Item> tagsListArray = Utils.getItemListArray(tagsArray);
+            mPicker.setItems(tagsListArray);
+        } else {
+            mPicker.setVisibility(View.GONE);
+        }
     }
 
     private void setWidgetEvents() {
-        sendImageView.setOnClickListener(this);
+        mSendImageView.setOnClickListener(this);
     }
 
     private void getAllChats() {
@@ -65,46 +153,71 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void getWidgetReferences() {
-        chatListView = (ListView) findViewById(R.id.chatListView);
-        loadingProgressBar = (ProgressBar) findViewById(R.id.loadingProgressBar);
-        textEditTextView = (EditText) findViewById(R.id.textEditTextView);
-        sendImageView = (ImageView) findViewById(R.id.sendImageView);
+        mAppBarLayout = (AppBarLayout)findViewById(R.id.appbar);
+        geoChatImageView = (ImageView) findViewById(R.id.geoChatImageView);
+        mCollapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        mSlidingLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+        mLocationTextView = (TextView) findViewById(R.id.locationTextView);
+        mChatListView = (ListView) findViewById(R.id.chatListView);
+        mCommentEditText = (EditText) findViewById(R.id.commentEditText);
+        mSendImageView = (ImageView) findViewById(R.id.sendImageView);
+        mAboutLocationTextView = (TextView) findViewById(R.id.aboutLocationTextView);
+        mPicker = (CollectionPicker) findViewById(R.id.collection_picker);
     }
 
+    /**
+     * Setting toolbar
+     */
     private void setToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        setCollapsibleToolBar(mChatItem.getCheckInLocation(),mChatItem.getGeoChatImage());
+
         final ActionBar ab = getSupportActionBar();
-        ab.setTitle(mChatItem.getCheckInLocation());
-        ab.setDisplayHomeAsUpEnabled(true);
-        ab.setHomeButtonEnabled(true);
+        if (ab != null) {
+            ab.setDisplayShowTitleEnabled(true);
+            ab.setTitle(mChatItem.getCaption());
+            ab.setDisplayHomeAsUpEnabled(true);
+            ab.setDisplayShowHomeEnabled(true);
+        }
     }
 
-
-    public void renderChatListView(ArrayList<UserChats> result) {
-        loadingProgressBar.setVisibility(View.GONE);
-        chatListView.setVisibility(View.VISIBLE);
-        if (result.size() > 0) {
-            this.result = result;
-            adapter = new ChatListAdapter(this, result);
-            chatListView.setAdapter(adapter);
-        } else
-            Utils.showToast(this, getString(R.string.no_chat));
-    }
-
-    public void failResult() {
-        loadingProgressBar.setVisibility(View.GONE);
+    /**
+     * Setting collapsible toolbar
+     *
+     * @param title
+     */
+    private void setCollapsibleToolBar(String title, String geoChatUrl) {
+        mCollapsingToolbar.setTitle(title);
+        if(geoChatUrl!=null && !geoChatUrl.isEmpty())
+            Picasso.with(this).load(geoChatUrl).placeholder(R.drawable.travel_bg).into(geoChatImageView);
+        //TODO : uncomment this  mCategoryImageView.setImageUrl(categoryImageUrl, mImageLoader);
     }
 
     @Override
     public void onClick(View v) {
-        if (v == sendImageView) {
-            String userMessage = textEditTextView.getText().toString().trim();
+        if (v == mSendImageView) {
+            String userMessage = mCommentEditText.getText().toString().trim();
             if (!userMessage.isEmpty()) {
+                Utils.hide_keyboard(ChatActivity.this);
                 mManager.sendUserMessage(ChatActivity.this, mChatItem, userMessage, mSharedPreferences.getUserId());
             } else
                 Utils.showToast(this, getString(R.string.no_user_message));
         }
+    }
+
+
+    public void renderChatListView(ArrayList<UserChats> result) {
+        if (result.size() > 0) {
+            this.result = result;
+            adapter = new ChatListAdapter(this, result);
+            mChatListView.setAdapter(adapter);
+        } else
+            Utils.showToast(this, getString(R.string.no_chat));
+    }
+
+    public void failResult(String message) {
+        Utils.showToast(this, message);
     }
 
     public void updateResult() {
@@ -117,18 +230,39 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             item.setUserName(mSharedPreferences.getGooglePlusName());
             item.setUserAvatar(mSharedPreferences.getGooglePlusProfilePicUrl());
         }
-        item.setUserMessage(textEditTextView.getText().toString().trim());
+        item.setUserMessage(mCommentEditText.getText().toString().trim());
         item.setDate("");
         if (result.size() == 0) {
             result.add(item);
-            loadingProgressBar.setVisibility(View.GONE);
-            chatListView.setVisibility(View.VISIBLE);
             adapter = new ChatListAdapter(this, result);
-            chatListView.setAdapter(adapter);
+            mChatListView.setAdapter(adapter);
         } else {
             result.add(item);
             adapter.notifyDataSetChanged();
         }
-        textEditTextView.setText("");
+        mCommentEditText.setText("");
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mSlidingLayout.getPanelState()== SlidingUpPanelLayout.PanelState.EXPANDED)
+            mSlidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+        else
+            super.onBackPressed();
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        super.onOptionsItemSelected(item);
+
+        switch(item.getItemId()){
+            case android.R.id.home:
+                super.onBackPressed();
+                break;
+        }
+        return true;
+
     }
 }

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import com.google.android.gms.gcm.GcmListenerService;
 
 /**
- * Created by tasneem on 23/7/15.
+ * Created by akshay on 23/7/15.
  */
 public class DesidimeGcmListenerService extends GcmListenerService {
     @Override

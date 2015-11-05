@@ -30,7 +30,7 @@ import app.geochat.util.VolleyController;
 /**
  * BaseActivity handles the main layout and menus
  *
- * @author tasneem
+ * @author akshay
  */
 public class BaseActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String TAG = BaseActivity.class.getSimpleName();
@@ -44,16 +44,27 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     private SharedPreferences mDesidimeSharedPreferences;
     private NavigationView navigationView;
     private Menu mMenu;
+    private ImageView mRefreshImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         mDesidimeSharedPreferences = new SharedPreferences(this);
+        geWidgetReferences();
+        setWidgetEvent();
         Utils.setToolbar(this, R.string.app_name, this);
         initializeNavigationDrawer();
         setUpHeaderView();
         callDefaultEvent();
+    }
+
+    private void setWidgetEvent() {
+        mRefreshImageView.setOnClickListener(this);
+    }
+
+    private void geWidgetReferences() {
+        mRefreshImageView = (ImageView) findViewById(R.id.refreshImageView);
     }
 
 
@@ -196,7 +207,10 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-
+        if(v==mRefreshImageView){
+            GeoChatListFragment fragment =  (GeoChatListFragment)getSupportFragmentManager().findFragmentByTag(Constants.FragmentTags.FRAGMENT_GEOCHATLIST_TAG);
+            fragment.refreshGeoNotes();
+        }
     }
 
 
@@ -219,5 +233,25 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    /**
+     * Call Back method  to get the station name form other Activity
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            if (requestCode == Constants.LOCATIONKEYS.CHECKINID) {
+                getSupportFragmentManager().findFragmentByTag(Constants.FragmentTags.FRAGMENT_GEOCHATLIST_TAG).startActivityForResult(data,requestCode);
+            }
+        }
+    }
 
+
+    @Override
+    public void onBackPressed() {
+        if(getSupportFragmentManager().getFragments().size()==1)
+            finish();
+        else
+            super.onBackPressed();
+    }
 }

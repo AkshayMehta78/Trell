@@ -18,6 +18,8 @@ import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.RelativeLayout;
 
+import com.facebook.android.Util;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 

@@ -19,7 +19,7 @@ import android.view.animation.LinearInterpolator;
 /**
  * Material like progressbar for all devices<br/>
  * REF : <u>https://github.com/castorflex/SmoothProgressBar<u/>
- * @author tasneem
+ * @author akshay
  */
 public class CircularProgressDrawable extends Drawable implements Animatable {
 

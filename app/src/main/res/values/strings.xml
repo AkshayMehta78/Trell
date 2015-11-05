@@ -86,7 +86,7 @@
     <string name="loading_popular_deals">Loading Popular Deals</string>
     <string name="loading_featured_deals">Loading Featured Deals</string>
     <string name="off_txt">%off</string>
-    <string name="about">about</string>
+    <string name="about">About</string>
     <string name="Rs">Rs. </string>
     <string name="failed_to_load_deals">Failed to load deals, please connect to internet and hit the refresh button.</string>
     <string name="deals_refreshed">Deals Refreshed.</string>
@@ -613,6 +613,25 @@ Use Any Form Of Automated Device Or Computer Program \(\"Voting Tool\"\) That En
     <string name="allphotos">All Photos</string>
     <string name="next">Next</string>
     <string name="invalid_selection">Please select only one image</string>
+    <string name="out_of_location">You are out of coverage area. Please go to the proximity of location</string>
+    <string name="view_chats">View Chats</string>
+    <string name="tags">Tags</string>
+    <string name="slide_up_text">Slide up to add comment</string>
+    <string name="description">Description</string>
+    <string name="no_description">Please enter description</string>
+    <string name="add_tag">Add Tag</string>
+    <string name="add_tags">Please select at least 2 tags</string>
+    <string name="caption">Caption your post.</string>
+    <string name="publish">Make it Live!</string>
+    <string name="no_location">Opps... We didn\'t find your required location.</string>
+    <string name="mapSearchButton">Find in Map</string>
+    <string name="enter_location">Enter Location Please</string>
+    <string name="str_btn_find">Find</string>
+    <string name="texthint">Eg: IIT Bombay</string>
+    <string name="geo_notes_compulsory_data">For Geo Notes, Description or Picture is compulsory</string>
+    <string name="want_to_try">Want to Try</string>
+    <string name="discussions">Discussions</string>
+    <string name="already_added_wishlist">Hey, you have already added this tale into wishlist.</string>
 
 
 </resources>

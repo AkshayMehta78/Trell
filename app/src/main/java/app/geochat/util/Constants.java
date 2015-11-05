@@ -4,13 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by tasneem on 28/7/15.
+ * Created by akshay on 28/7/15.
  */
 public interface Constants {
     /*
         API Constants
     */
-    String BASE_URL = "http://expresso.netne.net/expresso/";
+    String BASE_URL = "http://websolutions4u.in/expresso/";
     //Auth token
     String API_AUTH_TOKEN = BASE_URL + "signup.php";
     String LOCATIONURL1="https://maps.googleapis.com/maps/api/place/search/json?";
@@ -22,7 +22,13 @@ public interface Constants {
     String API_FETCH_ALLCHATS = BASE_URL + "getAllChats.php";
     String API_SEND_CHAT =  BASE_URL + "sendGeoMessage.php";
     int MY_SOCKET_TIMEOUT_MS = 6000;
-    int MAX_RETRIES = 2;
+    int MAX_RETRIES = 3;
+    float RADIUS = 50.00f;
+    String API_SET_GEOCHAT_USER_STATUS = BASE_URL +"setUserStatus.php";
+    String ADMINEMAIL = "akshaymehta9211@gmail.com";
+    String API_FOLLOW_USER_SATUS = BASE_URL + "followUser.php";
+    String API_WISHLIST = BASE_URL + "wishList.php";
+    String API_REMOVE_GEOCHAT = BASE_URL + "deleteGeonote.php";
 
     interface LOCATIONKEYS {
         String LOCATION = "location";
@@ -30,6 +36,24 @@ public interface Constants {
         String LATITUDE = "latitude";
         String LONGITUDE = "longitude";
         String GEOCHATIMAGE = "geoChatImage";
+        int CHECKINID = 1;
+        String REFRESH = "refresh";
+        String LOCATIONFEEDS = "locationFeeds";
+    }
+
+    interface GEOCHAT{
+        String DESCRIPTION = "about";
+        String TAGS = "tags";
+        String CAPTION = "caption";
+        String CITY = "city";
+        String SEARCH_TEXT = "search_text";
+        String ADD_WISHLIST = "1";
+    }
+
+    interface USER{
+        int FOLLOWUSER = 1;
+        int UNFOLLOWUSER = 0;
+        String FRIENDID = "friendId";
     }
 
 
@@ -44,6 +68,7 @@ public interface Constants {
         String USERID ="userid";
         String USER_ID ="userId";
         String GEOCHATID ="geoChatId";
+        String GEONOTEID ="geoNoteId";
         String USERAVATAR="userAvatar";
         String CHECKINLOCATION="checkInLocation";
         String CREATEDBYUSERNAME="createdByUserName";
@@ -53,6 +78,19 @@ public interface Constants {
         String CREATEDDATETIME = "createdDateTime";
         String RESULT = "result";
         String GEOCHATIMAGE = "geoChatImage";
+        String LATITUDE = "latitude";
+        String LONGITUDE = "longitude";
+
+        String USER_STATUS = "status";
+        String USERSTATUS = "userStatus";
+        String COUNTS = "counts";
+
+        String ISFOLLOWING = "isFollowing";
+        String ISWISHLISTADDED = "isWishListAdded";
+        String COMMENTSCOUNT = "commentCount";
+        String WISHLISTCOUNT = "wishListCount";
+
+
     }
 
     public interface Config {
@@ -84,6 +122,7 @@ public interface Constants {
          String NOTIFICATION_UNREAD_COUNT = "notification_unread_count";
          String IS_SKIP_CLICKED = "is_skip_clicked";
         String GEOCHAT = "geo_chat";
+        String COMMENT = "comment";
     }
 
     public interface UserInfoKeys {

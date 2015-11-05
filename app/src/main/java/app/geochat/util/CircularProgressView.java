@@ -14,7 +14,7 @@ import app.geochat.R;
 /**
  * Material like progressbar for all devices<br/>
  * REF : <u>https://github.com/castorflex/SmoothProgressBar<u/>
- * @author tasneem
+ * @author akshay
  */
 public class CircularProgressView extends View {
 

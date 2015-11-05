@@ -7,6 +7,8 @@ package app.geochat.ui.activities;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
@@ -17,14 +19,18 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
@@ -44,10 +50,11 @@ import app.geochat.beans.LocationModel;
 import app.geochat.services.asynctask.LocationService;
 import app.geochat.util.Constants;
 import app.geochat.util.JSONParser;
+import app.geochat.util.Utils;
 
 public class CheckInActivity extends AppCompatActivity implements View.OnClickListener {
     private AutoCompleteTextView et_feedLocation;
-    private Button btn_Next;
+    private Button mapSearchButton;
     private static final String API_KEY = "AIzaSyDp5u0Z3h9abid8puEy-sqdrFLZ3fONHN8";
     private LocationService appLocationService;
     private boolean isGPSEnablesManually = false;
@@ -55,6 +62,10 @@ public class CheckInActivity extends AppCompatActivity implements View.OnClickLi
     private LocationAdapter adapter;
     private ListView lv_locations;
     ProgressDialog pd;
+    private ArrayList<LocationModel> mFilteredLocation;
+    private RelativeLayout mapViewRelativeLayout;
+    private String mSearchKey="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,31 +75,49 @@ public class CheckInActivity extends AppCompatActivity implements View.OnClickLi
         initialization();
         setToolbar();
 
+        /**
+         * get Previous activity's action either Source or Destination
+         */
+        final String action =getIntent().getAction();
+
+
         lv_locations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 LocationModel item = adapter.getItem(position);
-                Intent intent = new Intent(CheckInActivity.this,CreateGeoChatActivity.class);
-                intent.putExtra(Constants.LOCATIONKEYS.LOCATION,item.getLocationName());
-                intent.putExtra(Constants.LOCATIONKEYS.LATITUDE,item.getLatitude());
-                intent.putExtra(Constants.LOCATIONKEYS.LONGITUDE,item.getLongitude());
-                startActivity(intent);
+                if(action!=null) {
+                    Intent intent = new Intent();
+                    intent.putExtra(Constants.LOCATIONKEYS.CHECKIN, item.getLocationName());
+                    intent.putExtra(Constants.LOCATIONKEYS.LATITUDE, item.getLatitude());
+                    intent.putExtra(Constants.LOCATIONKEYS.LONGITUDE, item.getLongitude());
+                    setResult(Constants.LOCATIONKEYS.CHECKINID, intent);
+                    finish();
+                } else {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(Constants.LOCATIONKEYS.LOCATION, item.getLocationName());
+                    bundle.putString(Constants.LOCATIONKEYS.LATITUDE, item.getLatitude());
+                    bundle.putString(Constants.LOCATIONKEYS.LONGITUDE, item.getLongitude());
+                    Intent intent = new Intent(CheckInActivity.this, AboutLocationActivity.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
             }
         });
     }
 
     private void getWidgetReferences() {
-        et_feedLocation = (AutoCompleteTextView) findViewById(R.id.et_feedLocation);
         lv_locations = (ListView) findViewById(R.id.lv_locations);
-        btn_Next = (Button) findViewById(R.id.btn_Next);
+        mapViewRelativeLayout = (RelativeLayout) findViewById(R.id.mapViewRelativeLayout);
+        mapSearchButton = (Button) findViewById(R.id.mapSearchButton);
     }
 
     private void bindWidgetEvents() {
-        btn_Next.setOnClickListener(this);
+        mapSearchButton.setOnClickListener(this);
     }
 
     private void initialization() {
         pd = new ProgressDialog(this);
+        mFilteredLocation = new ArrayList<LocationModel>();
         appLocationService = new LocationService(CheckInActivity.this);
         Location gpsLocation = appLocationService.getLocation(LocationManager.GPS_PROVIDER);
 
@@ -97,10 +126,17 @@ public class CheckInActivity extends AppCompatActivity implements View.OnClickLi
             double longitude = gpsLocation.getLongitude();
             fetchNearbyLocation(latitude, longitude);
         } else {
-            showSettingsAlert("NETWORK");
-//            double latitude = 19.24;
-//            double longitude = 72.85;
-//            fetchNearbyLocation(latitude, longitude);
+            gpsLocation = appLocationService.getLocation(LocationManager.NETWORK_PROVIDER);
+            if (gpsLocation != null) {
+                double latitude = gpsLocation.getLatitude();
+                double longitude = gpsLocation.getLongitude();
+                fetchNearbyLocation(latitude, longitude);
+            } else {
+//                double latitude =19.23;
+//                double longitude = 72.84;
+//                fetchNearbyLocation(latitude, longitude);
+                lv_locations.setEmptyView(mapViewRelativeLayout);
+            }
         }
     }
 
@@ -110,7 +146,10 @@ public class CheckInActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        if (v == btn_Next) {
+        if (v == mapSearchButton) {
+                Intent intent = new Intent(CheckInActivity.this, MapSearchActivity.class);
+                intent.putExtra(Constants.GEOCHAT.SEARCH_TEXT,mSearchKey);
+                startActivity(intent);
         }
     }
 
@@ -169,8 +208,8 @@ public class CheckInActivity extends AppCompatActivity implements View.OnClickLi
                         LocationModel item = new LocationModel(data.getString("name"), data.getString("vicinity"), latitude,longitude);
                         result.add(item);
                     }
-                    adapter = new LocationAdapter(CheckInActivity.this, result);
-                    lv_locations.setAdapter(adapter);
+                    mFilteredLocation = result;
+                    displayAllLocation();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -186,6 +225,15 @@ public class CheckInActivity extends AppCompatActivity implements View.OnClickLi
 
         @Override
         protected void onProgressUpdate(Void... values) {
+        }
+    }
+
+    private void displayAllLocation() {
+        if(result.size()>0) {
+            adapter = new LocationAdapter(CheckInActivity.this, result);
+            lv_locations.setAdapter(adapter);
+        }else {
+            lv_locations.setEmptyView(mapViewRelativeLayout);
         }
     }
 
@@ -212,4 +260,77 @@ public class CheckInActivity extends AppCompatActivity implements View.OnClickLi
         return true;
 
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.search_menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+
+        SearchManager searchManager = (SearchManager) CheckInActivity.this.getSystemService(Context.SEARCH_SERVICE);
+
+        SearchView searchView = null;
+        if (searchItem != null) {
+            searchView = (SearchView) searchItem.getActionView();
+        }
+        if (searchView != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(CheckInActivity.this.getComponentName()));
+        }
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if(null!=adapter) {
+                    mSearchKey = s;
+                    result = performSearch(mFilteredLocation, s);
+                    if (result.size() > 0) {
+                        displayAllLocation();
+                    } else {
+                        adapter.clear();
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    /**
+     * Goes through the given list and filters it according to the given query.
+     *
+     * @param result list given as search sample
+     * @param query       to be searched
+     * @return new filtered list
+     */
+    private ArrayList<LocationModel> performSearch(ArrayList<LocationModel> result, String query) {
+
+        String[] queryByWords = query.toLowerCase().split("\\s+");
+        ArrayList<LocationModel> filteredList = new ArrayList<LocationModel>();
+        for (LocationModel location : result) {
+            String content = (location.getLocationName()).toLowerCase();
+            for (String word : queryByWords) {
+                int numberOfMatches = queryByWords.length;
+                if (content.contains(word)) {
+                    numberOfMatches--;
+                } else {
+                    break;
+                }
+                if (numberOfMatches == 0) {
+                    filteredList.add(location);
+                }
+            }
+        }
+        return filteredList;
+    }
+
+
 }

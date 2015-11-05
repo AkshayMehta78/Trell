@@ -38,8 +38,15 @@ public class MultimediaGeoChatAsyncTask extends AsyncTask<String, Void, JSONObje
         List<NameValuePair> parameters = new ArrayList<NameValuePair>();
         parameters.add(new BasicNameValuePair(USER_ID,mSharedPreferences.getUserId()));
         parameters.add(new BasicNameValuePair(CHECKIN,param[0]));
-        parameters.add(new BasicNameValuePair(LATITUDE,param[1]));
-        parameters.add(new BasicNameValuePair(LONGITUDE,param[2]));
+        parameters.add(new BasicNameValuePair(Constants.LOCATIONKEYS.LATITUDE,param[1]));
+        parameters.add(new BasicNameValuePair(Constants.LOCATIONKEYS.LONGITUDE,param[2]));
+
+        parameters.add(new BasicNameValuePair(Constants.GEOCHAT.DESCRIPTION,param[4]));
+        parameters.add(new BasicNameValuePair(Constants.GEOCHAT.TAGS,param[5]));
+        parameters.add(new BasicNameValuePair(Constants.GEOCHAT.CAPTION,param[6]));
+        parameters.add(new BasicNameValuePair(Constants.GEOCHAT.CITY,"Mumbai"));
+
+
         JSONObject json = jsonParser.getJSONWithImageUpload(Constants.API_CREATE_GEOCHAT,parameters, param[3]);
         return json;
     }
