@@ -73,6 +73,20 @@
             android:label="@string/title_activity_login" >
         </activity>
 
+        <activity
+            android:name="app.geochat.ui.activities.SearchActivity"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_login" >
+        </activity>
+
+        <activity
+            android:name="app.geochat.ui.activities.UserProfileActivity"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_login" >
+        </activity>
+
 
         <activity
             android:name="app.geochat.ui.activities.BaseActivity"

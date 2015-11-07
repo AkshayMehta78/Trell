@@ -29,6 +29,9 @@ public interface Constants {
     String API_FOLLOW_USER_SATUS = BASE_URL + "followUser.php";
     String API_WISHLIST = BASE_URL + "wishList.php";
     String API_REMOVE_GEOCHAT = BASE_URL + "deleteGeonote.php";
+    String API_SEARCH_GEOCHAT = BASE_URL + "searchNotes.php";
+    String API_FETCH_USER_DETAILS_API = BASE_URL + "geoNoteUserProfile.php";
+    String API_FETCH_USER_EXPLORE_DETAILS_API = BASE_URL + "geoNoteUserExploreDetails.php";
 
     interface LOCATIONKEYS {
         String LOCATION = "location";
@@ -54,8 +57,14 @@ public interface Constants {
         int FOLLOWUSER = 1;
         int UNFOLLOWUSER = 0;
         String FRIENDID = "friendId";
+        String USERID = "userId";
     }
 
+    interface SEARCH{
+        String TYPE_TAG = "type_tag";
+        String TYPE = "type";
+        String TAG = "tag";
+    }
 
     interface JsonKeys {
         String ERRORS = "errors";
@@ -90,7 +99,14 @@ public interface Constants {
         String COMMENTSCOUNT = "commentCount";
         String WISHLISTCOUNT = "wishListCount";
 
+        String SEARCHKEY = "searchKey";
+        String SEARCHTYPE = "searchType";
 
+
+        String USER_PROFILE_DETAILS = "userProfile";
+        String FRIENDS = "friendsArrays";
+        String FOLLOWERSCOUNT ="FollowersCount";
+        String FOLLOWINGSCOUNT = "FollowingsCount";
     }
 
     public interface Config {
@@ -176,5 +192,6 @@ public interface Constants {
 
     public interface FragmentTags {
         String FRAGMENT_GEOCHATLIST_TAG = "geo_chat_list";
+        String FRAGMENT_ACHIEVEMENT_TAG = "achievement_fragment";
     }
 }

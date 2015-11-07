@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/margin_large"
+              android:gravity="center"
+              android:orientation="vertical">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/userImageImageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        app:border_color="@color/white"
+        app:border_width="3dp"/>
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/userNameTextView"
+        android:padding="@dimen/padding_normal"
+        android:layout_margin="@dimen/margin_large"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:textSize="@dimen/text_size_medium"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/primary"
+        android:padding="@dimen/padding_normal"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/followersTextView"
+            android:padding="@dimen/padding_normal"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_medium"
+            android:gravity="center"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="0.01"
+            android:background="@color/white"
+            android:layout_margin="@dimen/margin_large"
+            android:layout_height="20dp"
+            ></View>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/followingTextView"
+            android:padding="@dimen/padding_normal"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_medium"
+            android:gravity="center"/>
+
+
+
+    </LinearLayout>
+</LinearLayout>

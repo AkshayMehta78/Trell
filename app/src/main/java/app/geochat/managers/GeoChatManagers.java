@@ -28,6 +28,7 @@ import app.geochat.beans.UserChats;
 import app.geochat.db.managers.LoginManager;
 import app.geochat.ui.activities.ChatActivity;
 import app.geochat.ui.activities.HomeActivity;
+import app.geochat.ui.activities.SearchActivity;
 import app.geochat.ui.fragments.GeoChatListFragment;
 import app.geochat.util.Constants;
 import app.geochat.util.Utils;
@@ -404,5 +405,49 @@ public class GeoChatManagers implements Constants.LOCATIONKEYS, Constants.JsonKe
         jsonObjReq.setShouldCache(false);
         jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(Constants.MY_SOCKET_TIMEOUT_MS, Constants.MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         VolleyController.getInstance().addToRequestQueue(jsonObjReq, tag_fetch_geochat);
+    }
+
+    public void fetchSearchResult(final Context context, final String latitude, final String longitude, final String searchType, final String searchKey) {
+        // Tag used to cancel the request
+        String tag_fetch_geochat = "fetch_geochat";
+
+        String url = Constants.API_SEARCH_GEOCHAT;
+
+        StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
+                url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject json = new JSONObject(response);
+                    Log.d("json", json.toString());
+                    ArrayList<GeoChat> result = new GeoChatParser().getGeoChatsInList(json,latitude,longitude);
+                    ((SearchActivity)context).renderGeoChatListView(result);
+                } catch (Exception e) {
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error",error.networkResponse.statusCode+"");
+                Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
+                ((SearchActivity)context).failResult();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put(USER_ID, mSharedPreferences.getUserId());
+                params.put(SEARCHTYPE,searchType);
+                params.put(SEARCHKEY, searchKey);
+                return params;
+            }
+        };
+        // Adding request to request queue
+        jsonObjReq.setShouldCache(false);
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(Constants.MY_SOCKET_TIMEOUT_MS, Constants.MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        VolleyController.getInstance().addToRequestQueue(jsonObjReq, tag_fetch_geochat);
+
     }
 }

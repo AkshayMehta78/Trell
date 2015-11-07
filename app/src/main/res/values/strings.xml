@@ -609,6 +609,9 @@ Use Any Form Of Automated Device Or Computer Program \(\"Voting Tool\"\) That En
     <string name="no_chat">No chats available</string>
     <string name="no_user_message">Please enter text</string>
     <string name="explore">Explore</string>
+    <string name="nativePlaces">Native</string>
+    <string name="veteranPlaces">Veteran</string>
+
     <string name="camera">Open Camera</string>
     <string name="allphotos">All Photos</string>
     <string name="next">Next</string>
@@ -632,6 +635,8 @@ Use Any Form Of Automated Device Or Computer Program \(\"Voting Tool\"\) That En
     <string name="want_to_try">Want to Try</string>
     <string name="discussions">Discussions</string>
     <string name="already_added_wishlist">Hey, you have already added this tale into wishlist.</string>
+    <string name="search_notes">Search Notes</string>
+    <string name="achievements">Achievements</string>
 
 
 </resources>

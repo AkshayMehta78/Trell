@@ -227,7 +227,13 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.create:
                 Intent intent = new Intent(this,CheckInActivity.class);
                 startActivity(intent);
-                return true;
+                break;
+            case R.id.profile:
+                Intent profileintent = new Intent(this,UserProfileActivity.class);
+                profileintent.putExtra(Constants.USER.USERID,mDesidimeSharedPreferences.getUserId());
+                startActivity(profileintent);
+                break;
+
         }
         return super.onOptionsItemSelected(item);
     }

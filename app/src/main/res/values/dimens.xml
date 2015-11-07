@@ -175,4 +175,8 @@
     <dimen name="progress_bar">20dp</dimen>
     <dimen name="toolbar_elevation">4dp</dimen>
     <dimen name="min_rating_star_bar_height">25dp</dimen>
+    <dimen name="margin_small">4dp</dimen>
+    <dimen name="card_corner_radius">5dp</dimen>
+    <dimen name="normal_margin">8dp</dimen>
+    <dimen name="padding_small">4dp</dimen>
 </resources>

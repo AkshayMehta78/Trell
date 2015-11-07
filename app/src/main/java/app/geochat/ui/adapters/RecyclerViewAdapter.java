@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +68,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             String[] tagsArray = tags.split(",");
             Spanned spannabaleTags = Utils.getFormattedTags(tagsArray,activity);
             holder.spannableTagsTextView.setText(spannabaleTags);
+            holder.spannableTagsTextView.setMovementMethod(LinkMovementMethod.getInstance());
 //            List<Item> tagsListArray = Utils.getItemListArray(tagsArray);
 //            holder.collection_item_picker.setItems(tagsListArray);
         }
@@ -124,7 +126,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v) {
                 GeoChat item = feedItemList.get(i);
-                fragment.openFullScreenNoteWithComment(item);
+                Utils.openFullScreenNoteWithComment(activity,item);
             }
         });
     }
@@ -156,7 +158,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public CustomViewHolder(View view) {
             super(view);
-        //    view.setOnClickListener(this);
+            view.setOnClickListener(this);
             this.userNameTextView = (TextView) view.findViewById(R.id.userNameTextView);
             this.locationTextView = (TextView) view.findViewById(R.id.locationTextView);
             this.ageTextView = (TextView) view.findViewById(R.id.ageTextView);
@@ -175,8 +177,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         @Override
         public void onClick(View v) {
             GeoChat item = feedItemList.get(getPosition());
-            fragment.openFullScreenNote(item);
-         //   fragment.checkIfUserIsInLocation(item);
+            Utils.openFullScreenNote(activity,item);
         }
     }
 

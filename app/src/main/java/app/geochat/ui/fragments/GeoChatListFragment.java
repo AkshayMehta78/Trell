@@ -7,6 +7,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -114,7 +115,7 @@ public class GeoChatListFragment extends Fragment implements View.OnClickListene
         super.onResume();
     }
 
-    public void openFullScreenNote(GeoChat item) {
+    public void openFullScreenNote(FragmentActivity activity, GeoChat item) {
         Intent chatIntent = new Intent(getActivity(), ChatActivity.class);
         chatIntent.putExtra(Constants.Preferences.GEOCHAT, item);
         getActivity().startActivity(chatIntent);

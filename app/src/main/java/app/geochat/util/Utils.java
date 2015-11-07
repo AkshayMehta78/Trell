@@ -2,7 +2,6 @@ package app.geochat.util;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.ComponentName;
 import android.content.Context;
@@ -36,7 +35,6 @@ import android.text.TextUtils;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
-import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -46,18 +44,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import app.geochat.DesidimeApplication;
-import app.geochat.R;
-import app.geochat.beans.GeoChat;
-import app.geochat.beans.SharedPreferences;
-import app.geochat.services.asynctask.LocationService;
-import app.geochat.ui.activities.AboutLocationActivity;
-import app.geochat.ui.activities.BaseActivity;
-import app.geochat.ui.activities.CheckInActivity;
-import app.geochat.ui.activities.CreateGeoChatActivity;
-import app.geochat.ui.activities.HomeActivity;
-import app.geochat.ui.activities.SelectPhotoActivity;
-
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
@@ -79,15 +66,22 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
+
+import app.geochat.R;
+import app.geochat.beans.GeoChat;
+import app.geochat.beans.SharedPreferences;
+import app.geochat.services.asynctask.LocationService;
+import app.geochat.ui.activities.BaseActivity;
+import app.geochat.ui.activities.ChatActivity;
+import app.geochat.ui.activities.SearchActivity;
 
 /**
  * Created by akshay on 23/7/15.
  */
 public class Utils {
 
-    static ProgressDialog progressDialog;
+    static MaterialDialog progressDialog;
     private static int startY = -1;
     private static int segmentLength = -1;
 
@@ -147,11 +141,10 @@ public class Utils {
     }
 
     public static void showProgress(Context context) {
-        progressDialog = new ProgressDialog(context);
-        progressDialog.setTitle(context.getResources().getString(R.string.app_name));
-        progressDialog.setMessage(context.getResources().getString(R.string.please_wait));
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        progressDialog = new MaterialDialog.Builder(context)
+                .content(context.getString(R.string.please_wait))
+                .progress(true, 0)
+                .show();
     }
 
     public static void closeProgress() {
@@ -407,11 +400,11 @@ public class Utils {
         }.execute(null, null, null);
     }
 
-    public static ArrayList<String>  getCameraImages(Context context) {
+    public static ArrayList<String> getCameraImages(Context context) {
 
-        final String[] projection = { MediaStore.Images.Media.DATA };
+        final String[] projection = {MediaStore.Images.Media.DATA};
         final String selection = MediaStore.Images.Media.BUCKET_ID + " = ?";
-        final String[] selectionArgs = { CAMERA_IMAGE_BUCKET_ID };
+        final String[] selectionArgs = {CAMERA_IMAGE_BUCKET_ID};
         final Cursor cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 projection,
                 selection,
@@ -431,14 +424,14 @@ public class Utils {
 
 
     public static String getPath(Activity context, Uri uri) {
-        if( uri == null ) {
+        if (uri == null) {
             return null;
         }
 
         // this will only work for images selected from gallery
-        String[] projection = { MediaStore.Images.Media.DATA };
+        String[] projection = {MediaStore.Images.Media.DATA};
         Cursor cursor = context.managedQuery(uri, projection, null, null, null);
-        if( cursor != null ){
+        if (cursor != null) {
             int column_index = cursor
                     .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
@@ -449,7 +442,7 @@ public class Utils {
     }
 
 
-    public static Bitmap getBitmap(Activity activity,Uri pictureUri) {
+    public static Bitmap getBitmap(Activity activity, Uri pictureUri) {
 
         Uri uri = pictureUri;
         InputStream in = null;
@@ -462,7 +455,6 @@ public class Utils {
             o.inJustDecodeBounds = true;
             BitmapFactory.decodeStream(in, null, o);
             in.close();
-
 
 
             int scale = 1;
@@ -505,15 +497,14 @@ public class Utils {
     }
 
 
-    public static String fileSize(String url)
-    {
+    public static String fileSize(String url) {
         File file = new File(url);
         long length = file.length();
-        length = length/1024;
-        return length+"KB";
+        length = length / 1024;
+        return length + "KB";
     }
 
-    public static String compressImage(String imagePath,Activity activity) {
+    public static String compressImage(String imagePath, Activity activity) {
 
         String filePath = imagePath;
         Bitmap scaledBitmap = null;
@@ -538,7 +529,11 @@ public class Utils {
 //      width and height values are set maintaining the aspect ratio of the image
 
         if (actualHeight > maxHeight || actualWidth > maxWidth) {
-            if (imgRatio < maxRatio) {               imgRatio = maxHeight / actualHeight;                actualWidth = (int) (imgRatio * actualWidth);               actualHeight = (int) maxHeight;             } else if (imgRatio > maxRatio) {
+            if (imgRatio < maxRatio) {
+                imgRatio = maxHeight / actualHeight;
+                actualWidth = (int) (imgRatio * actualWidth);
+                actualHeight = (int) maxHeight;
+            } else if (imgRatio > maxRatio) {
                 imgRatio = maxWidth / actualWidth;
                 actualHeight = (int) (imgRatio * actualHeight);
                 actualWidth = (int) maxWidth;
@@ -569,7 +564,7 @@ public class Utils {
 
         }
         try {
-            scaledBitmap = Bitmap.createBitmap(actualWidth, actualHeight,Bitmap.Config.ARGB_8888);
+            scaledBitmap = Bitmap.createBitmap(actualWidth, actualHeight, Bitmap.Config.ARGB_8888);
         } catch (OutOfMemoryError exception) {
             exception.printStackTrace();
         }
@@ -634,9 +629,13 @@ public class Utils {
         int inSampleSize = 1;
 
         if (height > reqHeight || width > reqWidth) {
-            final int heightRatio = Math.round((float) height/ (float) reqHeight);
+            final int heightRatio = Math.round((float) height / (float) reqHeight);
             final int widthRatio = Math.round((float) width / (float) reqWidth);
-            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;      }       final float totalPixels = width * height;       final float totalReqPixelsCap = reqWidth * reqHeight * 2;       while (totalPixels / (inSampleSize * inSampleSize) > totalReqPixelsCap) {
+            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+        }
+        final float totalPixels = width * height;
+        final float totalReqPixelsCap = reqWidth * reqHeight * 2;
+        while (totalPixels / (inSampleSize * inSampleSize) > totalReqPixelsCap) {
             inSampleSize++;
         }
 
@@ -655,12 +654,11 @@ public class Utils {
     }
 
     public static double[] getUserLocation(Activity activity) {
-        double[] location= new double[2];
+        double[] location = new double[2];
         final LocationManager manager = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
         if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             location = null;
-        }
-        else {
+        } else {
             LocationService appLocationService = new LocationService(activity);
             Location gpsLocation = appLocationService.getLocation(LocationManager.GPS_PROVIDER);
 
@@ -677,7 +675,7 @@ public class Utils {
         //Find the currently focused view, so we can grab the correct window token from it.
         View view = activity.getCurrentFocus();
         //If no view currently has focus, create a new one, just so we can grab a window token from it
-        if(view == null) {
+        if (view == null) {
             view = new View(activity);
         }
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -695,7 +693,6 @@ public class Utils {
         Animation slide_up = AnimationUtils.loadAnimation(context, R.anim.slide_up_out);
         editext.startAnimation(slide_up);
     }
-
 
 
     public static String dateDiff(Date date) {
@@ -772,16 +769,16 @@ public class Utils {
 
     public static List<Item> getItemListArray(String[] tagsArray) {
         List<Item> list = new ArrayList<>();
-        if(tagsArray.length>0){
-            for(int i = 0;i<tagsArray.length;i++){
-                list.add(new Item(tagsArray[i],tagsArray[i]));
+        if (tagsArray.length > 0) {
+            for (int i = 0; i < tagsArray.length; i++) {
+                list.add(new Item(tagsArray[i], tagsArray[i]));
             }
         }
         return list;
     }
 
     public static boolean isMyPost(String userId, Context context) {
-        if(new SharedPreferences(context).getUserId().equalsIgnoreCase(userId))
+        if (new SharedPreferences(context).getUserId().equalsIgnoreCase(userId))
             return true;
         else
             return false;
@@ -789,7 +786,7 @@ public class Utils {
 
     public static void openShareIntent(GeoChat item, Activity activity) {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        Uri uri = Uri.parse(getBitmapFromURl(item.getGeoChatImage(),activity,item.getCity()));
+        Uri uri = Uri.parse(getBitmapFromURl(item.getGeoChatImage(), activity, item.getCity()));
         shareIntent.setType("*/*");
         shareIntent.putExtra(Intent.EXTRA_TEXT, item.getDescripton());
         shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
@@ -797,8 +794,8 @@ public class Utils {
     }
 
 
-    public static String getBitmapFromURl(String urlAddress, Activity activity, String city){
-        String path="";
+    public static String getBitmapFromURl(String urlAddress, Activity activity, String city) {
+        String path = "";
         try {
             URL url = new URL(urlAddress);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -809,16 +806,16 @@ public class Utils {
             Bitmap mutableBitmap = immutableBpm.copy(Bitmap.Config.ARGB_8888, true);
             View view = new View(activity);
             view.draw(new Canvas(mutableBitmap));
-            path = MediaStore.Images.Media.insertImage(activity.getContentResolver(), mutableBitmap,city , null);
-        } catch(Exception e){
+            path = MediaStore.Images.Media.insertImage(activity.getContentResolver(), mutableBitmap, city, null);
+        } catch (Exception e) {
 
         }
         return path;
     }
 
     public static void reportContent(GeoChat item, Activity activity) {
-        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto",Constants.ADMINEMAIL, null));
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, item.getCheckInLocation() +" - Report");
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", Constants.ADMINEMAIL, null));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, item.getCheckInLocation() + " - Report");
         activity.startActivity(Intent.createChooser(emailIntent, "Report Content"));
     }
 
@@ -826,33 +823,36 @@ public class Utils {
         Spanned finalTags = new SpannableString("");
         final ForegroundColorSpan span = new ForegroundColorSpan(Color.parseColor("#2196F3"));
         final RelativeSizeSpan sizeSpan = new RelativeSizeSpan(1.5f);
-        for(int i = 0;i <tagsArray.length; i++){
-            String tag = tagsArray[i];
+        for (int i = 0; i < tagsArray.length; i++) {
+            final String tag = tagsArray[i];
             Spannable wordtoSpan = new SpannableString(tag);
             ClickableSpan clickableSpan = new ClickableSpan() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(activity, "dolor", Toast.LENGTH_LONG).show();
+                    Utils.startSearchActivity(activity,Constants.SEARCH.TYPE_TAG,tag);
                 }
             };
 //            wordtoSpan.setSpan(clickableSpan, 0, tag.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             wordtoSpan.setSpan(clickableSpan, 0, tag.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            wordtoSpan.setSpan(span, 0, tag.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            wordtoSpan.setSpan(new BorderedSpan(activity), 0, tag.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-            if(i==2 || i==4 ) {
-                wordtoSpan.setSpan(span, 0, tag.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                wordtoSpan.setSpan(sizeSpan, 0, tag.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            } else {
-                wordtoSpan.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, tag.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            }
-            finalTags = (Spanned) TextUtils.concat(wordtoSpan,"   ",finalTags);
+            finalTags = (Spanned) TextUtils.concat(wordtoSpan, "   ", finalTags);
         }
         return finalTags;
     }
 
+    private static void startSearchActivity(Activity activity, String type, String tag) {
+        Intent intent = new Intent(activity,SearchActivity.class);
+        intent.putExtra(Constants.SEARCH.TYPE,type);
+        intent.putExtra(Constants.SEARCH.TAG,tag);
+        activity.startActivity(intent);
+    }
 
-    public static double[] getLocationDetails(Context context){
+
+    public static double[] getLocationDetails(Context context) {
         double[] location = new double[2];
-        double latitude,longitude;
+        double latitude, longitude;
         LocationService appLocationService = new LocationService(context);
         Location gpsLocation = appLocationService.getLocation(LocationManager.GPS_PROVIDER);
 
@@ -866,7 +866,7 @@ public class Utils {
                 latitude = gpsLocation.getLatitude();
                 longitude = gpsLocation.getLongitude();
             } else {
-                latitude =19.23;
+                latitude = 19.23;
                 longitude = 72.84;
             }
         }
@@ -884,6 +884,19 @@ public class Utils {
         destination.setLatitude(Double.parseDouble(noteLat));
         destination.setLongitude(Double.parseDouble(noteLong));
 
-       return  (int)source.distanceTo(destination);
+        return (int) source.distanceTo(destination);
+    }
+
+    public static void openFullScreenNote(FragmentActivity activity, GeoChat item) {
+        Intent chatIntent = new Intent(activity, ChatActivity.class);
+        chatIntent.putExtra(Constants.Preferences.GEOCHAT, item);
+        activity.startActivity(chatIntent);
+    }
+
+    public static void openFullScreenNoteWithComment(FragmentActivity activity, GeoChat item) {
+        Intent chatIntent = new Intent(activity, ChatActivity.class);
+        chatIntent.putExtra(Constants.Preferences.GEOCHAT, item);
+        chatIntent.putExtra(Constants.Preferences.COMMENT, "1");
+        activity.startActivity(chatIntent);
     }
 }
