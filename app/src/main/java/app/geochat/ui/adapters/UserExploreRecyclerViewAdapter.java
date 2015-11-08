@@ -25,11 +25,12 @@ import app.geochat.R;
 public class UserExploreRecyclerViewAdapter extends RecyclerView.Adapter<UserExploreRecyclerViewAdapter.PlacesCustomViewHolder> {
 
     private final Activity activity;
-    JSONArray placesArray;
+    JSONArray jsonArray;
     private int TabPosition;
+    private String place;
 
-    public UserExploreRecyclerViewAdapter(Activity activity, JSONArray placesArray,int TabPosition) {
-        this.placesArray = placesArray;
+    public UserExploreRecyclerViewAdapter(Activity activity, JSONArray jsonArray,int TabPosition) {
+        this.jsonArray = jsonArray;
         this.activity = activity;
         this.TabPosition = TabPosition;
     }
@@ -37,8 +38,12 @@ public class UserExploreRecyclerViewAdapter extends RecyclerView.Adapter<UserExp
     @Override
     public void onBindViewHolder(PlacesCustomViewHolder holder, int i) {
         try {
-            JSONObject jsonObject = placesArray.getJSONObject(i);
-            String place = jsonObject.getString("checkin");
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            if(TabPosition == 0) {
+                place = jsonObject.getString("checkin");
+            } else {
+                place = jsonObject.getString("cityName");
+            }
             holder.placeTextView.setText(place);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -47,14 +52,14 @@ public class UserExploreRecyclerViewAdapter extends RecyclerView.Adapter<UserExp
 
     @Override
     public PlacesCustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.places_layout_row, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.places_layout_row, parent,false);
         PlacesCustomViewHolder viewHolder = new PlacesCustomViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public int getItemCount() {
-        return (null != placesArray ? placesArray.length() : 0);
+        return (null != jsonArray ? jsonArray.length() : 0);
     }
 
 

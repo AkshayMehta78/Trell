@@ -4,8 +4,17 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-<include
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    layout="@layout/layout_native"></include>
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_large"
+        layout="@layout/layout_native"></include>
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_large"
+        layout="@layout/layout_veteran"></include>
+
+
 </LinearLayout>

@@ -16,8 +16,6 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +25,6 @@ import app.geochat.beans.SharedPreferences;
 import app.geochat.beans.UserChats;
 import app.geochat.db.managers.LoginManager;
 import app.geochat.ui.activities.ChatActivity;
-import app.geochat.ui.activities.HomeActivity;
 import app.geochat.ui.activities.SearchActivity;
 import app.geochat.ui.fragments.GeoChatListFragment;
 import app.geochat.util.Constants;
@@ -278,7 +275,7 @@ public class GeoChatManagers implements Constants.LOCATIONKEYS, Constants.JsonKe
         VolleyController.getInstance().addToRequestQueue(jsonObjReq, tag_send_msg);
     }
 
-    public void fetchAllGeoChats(FragmentActivity activity, final String latitude, final String longitude, final String status) {
+    public void fetchAllGeoChats(final FragmentActivity activity, final String latitude, final String longitude, final String status) {
         // Tag used to cancel the request
         String tag_fetch_geochat = "fetch_geochat";
         final GeoChatListFragment fragment = (GeoChatListFragment) activity.getSupportFragmentManager().findFragmentByTag(Constants.FragmentTags.FRAGMENT_GEOCHATLIST_TAG);
@@ -294,7 +291,8 @@ public class GeoChatManagers implements Constants.LOCATIONKEYS, Constants.JsonKe
                     JSONObject json = new JSONObject(response);
                     Log.d("json", json.toString());
                     ArrayList<GeoChat> result = new GeoChatParser().getGeoChatsInList(json,latitude,longitude);
-                    fragment.renderGeoChatListView(result,status);
+                    fragment.renderGeoChatListView(result, status);
+
                 } catch (Exception e) {
                 }
             }

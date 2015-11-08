@@ -32,6 +32,7 @@ public interface Constants {
     String API_SEARCH_GEOCHAT = BASE_URL + "searchNotes.php";
     String API_FETCH_USER_DETAILS_API = BASE_URL + "geoNoteUserProfile.php";
     String API_FETCH_USER_EXPLORE_DETAILS_API = BASE_URL + "geoNoteUserExploreDetails.php";
+    String API_FETCH_USER_FEED_DETAILS_API = BASE_URL + "geoNoteUserFeedsDetails.php";
 
     interface LOCATIONKEYS {
         String LOCATION = "location";

@@ -5,6 +5,7 @@ package app.geochat.ui.adapters;
  */
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
@@ -28,8 +29,10 @@ import java.util.List;
 
 import app.geochat.R;
 import app.geochat.beans.GeoChat;
+import app.geochat.beans.SharedPreferences;
 import app.geochat.managers.GeoChatManagers;
 import app.geochat.managers.ProfileManager;
+import app.geochat.ui.activities.UserProfileActivity;
 import app.geochat.ui.fragments.GeoChatListFragment;
 import app.geochat.util.Constants;
 import app.geochat.util.Utils;
@@ -127,6 +130,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public void onClick(View v) {
                 GeoChat item = feedItemList.get(i);
                 Utils.openFullScreenNoteWithComment(activity,item);
+            }
+        });
+
+        holder.userImageImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new SharedPreferences(activity).setUserProfileId(item.getUserId());
+                Intent profileintent = new Intent(activity,UserProfileActivity.class);
+                activity.startActivity(profileintent);
             }
         });
     }

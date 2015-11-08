@@ -229,8 +229,8 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.profile:
+                mDesidimeSharedPreferences.setUserProfileId(mDesidimeSharedPreferences.getUserId());
                 Intent profileintent = new Intent(this,UserProfileActivity.class);
-                profileintent.putExtra(Constants.USER.USERID,mDesidimeSharedPreferences.getUserId());
                 startActivity(profileintent);
                 break;
 

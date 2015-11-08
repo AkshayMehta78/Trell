@@ -22,6 +22,8 @@ import app.geochat.managers.ProfileManager;
 import app.geochat.ui.adapters.UserExploreRecyclerViewAdapter;
 import app.geochat.ui.widgets.RecyclerViewItemDivider;
 import app.geochat.util.CircularProgressView;
+import app.geochat.util.Constants;
+import app.geochat.util.Utils;
 
 /**
  * Created by akshaymehta on 07/11/15.
@@ -31,11 +33,12 @@ public class AchievementFragment extends Fragment {
     private ProfileManager mProfileManager;
     private SharedPreferences mSharedPreferences;
 
-    private TextView nativeSubheaderTextView;
-    private CircularProgressView progressBar;
-    private RecyclerView recyclerView;
+    private TextView nativeSubheaderTextView,veteranSubheaderTextView;
+    private RecyclerView recyclerView,vRecyclerView;
     private View mView;
-    private UserExploreRecyclerViewAdapter mAdapter;
+    private UserExploreRecyclerViewAdapter mPlacesAdapter,mCityAdapter;
+    private int mPlacesCount,mCityCount;
+    private String mUserId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,9 @@ public class AchievementFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         mView = inflater.inflate(R.layout.user_achievement_layout, container, false);
+        initialization();
+        mUserId = mSharedPreferences.getUserProfileId();
+        Utils.showToast(getActivity(),mUserId);
         getWidgetReferences();
         return mView;
     }
@@ -54,19 +60,17 @@ public class AchievementFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initialization();
         fetchExploreDetails();
     }
 
     private void fetchExploreDetails() {
-        mProfileManager.fetchUserExploreDetails(getActivity(), mSharedPreferences.getUserId());
+        mProfileManager.fetchUserExploreDetails(getActivity(), mUserId);
     }
 
 
     private void getWidgetReferences() {
         nativeSubheaderTextView = (TextView) mView.findViewById(R.id.nativeSubheaderTextView);
-        progressBar = (CircularProgressView) mView.findViewById(R.id.progressBar);
-        recyclerView = (RecyclerView) mView.findViewById(R.id.recyclerView);
+        veteranSubheaderTextView = (TextView) mView.findViewById(R.id.veteranSubheaderTextView);
     }
 
 
@@ -79,27 +83,46 @@ public class AchievementFragment extends Fragment {
     public void updateExploreResult(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
-         //   JSONObject citiesObject = jsonObject.getJSONObject("cities");
-            JSONArray jsonArray = jsonObject.getJSONArray("nativePlacesListArray");
-            setUpRecyClerView(jsonArray,0);
+            JSONObject citiesObject = jsonObject.getJSONObject("cities");
+            JSONArray citiesListArray = citiesObject.getJSONArray("citiesListArray");
+            mCityCount = citiesListArray.length();
+            JSONArray placesjsonArray = jsonObject.getJSONArray("nativePlacesListArray");
+            mPlacesCount = placesjsonArray.length();
+            setUpNativeRecyClerView(placesjsonArray, 0);
+            setUpVeteranRecyClerView(citiesListArray,1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
     }
 
-    private void setUpRecyClerView(JSONArray jsonArray, int tabIndex) {
+    private void setUpNativeRecyClerView(JSONArray jsonArray, int tabIndex) {
         recyclerView = (RecyclerView) mView.findViewById(R.id.recyclerView);
-        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setNestedScrollingEnabled(true);
         recyclerView.setHasFixedSize(false);
         recyclerView.addItemDecoration(new RecyclerViewItemDivider(getActivity()));
-        recyclerView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-        recyclerView.setLayoutManager(new WrappingLinearLayoutManager(getActivity()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        mAdapter = new UserExploreRecyclerViewAdapter(getActivity(), jsonArray, tabIndex);
-        recyclerView.setAdapter(mAdapter);
+        mPlacesAdapter = new UserExploreRecyclerViewAdapter(getActivity(), jsonArray, tabIndex);
+        recyclerView.setAdapter(mPlacesAdapter);
         mView.findViewById(R.id.progressBar).setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
+
+        nativeSubheaderTextView.setText(mPlacesCount+" Neighbourhoods in "+mCityCount+" cities");
+    }
+
+    private void setUpVeteranRecyClerView(JSONArray jsonArray, int tabIndex) {
+        vRecyclerView = (RecyclerView) mView.findViewById(R.id.v_recyclerView);
+        vRecyclerView.setNestedScrollingEnabled(true);
+        vRecyclerView.setHasFixedSize(false);
+        vRecyclerView.addItemDecoration(new RecyclerViewItemDivider(getActivity()));
+        vRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        vRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mCityAdapter = new UserExploreRecyclerViewAdapter(getActivity(), jsonArray, tabIndex);
+        vRecyclerView.setAdapter(mCityAdapter);
+        mView.findViewById(R.id.v_progressBar).setVisibility(View.GONE);
+        vRecyclerView.setVisibility(View.VISIBLE);
+
+        veteranSubheaderTextView.setText(mCityCount+" cities in India");
     }
 }

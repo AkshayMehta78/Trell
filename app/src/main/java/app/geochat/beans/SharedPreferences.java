@@ -244,5 +244,11 @@ public class SharedPreferences implements Constants.UserInfoKeys,Constants.Prefe
     }
 
 
+    public String getUserProfileId() {
+        return mSharedPreferences.getString(Constants.USER.USERID, "");
+    }
 
+    public void setUserProfileId(String userId) {
+        mSharedPreferences.edit().putString(Constants.USER.USERID, userId).commit();
+    }
 }

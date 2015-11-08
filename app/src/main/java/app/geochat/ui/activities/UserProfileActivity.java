@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,8 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.geochat.R;
+import app.geochat.beans.GeoChat;
 import app.geochat.beans.SharedPreferences;
 import app.geochat.managers.ProfileManager;
+import app.geochat.ui.adapters.TabsPagerAdapter;
 import app.geochat.ui.adapters.ViewPagerAdapter;
 import app.geochat.ui.fragments.AchievementFragment;
 import app.geochat.ui.fragments.GeoChatListFragment;
@@ -39,7 +44,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
     private static final int[] TITLES = {R.string.achievements, R.string.explore};
 
-    private List<Fragment> mFragments = new ArrayList<Fragment>() {{
+    private ArrayList<Fragment> mFragments = new ArrayList<Fragment>() {{
         add(new AchievementFragment());
         add(new UserGeoNoteListFragment());
     }};
@@ -49,6 +54,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
     private ViewPagerAdapter mAdapter;
     private ViewPager mViewPager;
+    private String mUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +66,8 @@ public class UserProfileActivity extends AppCompatActivity {
         geWidgetReferences();
         setWidgetEvent();
         initialization();
-
+        mUserId = mSharedPreferences.getUserProfileId();
+        Log.e("mUserId", mUserId);
         if(NetworkManager.isConnectedToInternet(this))
             fetchUserProfileDetails();
         setViewPager(0);
@@ -72,7 +79,7 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     private void fetchUserProfileDetails() {
-            mProfileManager.fetchUserDetails(mSharedPreferences.getUserId());
+            mProfileManager.fetchUserDetails(mUserId);
     }
 
     private void setWidgetEvent() {
@@ -116,8 +123,11 @@ public class UserProfileActivity extends AppCompatActivity {
         List<String> titlesList = new ArrayList<>();
         for (int titleResId : TITLES) {
             titlesList.add(getString(titleResId));
+
         }
-        mAdapter = new ViewPagerAdapter(this.getSupportFragmentManager(), mFragments, titlesList);
+        Bundle mBundle = new Bundle();
+        mBundle.putString(Constants.USER.USERID,mUserId);
+        mAdapter = new ViewPagerAdapter(this.getSupportFragmentManager(), mFragments, titlesList,mBundle);
         mViewPager.setAdapter(mAdapter);
         /* tabLayout.setupWithViewPager(viewPager);
         - Tab titles not showing immediately-this
@@ -161,5 +171,26 @@ public class UserProfileActivity extends AppCompatActivity {
     public void sendFetchedExploreResult(String response) {
         AchievementFragment fragment = (AchievementFragment) mAdapter.getItem(mViewPager.getCurrentItem());
         fragment.updateExploreResult(response);
+    }
+
+
+    public void sendFetchedFeedResult(ArrayList<GeoChat> response) {
+        UserGeoNoteListFragment fragment = (UserGeoNoteListFragment) mAdapter.getItem(1);
+        fragment.renderGeoChatListView(response);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

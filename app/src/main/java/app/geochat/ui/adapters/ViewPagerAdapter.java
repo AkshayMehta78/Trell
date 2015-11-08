@@ -7,18 +7,11 @@ package app.geochat.ui.adapters;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
 import java.util.List;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.util.Log;
-
-import java.util.List;
-
 /**
  * Generic view pager to maintain tabs and their click events
  * <a href="http://stackoverflow.com/questions/18747975/difference-between-fragmentpageradapter-and-fragmentstatepageradapter">FragmentPagerAdapter vs FragmentStatePagerAdapter</a>
@@ -31,31 +24,17 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     private List<String> mTabTitles;
     private Bundle mBundle;
 
-    public ViewPagerAdapter(FragmentManager fm, List<Fragment> fragments, List<String> titles) {
-        super(fm);
-        mFragments = fragments;
-        mTabTitles = titles;
-    }
-
-    /**
-     *
-     * @param fm
-     * @param fragments
-     * @param titles
-     * @param bundle : bundle to be set in all tab fragments
-     */
     public ViewPagerAdapter(FragmentManager fm, List<Fragment> fragments, List<String> titles, Bundle bundle) {
         super(fm);
         mFragments = fragments;
         mTabTitles = titles;
-        mBundle = bundle;
+        mBundle= bundle;
     }
 
     @Override
     public Fragment getItem(int position) {
         Log.d(TAG, "position : " + position);
-        Fragment fragment = mFragments.get(position);
-        return fragment;
+        return mFragments.get(position);
     }
 
     @Override
