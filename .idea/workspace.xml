@@ -127,13 +127,14 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/app/geochat/util/Constants.java" afterPath="$PROJECT_DIR$/app/src/main/java/app/geochat/util/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/app/geochat/managers/GeoChatManagers.java" afterPath="$PROJECT_DIR$/app/src/main/java/app/geochat/managers/GeoChatManagers.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/app/geochat/managers/ProfileManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/app/geochat/managers/ProfileManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/app/geochat/ui/adapters/UserExploreRecyclerViewAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/app/geochat/ui/adapters/UserExploreRecyclerViewAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/app/geochat/ui/activities/MapActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/app/geochat/ui/activities/MapActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/app/geochat/util/Utils.java" afterPath="$PROJECT_DIR$/app/src/main/java/app/geochat/util/Utils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="GeoChat.iws" />
@@ -166,9 +167,15 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/app/geochat/ui/activities/MapActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="78" column="76" selection-start-line="78" selection-start-column="76" selection-end-line="78" selection-end-column="76" />
+              <caret line="218" column="0" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#4796#4797#0" expanded="true" />
+                <element signature="e#4854#4855#0" expanded="true" />
+                <element signature="e#6179#6414#0" expanded="true" />
+                <element signature="e#6413#6414#0" expanded="true" />
+                <element signature="e#6748#6749#0" expanded="true" />
+                <element signature="e#6817#6818#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -177,21 +184,40 @@
       <file leaf-file-name="Utils.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/app/geochat/util/Utils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.03469388">
-              <caret line="892" column="64" selection-start-line="892" selection-start-column="64" selection-end-line="892" selection-end-column="64" />
+            <state vertical-scroll-proportion="0.24401914">
+              <caret line="908" column="57" selection-start-line="908" selection-start-column="57" selection-end-line="908" selection-end-column="57" />
               <folding>
-                <element signature="e#8466#8478#0" expanded="true" />
+                <element signature="e#8542#8554#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserExploreRecyclerViewAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/app/geochat/ui/adapters/UserExploreRecyclerViewAdapter.java">
+      <file leaf-file-name="ClusterGeoChat.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/app/geochat/beans/ClusterGeoChat.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="20" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
-              <folding />
+              <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#385#386#0" expanded="true" />
+                <element signature="e#441#442#0" expanded="true" />
+                <element signature="e#489#490#0" expanded="true" />
+                <element signature="e#560#561#0" expanded="true" />
+                <element signature="e#594#595#0" expanded="true" />
+                <element signature="e#648#649#0" expanded="true" />
+                <element signature="e#694#695#0" expanded="true" />
+                <element signature="e#728#729#0" expanded="true" />
+                <element signature="e#758#759#0" expanded="true" />
+                <element signature="e#804#805#0" expanded="true" />
+                <element signature="e#842#843#0" expanded="true" />
+                <element signature="e#883#884#0" expanded="true" />
+                <element signature="e#920#921#0" expanded="true" />
+                <element signature="e#980#981#0" expanded="true" />
+                <element signature="e#1032#1033#0" expanded="true" />
+                <element signature="e#1081#1082#0" expanded="true" />
+                <element signature="e#1123#1124#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -203,8 +229,8 @@
       <list>
         <option value="valueResourceFile" />
         <option value="resourceFile" />
-        <option value="Class" />
         <option value="layoutResourceFile_vertical" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -789,6 +815,11 @@
                 <option name="description" value="Prepare GeoChat:facebookSDK:unspecified" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="prepareGeoChatFacebookSDKUnspecifiedLibrary" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare io.nlopez.clusterer:library:1.0.6" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareIoNlopezClustererLibrary106Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -1522,6 +1553,11 @@
                 <option name="name" value="prepareGeoChatFacebookSDKUnspecifiedLibrary" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare io.nlopez.clusterer:library:1.0.6" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareIoNlopezClustererLibrary106Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="prepareReleaseDependencies" />
               </ExternalTaskPojo>
@@ -2148,7 +2184,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="5760791975000" />
+        <entry key="$PROJECT_DIR$" value="5761582693000" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2334,6 +2370,7 @@
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sothree.slidinguppanel/library/3.2.0/f9f71fda8f58e1cf3d85824fb2fd8e6e4b7e6298/library-3.2.0.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.anton46/collection-picker/1.0.2/eccddf028b99807a6001c9f1df2f7e2326aaf19/collection-picker-1.0.2.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.afollestad/material-dialogs/0.7.6.0/4229232b6d24dc49527a7a1ae439a86783a82dde/material-dialogs-0.7.6.0.aar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.nlopez.clusterer/library/1.0.6/7f21e540320b76f7d7ab7bc8444148f44233caad/library-1.0.6.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.3.5/9783d89b8eea20a517a4afc5f979bd2882b54c44/httpclient-4.3.5.jar" />
                             <option value="$USER_HOME$/Library/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-ads/7.5.0/play-services-ads-7.5.0.aar" />
                             <option value="$USER_HOME$/Library/Android/sdk/extras/google/m2repository/com/google/android/gms/play-services-analytics/7.5.0/play-services-analytics-7.5.0.aar" />
@@ -2530,8 +2567,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_geochatlist.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/geochat/ui/activities/CheckInActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/updated_geochat.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" />
@@ -2579,6 +2614,8 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/geochat/managers/GeoChatManagers.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/geochat/ui/adapters/UserExploreRecyclerViewAdapter.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/app/geochat/beans/ClusterGeoChat.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/geochat/ui/activities/MapActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/geochat/util/Utils.java" />
       </list>
@@ -2701,6 +2738,62 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GeoChat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GeoChat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="drawable-xhdpi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GeoChat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GeoChat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -2739,7 +2832,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="192.168.56.101:5555" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="ZX1PC22R2Q" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_22_x86" />
     <property name="SearchEverywhereHistoryKey" value="geocha&#9;FILE&#9;file:///Users/akshaymehta/Akshay/GeoChat/GeoChat/app/src/main/res/layout/geochat_layout_row.xml&#10;string&#9;FILE&#9;file:///Users/akshaymehta/Akshay/GeoChat/GeoChat/app/src/main/res/values/strings.xml&#10;LoginA&#9;PSI&#9;JAVA://app.geochat.LoginActivity&#10;Voll&#9;PSI&#9;JAVA://app.geochat.util.VolleyController&#10;_n&#9;FILE&#9;file:///Users/akshaymehta/Akshay/GeoChat/GeoChat/app/src/main/res/drawable-xhdpi/ic_notification_bell.png&#10;String&#9;PSI&#9;JAVA://app.geochat.R.string" />
     <property name="OverrideImplement.combined" value="true" />
@@ -2751,10 +2844,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="app.geochat.beans" />
       <recent name="app.geochat.ui.activities" />
       <recent name="app.geochat.ui.adapters" />
       <recent name="app.geochat.util.api" />
-      <recent name="app.geochat.beans" />
       <recent name="app.geochat.ui.fragments" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -2982,15 +3075,15 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15177065" sideWeight="0.42071196" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11904762" sideWeight="0.26537216" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2414966" sideWeight="0.27508092" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32686085" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19557823" sideWeight="0.69093853" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32993197" sideWeight="0.7621359" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19557823" sideWeight="0.6868932" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1292517" sideWeight="0.75242716" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11904762" sideWeight="0.73462784" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2414966" sideWeight="0.7249191" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22087379" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -3094,7 +3187,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/app/geochat/util/Utils.java</url>
-          <line>780</line>
+          <line>782</line>
           <properties />
           <option name="timeStamp" value="59" />
         </line-breakpoint>
@@ -3134,41 +3227,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/geochat/ui/activities/ChatActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3314917">
-          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/support-v4/23.1.0/support-v4-23.1.0-sources.jar!/android/support/v4/view/ViewPager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33229813">
-          <caret line="724" column="16" selection-start-line="724" selection-start-column="16" selection-end-line="724" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/classes.jar!/android/support/v4/app/Fragment.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/geochat/beans/SharedPreferences.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7619048">
-          <caret line="246" column="4" selection-start-line="246" selection-start-column="4" selection-end-line="246" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/geochat/beans/SharedPreferences.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73214287">
-          <caret line="251" column="65" selection-start-line="251" selection-start-column="65" selection-end-line="251" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.android.support/design/22.2.0/jars/classes.jar!/android/support/design/widget/TabLayout.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3480663">
@@ -3303,7 +3361,7 @@
         <state vertical-scroll-proportion="0.2660754">
           <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
           <folding>
-            <element signature="e#503#509#0" expanded="true" />
+            <element signature="e#503#509#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3313,7 +3371,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
           <folding>
-            <element signature="e#503#509#0" expanded="true" />
+            <element signature="e#503#509#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3523,26 +3581,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55795676">
-          <caret line="160" column="63" selection-start-line="160" selection-start-column="63" selection-end-line="160" selection-end-column="63" />
-          <folding>
-            <element signature="e#2709#2727#0" expanded="true" />
-            <element signature="e#3034#3052#0" expanded="true" />
-            <element signature="e#3494#3524#0" expanded="true" />
-            <element signature="e#3778#3808#0" expanded="true" />
-            <element signature="e#4067#4097#0" expanded="true" />
-            <element signature="e#4276#4305#0" expanded="true" />
-            <element signature="e#4482#4515#0" expanded="true" />
-            <element signature="e#4780#4808#0" expanded="true" />
-            <element signature="e#7122#7147#0" expanded="true" />
-            <element signature="e#7250#7274#0" expanded="true" />
-            <element signature="e#7463#7502#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/app/geochat/ui/activities/CreateGeoChatActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3579,7 +3617,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="46" column="20" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1946#1947#0" expanded="false" />
+            <element signature="e#2013#2014#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3596,35 +3638,102 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="307" column="42" selection-start-line="307" selection-start-column="42" selection-end-line="307" selection-end-column="42" />
           <folding>
-            <element signature="e#2525#2589#0" expanded="true" />
-            <element signature="e#5024#5088#0" expanded="true" />
-            <element signature="e#7071#7135#0" expanded="true" />
-            <element signature="e#10019#10083#0" expanded="true" />
-            <element signature="e#11988#12052#0" expanded="true" />
-            <element signature="e#12211#12275#0" expanded="true" />
-            <element signature="e#14088#14152#0" expanded="true" />
-            <element signature="e#16031#16095#0" expanded="true" />
-            <element signature="e#17934#17998#0" expanded="true" />
+            <element signature="e#2525#2589#0" expanded="false" />
+            <element signature="e#5024#5088#0" expanded="false" />
+            <element signature="e#7071#7135#0" expanded="false" />
+            <element signature="e#10019#10083#0" expanded="false" />
+            <element signature="e#11988#12052#0" expanded="false" />
+            <element signature="e#12211#12275#0" expanded="false" />
+            <element signature="e#14088#14152#0" expanded="false" />
+            <element signature="e#16031#16095#0" expanded="false" />
+            <element signature="e#17934#17998#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5601093">
+          <caret line="160" column="63" selection-start-line="160" selection-start-column="63" selection-end-line="160" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.75409836">
+          <caret line="59" column="1" selection-start-line="59" selection-start-column="1" selection-end-line="59" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/geochat/beans/ClusterGeoChat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#385#386#0" expanded="true" />
+            <element signature="e#441#442#0" expanded="true" />
+            <element signature="e#489#490#0" expanded="true" />
+            <element signature="e#560#561#0" expanded="true" />
+            <element signature="e#594#595#0" expanded="true" />
+            <element signature="e#648#649#0" expanded="true" />
+            <element signature="e#694#695#0" expanded="true" />
+            <element signature="e#728#729#0" expanded="true" />
+            <element signature="e#758#759#0" expanded="true" />
+            <element signature="e#804#805#0" expanded="true" />
+            <element signature="e#842#843#0" expanded="true" />
+            <element signature="e#883#884#0" expanded="true" />
+            <element signature="e#920#921#0" expanded="true" />
+            <element signature="e#980#981#0" expanded="true" />
+            <element signature="e#1032#1033#0" expanded="true" />
+            <element signature="e#1081#1082#0" expanded="true" />
+            <element signature="e#1123#1124#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/travel_bg.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/circle_red.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/com/android/internal/os/ZygoteInit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13157895">
+          <caret line="600" column="0" selection-start-line="600" selection-start-column="0" selection-end-line="600" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/app/geochat/ui/activities/MapActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="78" column="76" selection-start-line="78" selection-start-column="76" selection-end-line="78" selection-end-column="76" />
+          <caret line="218" column="0" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#4796#4797#0" expanded="true" />
+            <element signature="e#4854#4855#0" expanded="true" />
+            <element signature="e#6179#6414#0" expanded="true" />
+            <element signature="e#6413#6414#0" expanded="true" />
+            <element signature="e#6748#6749#0" expanded="true" />
+            <element signature="e#6817#6818#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/app/geochat/util/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.03469388">
-          <caret line="892" column="64" selection-start-line="892" selection-start-column="64" selection-end-line="892" selection-end-column="64" />
+        <state vertical-scroll-proportion="0.24401914">
+          <caret line="908" column="57" selection-start-line="908" selection-start-column="57" selection-end-line="908" selection-end-column="57" />
           <folding>
-            <element signature="e#8466#8478#0" expanded="true" />
+            <element signature="e#8542#8554#0" expanded="true" />
           </folding>
         </state>
       </provider>

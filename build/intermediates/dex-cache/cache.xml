@@ -2,95 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-4645ebddad6f8338f6e1d8eb37f0fd9474ec981d.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="6836d188602ec5382d1967c58b00960eb8ff8773">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-df12bc1111d3c3b18aa88cc528e524d52528fae0.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a1372c17fccacca753d3951d3ad820571cbce075">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-88c7937260707edef48d031314457563029bed8c.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1e98ef3f124bb7a11f8575f9ff5dfea330b61b6f">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-25a08bbc180303398cc001956a739dd99475bd59.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="29ebc7e04d877062317c8cc0e68b20f0c1fcda66">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-7b6ec175030311b4c981587d79944dd98f4816f1.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-d3560b08ad3d421b93e7b26e6ebf99f48ad4c2c5.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="8e3a972f28b8bae817e382257ba177a31bcadbbc">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-d8ae05762edc964298b69f80310a8aa20faf24d6.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="68c140702c7242d914655bcb3164d9e8c45b84cb">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-0763a5500bf47c9aba3a6f83e271ccb0b9d31278.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="3abb4b88f5a8a0584a9b01d3170d7165f12f8588">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-831db3106c99c9adcc23dfa90861b6e8b84d7559.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="63ec6e9f4fe5482a7447d0f3091b8e543a02554c">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-9d9424d05471bcc0361b5354b831bc5d6a5b2f95.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-89f6068b8d30087e84357f1bdd97c6d12a25c24b.jar" />
-    </item>
-    <item
         jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="8d736fefa22d896e84a268354b3ed48a42663150">
         <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-e2f86c9d0d7dc5713b8e800d8798ffd09c264f5c.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.0-f01ec42ca38a4e12e16393472bc3248ef9338d46.jar" />
     </item>
     <item
         jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/7.5.0/jars/classes.jar"
@@ -100,25 +16,25 @@
         <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-61fbb91b6c346d30a8f7ce7b09380499508089ea.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/7.5.0/jars/classes.jar"
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.android.support/design/22.2.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="f02127a85abd52a2cd526d4c2409f21969f80ee8">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-352c09cf98e1a03f94a019148cb988c95909d654.jar" />
+        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-ac16dab4ee2e4d13a029e1e4647eff417dc2e966.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.5.0/jars/classes.jar"
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="06a42becc33232ec0ee125161da68c1829c9f8fd">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-0cde6fd29aef904f4dae7df1d3a1905c574cb207.jar" />
+        sha1="1a6411087ab88ce5542f593e63a2752b6b0d6f1a">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-a6c284ef3250a6f5dbd6c6dba2a382a8610f4cbc.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.5.0/jars/classes.jar"
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="6836d188602ec5382d1967c58b00960eb8ff8773">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-785a60203787c6ab8d12c4046af35cf2a800acb4.jar" />
+        sha1="68c140702c7242d914655bcb3164d9e8c45b84cb">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-0763a5500bf47c9aba3a6f83e271ccb0b9d31278.jar" />
     </item>
     <item
         jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/7.5.0/jars/classes.jar"
@@ -128,81 +44,25 @@
         <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-5fd4afb892b691d69aebdad1ee8b7c9bcd38ff16.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/libs/internal_impl-22.0.0.jar"
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="ba3df4eb0a630d7de294f0e48d3f9267d279b784">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-73f4579317aae64e53d07447e1b693fbf474dcce.jar" />
+        sha1="6836d188602ec5382d1967c58b00960eb8ff8773">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-df12bc1111d3c3b18aa88cc528e524d52528fae0.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.5.0/jars/classes.jar"
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="e7b35244f50663b3f8d150714bca9ecd7a290da1">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-16a8b2d7d598421abf8dc9e1983da5da62ec717c.jar" />
+        sha1="1e98ef3f124bb7a11f8575f9ff5dfea330b61b6f">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-25a08bbc180303398cc001956a739dd99475bd59.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.android.support/design/22.2.0/jars/classes.jar"
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-ac16dab4ee2e4d13a029e1e4647eff417dc2e966.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="e7b35244f50663b3f8d150714bca9ecd7a290da1">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-41a7c9a0826825ad8ec3079e5d4b994b008a9770.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/GeoChat/facebookSDK/unspecified/jars/libs/bolts-android-1.1.2.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="91c20388c9a45f62b5ed8fe0502bb76ff6251fc7">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/bolts-android-1.1.2-7040c5e601201790130bcc0ad96cf7aea8b875fd.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="63ec6e9f4fe5482a7447d0f3091b8e543a02554c">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-8ab8841a1ee67f03efc67c069ddbe25b89592e2b.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/libs/internal_impl-22.0.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="ba3df4eb0a630d7de294f0e48d3f9267d279b784">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-73141c44dc082bafb2362f3ec4e768b267ea8aa2.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpmime/4.3.5/1dd0d38df9c6d21e893f2e52403f1cd99e91cd81/httpmime-4.3.5.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1dd0d38df9c6d21e893f2e52403f1cd99e91cd81">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/httpmime-4.3.5-5b4b748cc9b4abcb93375640a037d73ee840200b.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1a6411087ab88ce5542f593e63a2752b6b0d6f1a">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-23eb5dbd1ff9d6a64cba3bde3c9a7a58e571a24a.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a1372c17fccacca753d3951d3ad820571cbce075">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-ee37813607543f7a82430147d549862f7a9d8d26.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="e1fa5e1123997a55e3ed65b44892993ff4b58cfe">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-9b824375015e10bbbc217da2ef1114c8b40d7a47.jar" />
+        sha1="f02127a85abd52a2cd526d4c2409f21969f80ee8">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-352c09cf98e1a03f94a019148cb988c95909d654.jar" />
     </item>
     <item
         jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.anton46/collection-picker/1.0.2/jars/classes.jar"
@@ -212,74 +72,172 @@
         <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-1f368f796b0ffecaea1801a30e8b9a9841485194.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.android.support/design/22.2.0/jars/classes.jar"
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-a6c17cfce9c210d75510008ef06942a93cf72221.jar" />
+        sha1="a1372c17fccacca753d3951d3ad820571cbce075">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-88c7937260707edef48d031314457563029bed8c.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/libs/picasso-2.3.2.jar"
+        jar="/Users/akshaymehta/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="d6b7f0093cec6c9faf65dbfd6a6a345d0ed25e27">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/picasso-2.3.2-26d4ba8708ad710d12783585e7f9ea55965e1621.jar" />
+        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.0-f01ec42ca38a4e12e16393472bc3248ef9338d46.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.5.0/jars/classes.jar"
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/libs/internal_impl-22.0.0.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="69dd177337ead693c408c8dddc9546bb6f1244fa">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-c22be0ca9bf29f9a5236a1a9893383889eeb3a07.jar" />
+        sha1="ba3df4eb0a630d7de294f0e48d3f9267d279b784">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-73141c44dc082bafb2362f3ec4e768b267ea8aa2.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/7.5.0/jars/classes.jar"
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/libs/internal_impl-22.0.0.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="68c140702c7242d914655bcb3164d9e8c45b84cb">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-9095988553d796a0116209215d66d9b33893ec4f.jar" />
+        sha1="ba3df4eb0a630d7de294f0e48d3f9267d279b784">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-73f4579317aae64e53d07447e1b693fbf474dcce.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/7.5.0/jars/classes.jar"
+        jar="/Users/akshaymehta/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpmime/4.3.5/1dd0d38df9c6d21e893f2e52403f1cd99e91cd81/httpmime-4.3.5.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="ba207be21987c11b37d9f8faa08ed6e722569f30">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-7d3e04b99662a1b609d1c7cc4b6fd1c6116a013d.jar" />
+        sha1="1dd0d38df9c6d21e893f2e52403f1cd99e91cd81">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/httpmime-4.3.5-5b4b748cc9b4abcb93375640a037d73ee840200b.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/libs/estimote-sdk-javadoc.jar"
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/io.nlopez.clusterer/library/1.0.6/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="39fe307c7203267e0198ec9065a0d15fc37acb82">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/estimote-sdk-javadoc-81ef04612918d5ce6483e5017d0dca0c6d4fe09b.jar" />
+        sha1="303c4d5d52c2f016e929d3f8ff3b396edcb90a70">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-94f8e9e2bf3729774d6f9e1bac55a72d167f874c.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/GeoChat/facebookSDK/unspecified/jars/classes.jar"
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.1/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="8201164b25c3cbe1b251b737ccc57b5c3c989442">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-663d02bfe60b7f9e5a841e607d8c0257d5885367.jar" />
+        sha1="3abb4b88f5a8a0584a9b01d3170d7165f12f8588">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-831db3106c99c9adcc23dfa90861b6e8b84d7559.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/7.5.0/jars/classes.jar"
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="8e3a972f28b8bae817e382257ba177a31bcadbbc">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-d8ae05762edc964298b69f80310a8aa20faf24d6.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6836d188602ec5382d1967c58b00960eb8ff8773">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-785a60203787c6ab8d12c4046af35cf2a800acb4.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="06a42becc33232ec0ee125161da68c1829c9f8fd">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-0cde6fd29aef904f4dae7df1d3a1905c574cb207.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/library-2.4.0-55cedc6294d4102488504e2ec4422474eeb40fae.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="6440e5e5cfe368f9bff3c537fb8988048069cb33">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-bfea55c49622cfdfc6c6c94f384ad53a4587a6d3.jar" />
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-b61a1fb499a9f2610b73848f199e47f63a906b6c.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jar="/Users/akshaymehta/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.volley/library/1.0.19/a8f23f65fc1e522ee4a1a697ee569901a46741fa/library-1.0.19.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-b4ce5c63f65748ec8aeee3aea13c27e5cfac3f05.jar" />
+        sha1="a8f23f65fc1e522ee4a1a697ee569901a46741fa">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/library-1.0.19-69fef9b78285df3c9b9d77ef0744cc100f9f606a.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/7.5.0/jars/classes.jar"
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="d405025c600055237c171a0bbabaa49d69696573">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-50cebdad4384485df3f977aebb4fd3441ce363da.jar" />
+        sha1="8e3a972f28b8bae817e382257ba177a31bcadbbc">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-7f87de8c8485dfae10ee3d23b52ca554d08a2955.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/libs/internal_impl-23.1.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.0-570ee547a20072672fb3575e22cfeda5365f1d53.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.sothree.slidinguppanel/library/3.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6ca08eae09a2083fd5b430ce2a1faf86721a46bf">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-9f21ad0d4672a5f07af303b30fde94e6cde66819.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-89f6068b8d30087e84357f1bdd97c6d12a25c24b.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a172852a35ff919e85b9b7f14bbc15c5bee25520">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-4abd88b3f874278a0f4cd3271313b21ef98eee48.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="02bac2dc792d78241077861566f2c82da955e7fa">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-022812e7ece4abb567be739b1be659bd72ac37c5.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="272bc5d7063f24bc3a33ea1d318cde8f31f5ec4c">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-55787463700d7dbf75c5a06b6050b4487ef5e622.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f44d03c138cb6488fdbaa65e3a7e5878861a56d8">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-1f5ea9b0dab1d4ef0bf8f6bb99a6ea84bd279d72.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="06a42becc33232ec0ee125161da68c1829c9f8fd">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-84b33325fc17b5dc16f145d6d7cfd5012b95350b.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="29ebc7e04d877062317c8cc0e68b20f0c1fcda66">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-7b6ec175030311b4c981587d79944dd98f4816f1.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="02bac2dc792d78241077861566f2c82da955e7fa">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-545d21a10122513f0797c94311e642e06933ef53.jar" />
     </item>
     <item
         jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
@@ -289,11 +247,46 @@
         <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-b17110e8e7f373e225419ec9495316b560462232.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/7.5.0/jars/classes.jar"
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="ba207be21987c11b37d9f8faa08ed6e722569f30">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-a84c2b1f68723e2b5ab89337c2dff7b822d5bb72.jar" />
+        sha1="a172852a35ff919e85b9b7f14bbc15c5bee25520">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-6ee70fb5a7fc6b17b1212360a3d315ba2666f341.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-4645ebddad6f8338f6e1d8eb37f0fd9474ec981d.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ac6948cce36f694f3eb3d73a135e298dc4b3527a">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-c00fcfe265a36b399f3cf54d9016bac93a6eceef.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="69dd177337ead693c408c8dddc9546bb6f1244fa">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-ff1853dc362b2887b5c0835c10c6b971ef446ad4.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a78183f30e769a98ab4820794f597763088d3065">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-9d4a86916af805900bffb85c180c03bd34f6346b.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/libs/picasso-2.3.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d6b7f0093cec6c9faf65dbfd6a6a345d0ed25e27">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/picasso-2.3.2-bf7b709813369c6be47b8f183b38d76f56396364.jar" />
     </item>
     <item
         jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.afollestad/material-dialogs/0.7.6.0/jars/classes.jar"
@@ -317,158 +310,11 @@
         <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-e01862e64c1e0bba3bb7ea8306348be2e67abce4.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="69dd177337ead693c408c8dddc9546bb6f1244fa">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-ff1853dc362b2887b5c0835c10c6b971ef446ad4.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a78183f30e769a98ab4820794f597763088d3065">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-9d4a86916af805900bffb85c180c03bd34f6346b.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1e98ef3f124bb7a11f8575f9ff5dfea330b61b6f">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-f88b3e8efd720c8219a0c02578b570882a0e4712.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/BeaconApp/facebookSDK/unspecified/jars/libs/bolts-android-1.1.2.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="91c20388c9a45f62b5ed8fe0502bb76ff6251fc7">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/bolts-android-1.1.2-69def4898f485c1a0af94ad122f9e38a51986e63.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="d405025c600055237c171a0bbabaa49d69696573">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-f6b2a7d412583412df934e025d64e4f63bae5908.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="f44d03c138cb6488fdbaa65e3a7e5878861a56d8">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-bdeb506f061ee56d5be051390e25a93d1cec946e.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/estimote-sdk/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="e59d7cdbacecfd4bdbe6b627c30f8bfb06544714">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-3f0a8b377a4182f79858f2cea20a6f49d3897576.jar" />
-    </item>
-    <item
         jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="29ebc7e04d877062317c8cc0e68b20f0c1fcda66">
         <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-b9b0aeeb517182421929b9f72d86a367e32f3505.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="ac6948cce36f694f3eb3d73a135e298dc4b3527a">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-b5cf48c32302ea320e708e40a1a6ffba905d44bf.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/libs/picasso-2.3.2.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="d6b7f0093cec6c9faf65dbfd6a6a345d0ed25e27">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/picasso-2.3.2-bf7b709813369c6be47b8f183b38d76f56396364.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.3.2/31fbbff1ddbf98f3aa7377c94d33b0447c646b6e/httpcore-4.3.2.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="31fbbff1ddbf98f3aa7377c94d33b0447c646b6e">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/httpcore-4.3.2-3ce39913ee0399434e5b47b188f4177cea4277c1.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="272bc5d7063f24bc3a33ea1d318cde8f31f5ec4c">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-55787463700d7dbf75c5a06b6050b4487ef5e622.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a172852a35ff919e85b9b7f14bbc15c5bee25520">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-4abd88b3f874278a0f4cd3271313b21ef98eee48.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="02bac2dc792d78241077861566f2c82da955e7fa">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-545d21a10122513f0797c94311e642e06933ef53.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.sothree.slidinguppanel/library/3.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="6ca08eae09a2083fd5b430ce2a1faf86721a46bf">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-9f21ad0d4672a5f07af303b30fde94e6cde66819.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="06a42becc33232ec0ee125161da68c1829c9f8fd">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-84b33325fc17b5dc16f145d6d7cfd5012b95350b.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.volley/library/1.0.19/a8f23f65fc1e522ee4a1a697ee569901a46741fa/library-1.0.19.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a8f23f65fc1e522ee4a1a697ee569901a46741fa">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/library-1.0.19-69fef9b78285df3c9b9d77ef0744cc100f9f606a.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/libs/internal_impl-23.1.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.0-570ee547a20072672fb3575e22cfeda5365f1d53.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="6440e5e5cfe368f9bff3c537fb8988048069cb33">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-b61a1fb499a9f2610b73848f199e47f63a906b6c.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/library-2.4.0-55cedc6294d4102488504e2ec4422474eeb40fae.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="f44d03c138cb6488fdbaa65e3a7e5878861a56d8">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-1f5ea9b0dab1d4ef0bf8f6bb99a6ea84bd279d72.jar" />
-    </item>
-    <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="02bac2dc792d78241077861566f2c82da955e7fa">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-022812e7ece4abb567be739b1be659bd72ac37c5.jar" />
     </item>
     <item
         jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.5.0/jars/classes.jar"
@@ -478,32 +324,193 @@
         <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-87c56ea519030cf24f8dd1c961da967b0e5d977a.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/7.5.0/jars/classes.jar"
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/GeoChat/facebookSDK/unspecified/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="8e3a972f28b8bae817e382257ba177a31bcadbbc">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-7f87de8c8485dfae10ee3d23b52ca554d08a2955.jar" />
+        sha1="8201164b25c3cbe1b251b737ccc57b5c3c989442">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-663d02bfe60b7f9e5a841e607d8c0257d5885367.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/7.5.0/jars/classes.jar"
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/BeaconApp/facebookSDK/unspecified/jars/libs/bolts-android-1.1.2.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="1a6411087ab88ce5542f593e63a2752b6b0d6f1a">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-a6c284ef3250a6f5dbd6c6dba2a382a8610f4cbc.jar" />
+        sha1="91c20388c9a45f62b5ed8fe0502bb76ff6251fc7">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/bolts-android-1.1.2-69def4898f485c1a0af94ad122f9e38a51986e63.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.3.0/jars/classes.jar"
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1e98ef3f124bb7a11f8575f9ff5dfea330b61b6f">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-f88b3e8efd720c8219a0c02578b570882a0e4712.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.3.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="ac6948cce36f694f3eb3d73a135e298dc4b3527a">
-        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-c00fcfe265a36b399f3cf54d9016bac93a6eceef.jar" />
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-b5cf48c32302ea320e708e40a1a6ffba905d44bf.jar" />
     </item>
     <item
-        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/7.5.0/jars/classes.jar"
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/7.5.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="a172852a35ff919e85b9b7f14bbc15c5bee25520">
-        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-6ee70fb5a7fc6b17b1212360a3d315ba2666f341.jar" />
+        sha1="d405025c600055237c171a0bbabaa49d69696573">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-50cebdad4384485df3f977aebb4fd3441ce363da.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6440e5e5cfe368f9bff3c537fb8988048069cb33">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-bfea55c49622cfdfc6c6c94f384ad53a4587a6d3.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.3.2/31fbbff1ddbf98f3aa7377c94d33b0447c646b6e/httpcore-4.3.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="31fbbff1ddbf98f3aa7377c94d33b0447c646b6e">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/httpcore-4.3.2-3ce39913ee0399434e5b47b188f4177cea4277c1.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-b4ce5c63f65748ec8aeee3aea13c27e5cfac3f05.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/estimote-sdk/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e59d7cdbacecfd4bdbe6b627c30f8bfb06544714">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-3f0a8b377a4182f79858f2cea20a6f49d3897576.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e7b35244f50663b3f8d150714bca9ecd7a290da1">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-41a7c9a0826825ad8ec3079e5d4b994b008a9770.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e7b35244f50663b3f8d150714bca9ecd7a290da1">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-16a8b2d7d598421abf8dc9e1983da5da62ec717c.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/libs/picasso-2.3.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d6b7f0093cec6c9faf65dbfd6a6a345d0ed25e27">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/picasso-2.3.2-26d4ba8708ad710d12783585e7f9ea55965e1621.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="63ec6e9f4fe5482a7447d0f3091b8e543a02554c">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-8ab8841a1ee67f03efc67c069ddbe25b89592e2b.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f44d03c138cb6488fdbaa65e3a7e5878861a56d8">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-bdeb506f061ee56d5be051390e25a93d1cec946e.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e1fa5e1123997a55e3ed65b44892993ff4b58cfe">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-9b824375015e10bbbc217da2ef1114c8b40d7a47.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d405025c600055237c171a0bbabaa49d69696573">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-f6b2a7d412583412df934e025d64e4f63bae5908.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a1372c17fccacca753d3951d3ad820571cbce075">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-ee37813607543f7a82430147d549862f7a9d8d26.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ba207be21987c11b37d9f8faa08ed6e722569f30">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-7d3e04b99662a1b609d1c7cc4b6fd1c6116a013d.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="63ec6e9f4fe5482a7447d0f3091b8e543a02554c">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-9d9424d05471bcc0361b5354b831bc5d6a5b2f95.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1a6411087ab88ce5542f593e63a2752b6b0d6f1a">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-23eb5dbd1ff9d6a64cba3bde3c9a7a58e571a24a.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ba207be21987c11b37d9f8faa08ed6e722569f30">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-a84c2b1f68723e2b5ab89337c2dff7b822d5bb72.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/GeoChat/facebookSDK/unspecified/jars/libs/bolts-android-1.1.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="91c20388c9a45f62b5ed8fe0502bb76ff6251fc7">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/bolts-android-1.1.2-7040c5e601201790130bcc0ad96cf7aea8b875fd.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-d3560b08ad3d421b93e7b26e6ebf99f48ad4c2c5.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/exploded-aar/com.android.support/design/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/classes-a6c17cfce9c210d75510008ef06942a93cf72221.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="69dd177337ead693c408c8dddc9546bb6f1244fa">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-c22be0ca9bf29f9a5236a1a9893383889eeb3a07.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/libs/estimote-sdk-javadoc.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="39fe307c7203267e0198ec9065a0d15fc37acb82">
+        <dex dex="/Users/akshaymehta/AndroidStudioProjects/BeaconApp/app/build/intermediates/pre-dexed/debug/estimote-sdk-javadoc-81ef04612918d5ce6483e5017d0dca0c6d4fe09b.jar" />
+    </item>
+    <item
+        jar="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="68c140702c7242d914655bcb3164d9e8c45b84cb">
+        <dex dex="/Users/akshaymehta/Akshay/GeoChat/GeoChat/app/build/intermediates/pre-dexed/debug/classes-9095988553d796a0116209215d66d9b33893ec4f.jar" />
     </item>
 
 </items>

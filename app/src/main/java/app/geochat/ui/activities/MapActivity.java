@@ -1,9 +1,18 @@
 package app.geochat.ui.activities;
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -17,9 +26,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import app.geochat.R;
+import app.geochat.beans.ClusterGeoChat;
 import app.geochat.util.Constants;
 import app.geochat.util.Utils;
+import io.nlopez.clusterer.Cluster;
+import io.nlopez.clusterer.Clusterer;
+import io.nlopez.clusterer.MarkerAnimation;
+import io.nlopez.clusterer.OnPaintingClusterListener;
+import io.nlopez.clusterer.OnPaintingClusterableMarkerListener;
 
 /**
  * Created by akshaymehta on 10/11/15.
@@ -28,6 +45,11 @@ public class MapActivity extends AppCompatActivity {
 
     private String mapJsonArrayString;
     private GoogleMap googleMap;
+
+    private ArrayList<ClusterGeoChat> mapAreas;
+    private Clusterer<ClusterGeoChat> mClusterer;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +62,9 @@ public class MapActivity extends AppCompatActivity {
         setWidgetEvent();
         initialization();
 
-        setAllLocationOnMap();
+     //   setAllLocationOnMap();
+        prepareArrayList();
+        initClusterer();
     }
 
     private void setAllLocationOnMap() {
@@ -76,7 +100,7 @@ public class MapActivity extends AppCompatActivity {
             markerOptions.snippet(mapObject.getString(Constants.GEOCHAT.DESCRIPTION));
             markerOptions.title(mapObject.getString(Constants.LOCATIONKEYS.CHECKIN));
             String url = mapObject.getString(Constants.JsonKeys.GEOCHATIMAGE);
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(Utils.getBitmapFromURL(url))); //call getbitmap() method to download image from url
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(Utils.getBitmapFromURL(url,this))); //call getbitmap() method to download image from url
 
             // Adding marker on the Google Map
             Marker marker = googleMap.addMarker(markerOptions);
@@ -102,6 +126,7 @@ public class MapActivity extends AppCompatActivity {
     }
 
     private void initialization() {
+        mapAreas = new ArrayList<ClusterGeoChat>();
     }
 
 
@@ -112,5 +137,109 @@ public class MapActivity extends AppCompatActivity {
         googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 
     }
+
+
+    private void prepareArrayList() {
+        try {
+            JSONArray mapArray = new JSONArray(mapJsonArrayString);
+            for (int i = 0; i < mapArray.length(); i++) {
+                JSONObject mapObject = mapArray.getJSONObject(i);
+                ClusterGeoChat item = new ClusterGeoChat();
+                item.setCheckIn(mapObject.getString(Constants.LOCATIONKEYS.CHECKIN));
+                item.setDescription(mapObject.getString(Constants.GEOCHAT.DESCRIPTION));
+                item.setGeoChatImage(mapObject.getString(Constants.JsonKeys.GEOCHATIMAGE));
+                item.setLocationLatLng(new LatLng(Double.parseDouble(mapObject.getString(Constants.LOCATIONKEYS.LATITUDE)), Double.parseDouble(mapObject.getString(Constants.LOCATIONKEYS.LONGITUDE))));
+                mapAreas.add(item);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void initClusterer() {
+        mClusterer = new Clusterer<ClusterGeoChat>(this, googleMap);
+        mClusterer.addAll(mapAreas);
+
+        mClusterer.setAnimationEnabled(true);
+        mClusterer.setMarkerAnimation(new MarkerAnimation() {
+            @Override
+            public void animateMarker(Marker marker, float interpolation) {
+                // Basic fading animation
+                marker.setAlpha(interpolation);
+            }
+        });
+
+        mClusterer.setClustererListener(new Clusterer.ClustererClickListener<ClusterGeoChat>() {
+            @Override
+            public void markerClicked(ClusterGeoChat marker) {
+                Log.e("Clusterer", "marker clicked");
+            }
+
+            @Override
+            public void clusterClicked(Cluster position) {
+                Log.e("Clusterer", "cluster clicked");
+            }
+        });
+
+        mClusterer.setOnPaintingMarkerListener(new OnPaintingClusterableMarkerListener<ClusterGeoChat>() {
+
+            @Override
+            public void onMarkerCreated(Marker marker, ClusterGeoChat clusterable) {
+
+            }
+
+            @Override
+            public MarkerOptions onCreateMarkerOptions(ClusterGeoChat poi) {
+                return new MarkerOptions().position(poi.getPosition()).title(poi.getCheckIn()).snippet(poi.getDescription()).icon(BitmapDescriptorFactory.fromBitmap(Utils.getBitmapFromURL(poi.getGeoChatImage(), getApplicationContext())));
+            }
+        });
+
+        mClusterer.setOnPaintingClusterListener(new OnPaintingClusterListener<ClusterGeoChat>() {
+
+            @Override
+            public void onMarkerCreated(Marker marker, Cluster<ClusterGeoChat> cluster) {
+
+            }
+
+            @Override
+            public MarkerOptions onCreateClusterMarkerOptions(Cluster<ClusterGeoChat> cluster) {
+                return new MarkerOptions()
+                        .title("Clustering " + cluster.getWeight() + " items")
+                        .position(cluster.getCenter())
+                        .icon(BitmapDescriptorFactory.fromBitmap(getClusteredLabel(cluster.getWeight(),
+                                MapActivity.this)));
+
+            }
+        });
+
+
+
+    }
+
+
+    private Bitmap getClusteredLabel(Integer count, Context ctx) {
+
+        float density = getResources().getDisplayMetrics().density;
+
+        Resources r = ctx.getResources();
+        Bitmap res = BitmapFactory.decodeResource(r, R.drawable.square_icon);
+        res = res.copy(Bitmap.Config.ARGB_8888, true);
+        Canvas c = new Canvas(res);
+
+        Paint textPaint = new Paint();
+        textPaint.setAntiAlias(true);
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTypeface(Typeface.DEFAULT_BOLD);
+        textPaint.setColor(Color.WHITE);
+        textPaint.setTextSize(12 * density);
+
+        c.drawText(String.valueOf(count.toString()), res.getWidth() / 2, res.getHeight() / 2 + textPaint.getTextSize() / 3, textPaint);
+
+        return res;
+    }
+
+
+
 
 }

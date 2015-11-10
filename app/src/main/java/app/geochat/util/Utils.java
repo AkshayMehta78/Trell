@@ -21,6 +21,7 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
@@ -74,6 +75,7 @@ import app.geochat.beans.SharedPreferences;
 import app.geochat.services.asynctask.LocationService;
 import app.geochat.ui.activities.BaseActivity;
 import app.geochat.ui.activities.ChatActivity;
+import app.geochat.ui.activities.MapActivity;
 import app.geochat.ui.activities.SearchActivity;
 
 /**
@@ -902,19 +904,32 @@ public class Utils {
     }
 
 
-    public static Bitmap getBitmapFromURL(String src) {
+    public static Bitmap getBitmapFromURL(String src, Context context) {
         try {
-            URL url = new URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            BitmapFactory.Options o = new BitmapFactory.Options();
-            o.inSampleSize = 2;
-            Bitmap scaledBitmap = Bitmap.createScaledBitmap(myBitmap, 90, 90, true);
-            myBitmap.recycle();
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+
+            Bitmap scaledBitmap;
+            if (!src.isEmpty()) {
+                URL url = new URL(src);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                Bitmap myBitmap = BitmapFactory.decodeStream(input);
+                BitmapFactory.Options o = new BitmapFactory.Options();
+                o.inSampleSize = 2;
+                scaledBitmap = Bitmap.createScaledBitmap(myBitmap, 90, 90, true);
+                myBitmap.recycle();
+            } else {
+                Bitmap myBitmap =  BitmapFactory.decodeResource(context.getResources(),R.drawable.travel_bg);
+                BitmapFactory.Options o = new BitmapFactory.Options();
+                o.inSampleSize = 2;
+                scaledBitmap = Bitmap.createScaledBitmap(myBitmap, 90, 90, true);
+                myBitmap.recycle();
+            }
             return scaledBitmap;
+
         } catch (IOException e) {
             e.printStackTrace();
             return null;

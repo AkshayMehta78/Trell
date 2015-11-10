@@ -55,5 +55,6 @@ dependencies {
     compile 'com.sothree.slidinguppanel:library:3.2.0'
     compile 'com.anton46:collection-picker:1.0.2'
     compile 'com.afollestad:material-dialogs:0.7.6.0'
+    compile 'io.nlopez.clusterer:library:1.0.6'
 
 }
