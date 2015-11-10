@@ -95,7 +95,7 @@ public class ProfileManager implements Constants.JsonKeys,Constants.USER {
     public void fetchUserDetails(final String userId) {
         // Tag used to cancel the request
         String tag_send_msg = "fetch_user_details";
-        Utils.showProgress(mContext);
+    //    Utils.showProgress(mContext);
         String url = Constants.API_FETCH_USER_DETAILS_API;
 
         StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
@@ -104,7 +104,7 @@ public class ProfileManager implements Constants.JsonKeys,Constants.USER {
             @Override
             public void onResponse(String response) {
                 try {
-                    Utils.closeProgress();
+    //                Utils.closeProgress();
                     Log.e("response", response);
                     String status = LoginManager.getAPIStatus(response);
                     String message = LoginManager.getAPIMessage(response);

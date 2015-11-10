@@ -69,6 +69,7 @@ public interface Constants {
         String USERNAME = "userName";
         String USERAVATAR = "userAvatar";
         String STATUS = "status";
+        String MAPDATA = "map_data";
     }
 
     interface SEARCH{

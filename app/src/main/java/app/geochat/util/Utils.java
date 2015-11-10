@@ -845,7 +845,7 @@ public class Utils {
     private static void startSearchActivity(Activity activity, String type, String tag) {
         Intent intent = new Intent(activity,SearchActivity.class);
         intent.putExtra(Constants.SEARCH.TYPE,type);
-        intent.putExtra(Constants.SEARCH.TAG,tag);
+        intent.putExtra(Constants.SEARCH.TAG, tag);
         activity.startActivity(intent);
     }
 
@@ -871,11 +871,12 @@ public class Utils {
             }
         }
         location[0] = latitude;
-        location[1] = latitude;
+        location[1] = longitude;
         return location;
     }
 
     public static int getLocationDistance(String noteLat, String noteLong, String loclatitude, String loclongitude) {
+        Log.e("Distance",loclatitude+"-"+loclongitude);
         Location source = new Location("Source");
         source.setLatitude(Double.parseDouble(loclatitude));
         source.setLongitude(Double.parseDouble(loclongitude));
@@ -898,5 +899,25 @@ public class Utils {
         chatIntent.putExtra(Constants.Preferences.GEOCHAT, item);
         chatIntent.putExtra(Constants.Preferences.COMMENT, "1");
         activity.startActivity(chatIntent);
+    }
+
+
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            BitmapFactory.Options o = new BitmapFactory.Options();
+            o.inSampleSize = 2;
+            Bitmap scaledBitmap = Bitmap.createScaledBitmap(myBitmap, 90, 90, true);
+            myBitmap.recycle();
+            return scaledBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

@@ -300,9 +300,14 @@ public class GeoChatManagers implements Constants.LOCATIONKEYS, Constants.JsonKe
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("error",error.networkResponse.statusCode+"");
-                Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
-                fragment.failResult();
+                if(error!=null) {
+                    Log.e("error", error.networkResponse.statusCode + "");
+                    Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
+                    fragment.failResult();
+                }else {
+                    fragment.failResult();
+                    Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
+                }
             }
         }){
             @Override

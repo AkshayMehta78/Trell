@@ -1,6 +1,7 @@
 package app.geochat.ui.adapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,8 @@ import java.io.File;
 import java.util.ArrayList;
 
 import app.geochat.R;
+import app.geochat.ui.activities.MapActivity;
+import app.geochat.util.Constants;
 
 /**
  * Created by akshaymehta on 08/11/15.
@@ -40,7 +43,7 @@ public class UserExploreRecyclerViewAdapter extends RecyclerView.Adapter<UserExp
         try {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
             if(TabPosition == 0) {
-                place = jsonObject.getString("checkin");
+                place = jsonObject.getString("checkIn");
             } else {
                 place = jsonObject.getString("cityName");
             }
@@ -74,6 +77,11 @@ public class UserExploreRecyclerViewAdapter extends RecyclerView.Adapter<UserExp
 
         @Override
         public void onClick(View v) {
+            if(TabPosition==0){
+                Intent mapIntent = new  Intent(activity,MapActivity.class);
+                mapIntent.putExtra(Constants.USER.MAPDATA,jsonArray.toString());
+                activity.startActivity(mapIntent);
+            }
         }
     }
 
