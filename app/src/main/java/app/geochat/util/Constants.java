@@ -33,6 +33,7 @@ public interface Constants {
     String API_FETCH_USER_DETAILS_API = BASE_URL + "geoNoteUserProfile.php";
     String API_FETCH_USER_EXPLORE_DETAILS_API = BASE_URL + "geoNoteUserExploreDetails.php";
     String API_FETCH_USER_FEED_DETAILS_API = BASE_URL + "geoNoteUserFeedsDetails.php";
+    String API_FETCH_USERS_LIST = BASE_URL + "fetchFollowingUsers.php";
 
     interface LOCATIONKEYS {
         String LOCATION = "location";
@@ -59,6 +60,15 @@ public interface Constants {
         int UNFOLLOWUSER = 0;
         String FRIENDID = "friendId";
         String USERID = "userId";
+        String USER_TYPE = "user_type";
+        String FOLLOWERID = "0";
+        String TYPE_FOLLOWING = "type_following";
+        String FOLLOWINGID = "1";
+        String FLAG = "flag";
+        String USERS = "users";
+        String USERNAME = "userName";
+        String USERAVATAR = "userAvatar";
+        String STATUS = "status";
     }
 
     interface SEARCH{

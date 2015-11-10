@@ -637,6 +637,10 @@ Use Any Form Of Automated Device Or Computer Program \(\"Voting Tool\"\) That En
     <string name="already_added_wishlist">Hey, you have already added this tale into wishlist.</string>
     <string name="search_notes">Search Notes</string>
     <string name="achievements">Achievements</string>
+    <string name="unfollow">Unfollow</string>
+    <string name="follow">Follow</string>
+    <string name="no_users">Oops... you don\'t have any user.</string>
+    <string name="findUserButton">Find Treller</string>
 
 
 </resources>

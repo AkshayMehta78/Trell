@@ -1,5 +1,6 @@
 package app.geochat.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
@@ -12,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,7 +40,7 @@ import app.geochat.util.NetworkManager;
 /**
  * Created by akshaymehta on 07/11/15.
  */
-public class UserProfileActivity extends AppCompatActivity {
+public class UserProfileActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = UserProfileActivity.class.getSimpleName();
 
@@ -68,8 +70,6 @@ public class UserProfileActivity extends AppCompatActivity {
         initialization();
         mUserId = mSharedPreferences.getUserProfileId();
         Log.e("mUserId", mUserId);
-        if(NetworkManager.isConnectedToInternet(this))
-            fetchUserProfileDetails();
         setViewPager(0);
     }
 
@@ -83,6 +83,8 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     private void setWidgetEvent() {
+        followingTextView.setOnClickListener(this);
+        followersTextView.setOnClickListener(this);
     }
 
     private void geWidgetReferences() {
@@ -192,5 +194,27 @@ public class UserProfileActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent  = new Intent(this,UsersListActivity.class);
+        if(v==followersTextView){
+            intent.putExtra(Constants.USER.USER_TYPE,Constants.USER.FOLLOWERID);
+            intent.putExtra(Constants.USER.USERID,mSharedPreferences.getUserId());
+            intent.putExtra(Constants.USER.FRIENDID,mUserId);
+        } else if(v==followingTextView){
+            intent.putExtra(Constants.USER.USER_TYPE,Constants.USER.FOLLOWINGID);
+            intent.putExtra(Constants.USER.USERID,mSharedPreferences.getUserId());
+            intent.putExtra(Constants.USER.FRIENDID,mUserId);
+        }
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(NetworkManager.isConnectedToInternet(this))
+            fetchUserProfileDetails();
     }
 }

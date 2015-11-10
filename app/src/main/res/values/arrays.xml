@@ -11,4 +11,9 @@
         <item name="Edit post">Edit post</item>
         <item name="Delete">Delete</item>
     </string-array>
+    <string-array name="other_more_options2">
+        <item name="Share">Share</item>
+        <item name="Follow">Unfollow</item>
+        <item name="Report Content">Report Content</item>
+    </string-array>
 </resources>

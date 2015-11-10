@@ -52,7 +52,6 @@ public class AchievementFragment extends Fragment {
         mView = inflater.inflate(R.layout.user_achievement_layout, container, false);
         initialization();
         mUserId = mSharedPreferences.getUserProfileId();
-        Utils.showToast(getActivity(),mUserId);
         getWidgetReferences();
         return mView;
     }

@@ -227,7 +227,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     private void openOthersMoreOptionDialog(final GeoChat item) {
-        int id = R.array.other_more_options;
+        int id;
+        if(item.isFollowing().equalsIgnoreCase("true")){
+            id = R.array.other_more_options2;
+        } else {
+            id = R.array.other_more_options;
+        }
         new MaterialDialog.Builder(activity)
                 .title(item.getCheckInLocation())
                 .items(id)
@@ -237,7 +242,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         if (which == 0) {
                             Utils.openShareIntent(item, activity);
                         } else if (which == 1) {
-                            mProfileManager.followUser(item.getUserId(),Constants.USER.FOLLOWUSER);
+                            if (item.isFollowing().equalsIgnoreCase("true")) {
+                                item.setIsFollowing("false");
+                                mProfileManager.followUser(item.getUserId(),Constants.USER.UNFOLLOWUSER);
+                            } else {
+                                item.setIsFollowing("true");
+                                mProfileManager.followUser(item.getUserId(), Constants.USER.FOLLOWUSER);
+                            }
+                            notifyDataSetChanged();
                         } else if (which == 2) {
                             Utils.reportContent(item, activity);
                         }
