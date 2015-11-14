@@ -80,9 +80,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.userNameTextView.setText(item.getCreatedByUserName());
         holder.locationTextView.setText("@ "+item.getCheckInLocation());
         if (!item.getUserAvatar().isEmpty())
-            Picasso.with(activity).load(item.getUserAvatar()).placeholder(R.drawable.ic_default_profile_pic).into(holder.userImageImageView);
+            Picasso.with(activity).load(item.getUserAvatar()).placeholder(R.drawable.background_blue).into(holder.userImageImageView);
         else
-            Picasso.with(activity).load(R.drawable.ic_default_profile_pic).placeholder(R.drawable.ic_default_profile_pic).into(holder.userImageImageView);
+            Picasso.with(activity).load(R.drawable.ic_default_profile_pic).placeholder(R.drawable.background_blue).into(holder.userImageImageView);
 
 
         if (!item.getGeoChatImage().isEmpty())

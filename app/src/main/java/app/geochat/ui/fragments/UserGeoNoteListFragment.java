@@ -25,6 +25,7 @@ import app.geochat.ui.adapters.RecyclerViewAdapter;
 import app.geochat.ui.widgets.SpacesItemDecoration;
 import app.geochat.util.CircularProgressView;
 import app.geochat.util.Constants;
+import app.geochat.util.NetworkManager;
 import app.geochat.util.Utils;
 
 /**
@@ -77,7 +78,8 @@ public class UserGeoNoteListFragment extends Fragment {
     }
 
     private void getAllUserFeedDetails() {
-        mProfileManager.fetchUserFeedDetails(mUserId);
+        if(NetworkManager.isConnectedToInternet(getActivity()))
+            mProfileManager.fetchUserFeedDetails(mUserId);
     }
 
 

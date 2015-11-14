@@ -120,7 +120,7 @@ public class CheckInActivity extends AppCompatActivity implements View.OnClickLi
         mFilteredLocation = new ArrayList<LocationModel>();
         appLocationService = new LocationService(CheckInActivity.this);
         Location gpsLocation = appLocationService.getLocation(LocationManager.GPS_PROVIDER);
-
+        lv_locations.setEmptyView(mapViewRelativeLayout);
         if (gpsLocation != null) {
             double latitude = gpsLocation.getLatitude();
             double longitude = gpsLocation.getLongitude();
@@ -132,10 +132,10 @@ public class CheckInActivity extends AppCompatActivity implements View.OnClickLi
                 double longitude = gpsLocation.getLongitude();
                 fetchNearbyLocation(latitude, longitude);
             } else {
-//                double latitude =19.23;
-//                double longitude = 72.84;
-//                fetchNearbyLocation(latitude, longitude);
-                lv_locations.setEmptyView(mapViewRelativeLayout);
+                double latitude =19.23;
+                double longitude = 72.84;
+                fetchNearbyLocation(latitude, longitude);
+    //            lv_locations.setEmptyView(mapViewRelativeLayout);
             }
         }
     }
@@ -295,6 +295,7 @@ public class CheckInActivity extends AppCompatActivity implements View.OnClickLi
                     } else {
                         adapter.clear();
                         adapter.notifyDataSetChanged();
+
                     }
                 }
                 return false;

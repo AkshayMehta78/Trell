@@ -75,6 +75,7 @@ import app.geochat.beans.SharedPreferences;
 import app.geochat.services.asynctask.LocationService;
 import app.geochat.ui.activities.BaseActivity;
 import app.geochat.ui.activities.ChatActivity;
+import app.geochat.ui.activities.CreateNewTrell;
 import app.geochat.ui.activities.MapActivity;
 import app.geochat.ui.activities.SearchActivity;
 
@@ -789,8 +790,12 @@ public class Utils {
     public static void openShareIntent(GeoChat item, Activity activity) {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         Uri uri = Uri.parse(getBitmapFromURl(item.getGeoChatImage(), activity, item.getCity()));
-        shareIntent.setType("*/*");
-        shareIntent.putExtra(Intent.EXTRA_TEXT, item.getDescripton());
+    //    shareIntent.setType("*/*");
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, item.getGeoChatImage());
+        shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, item.getDescripton());
+
+        //  shareIntent.putExtra(Intent.EXTRA_TEXT, item.getDescripton());
         shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
         activity.startActivity(shareIntent);
     }
@@ -934,5 +939,18 @@ public class Utils {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static Spanned getFormattedTagsWithoutClicks(String[] tagsArray, final Activity activity) {
+        Spanned finalTags = new SpannableString("");
+        final ForegroundColorSpan span = new ForegroundColorSpan(Color.parseColor("#2196F3"));
+        final RelativeSizeSpan sizeSpan = new RelativeSizeSpan(1.5f);
+        for (int i = 0; i < tagsArray.length; i++) {
+            final String tag = tagsArray[i];
+            Spannable wordtoSpan = new SpannableString(tag);
+            wordtoSpan.setSpan(span, 0, tag.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            finalTags = (Spanned) TextUtils.concat(wordtoSpan, " ", finalTags);
+        }
+        return finalTags;
     }
 }

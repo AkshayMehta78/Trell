@@ -43,6 +43,7 @@ public class MapSearchActivity extends AppCompatActivity {
     private Button btnFind;
     private AutoCompleteTextView etLocation;
     private String latitude = "", longitude = "", location = "";
+    private String action;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,6 @@ public class MapSearchActivity extends AppCompatActivity {
          * set toolbar
          */
         Utils.setActivityToolbar(this, R.string.select_location, MapSearchActivity.this);
-
         SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         googleMap = supportMapFragment.getMap();
         etLocation = (AutoCompleteTextView) findViewById(R.id.et_location);
@@ -99,24 +99,27 @@ public class MapSearchActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<Address> addresses) {
+            try {
+                if (addresses == null || addresses.size() == 0) {
+                    Toast.makeText(getBaseContext(), "No Location found", Toast.LENGTH_SHORT).show();
+                }
+                Address address = (Address) addresses.get(0);
 
-            if (addresses == null || addresses.size() == 0) {
-                Toast.makeText(getBaseContext(), "No Location found", Toast.LENGTH_SHORT).show();
+                latitude = String.valueOf(address.getLatitude());
+                longitude = String.valueOf(address.getLongitude());
+                Log.e("address", address.toString());
+                latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                googleMap.clear();
+                String addressText = String.format("%s, %s", address.getMaxAddressLineIndex() > 0 ? address.getAddressLine(0) : "", address.getCountryName());
+                location = addressText;
+                markerOptions = new MarkerOptions();
+                markerOptions.position(latLng);
+                markerOptions.title(addressText);
+                googleMap.addMarker(markerOptions);
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
+            }catch (Exception e){
+                e.printStackTrace();
             }
-            Address address = (Address) addresses.get(0);
-
-            latitude = String.valueOf(address.getLatitude());
-            longitude = String.valueOf(address.getLongitude());
-            Log.e("address", address.toString());
-            latLng = new LatLng(address.getLatitude(), address.getLongitude());
-            googleMap.clear();
-            String addressText = String.format("%s, %s", address.getMaxAddressLineIndex() > 0 ? address.getAddressLine(0) : "", address.getCountryName());
-            location = addressText;
-            markerOptions = new MarkerOptions();
-            markerOptions.position(latLng);
-            markerOptions.title(addressText);
-            googleMap.addMarker(markerOptions);
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,12));
         }
     }
 
@@ -125,17 +128,17 @@ public class MapSearchActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_next:
                 if(latitude!=null && longitude!=null && location!=null) {
-                    if (!latitude.isEmpty() && !longitude.isEmpty()) {
-                        Bundle bundle = new Bundle();
-                        bundle.putString(Constants.LOCATIONKEYS.LOCATION, location);
-                        bundle.putString(Constants.LOCATIONKEYS.LATITUDE, latitude);
-                        bundle.putString(Constants.LOCATIONKEYS.LONGITUDE, longitude);
-                        Intent intent = new Intent(MapSearchActivity.this, AboutLocationActivity.class);
-                        intent.putExtras(bundle);
-                        startActivity(intent);
-                    }
+                        if (!latitude.isEmpty() && !longitude.isEmpty()) {
+                            Bundle bundle = new Bundle();
+                            bundle.putString(Constants.LOCATIONKEYS.LOCATION, location);
+                            bundle.putString(Constants.LOCATIONKEYS.LATITUDE, latitude);
+                            bundle.putString(Constants.LOCATIONKEYS.LONGITUDE, longitude);
+                            Intent intent = new Intent(MapSearchActivity.this, AboutLocationActivity.class);
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+                        }
                 } else {
-                    Utils.showToast(this,getString(R.string.no_location));
+                    Utils.showToast(this, getString(R.string.no_location));
                 }
                 return true;
             case android.R.id.home:

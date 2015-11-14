@@ -1,38 +1,33 @@
 package app.geochat.ui.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.squareup.picasso.Picasso;
 
-import java.io.File;
+import java.util.List;
+import java.util.Locale;
 
 import app.geochat.R;
 import app.geochat.beans.SharedPreferences;
 import app.geochat.managers.GeoChatManagers;
 import app.geochat.services.asynctask.MultimediaGeoChatAsyncTask;
 import app.geochat.util.Constants;
+import app.geochat.util.NetworkManager;
 import app.geochat.util.Utils;
 
 /**
@@ -44,6 +39,7 @@ public class CreateGeoChatActivity extends AppCompatActivity implements View.OnC
     private String latitude,longitude,location,tags,selectedImagePath,description,captionText;
     private Button publishButton;
     private EditText captionEditText;
+    private String cityName="Mumbai";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,9 +68,18 @@ public class CreateGeoChatActivity extends AppCompatActivity implements View.OnC
     }
 
     private void setLocationMarkeronMap() {
-        final LatLng locationPoint = new LatLng(Double.parseDouble(latitude) ,Double.parseDouble(longitude));
-        googleMap.addMarker(new MarkerOptions().position(locationPoint).title(location));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locationPoint, 14.0f));
+        try {
+            final LatLng locationPoint = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
+            googleMap.addMarker(new MarkerOptions().position(locationPoint).title(location));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locationPoint, 14.0f));
+            Geocoder gcd = new Geocoder(this, Locale.getDefault());
+            List<Address> addresses = gcd.getFromLocation(Double.parseDouble(latitude), Double.parseDouble(longitude), 1);
+            if(addresses.size()>0){
+                cityName = addresses.get(0).getLocality();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void getWidgetReferences() {
@@ -109,14 +114,16 @@ public class CreateGeoChatActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View v) {
             if(v==publishButton){
-                captionText = captionEditText.getText().toString().trim();
-                if(!captionText.isEmpty()) {
-                    if (!selectedImagePath.equalsIgnoreCase("")) {
-                        selectedImagePath = Utils.compressImage(selectedImagePath, this);
-                        new MultimediaGeoChatAsyncTask(this).execute(location, latitude, longitude, selectedImagePath, description, tags, captionText);
-                    } else {
-                        captionText = "";
-                        new GeoChatManagers(this).createGeoChat(location, latitude, longitude, description, tags, captionText);
+                if(NetworkManager.isConnectedToInternet(this)) {
+                    captionText = captionEditText.getText().toString().trim();
+                    if (!captionText.isEmpty()) {
+                        if (!selectedImagePath.equalsIgnoreCase("")) {
+                            selectedImagePath = Utils.compressImage(selectedImagePath, this);
+                            new MultimediaGeoChatAsyncTask(this).execute(location, latitude, longitude, selectedImagePath, description, tags, captionText, cityName);
+                        } else {
+                            captionText = "";
+                            new GeoChatManagers(this).createGeoChat(location, latitude, longitude, description, tags, captionText, cityName);
+                        }
                     }
                 }
             }

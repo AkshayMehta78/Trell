@@ -17,15 +17,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/container_layout"
-            android:layout_below="@+id/toolbar"/>
+            android:layout_below="@+id/toolbar"
+            android:layout_above="@+id/bottomLayout"/>
 
 
         <RelativeLayout
+            android:id="@+id/bottomLayout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@color/primary"
-            android:padding="@dimen/padding_normal"
+            android:padding="@dimen/padding_large"
             android:gravity="center">
 
             <ImageView

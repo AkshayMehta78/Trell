@@ -54,7 +54,10 @@ public class SelectPhotoActivity extends AppCompatActivity implements View.OnCli
         initialization();
         getWidgetReferences();
         setWidgetClickListener();
-        description = getIntent().getExtras().getString(Constants.GEOCHAT.DESCRIPTION);
+        Bundle data = getIntent().getExtras();
+        if(data!=null && data.getString(Constants.GEOCHAT.DESCRIPTION)!=null) {
+            description = data.getString(Constants.GEOCHAT.DESCRIPTION);
+        }
         new AllPhotosAsyncTask(this).execute();
     }
 

@@ -625,7 +625,7 @@ Use Any Form Of Automated Device Or Computer Program \(\"Voting Tool\"\) That En
     <string name="add_tag">Add Tag</string>
     <string name="add_tags">Please select at least 2 tags</string>
     <string name="caption">Caption your post.</string>
-    <string name="publish">Make it Live!</string>
+    <string name="publish">PUBLISH</string>
     <string name="no_location">Opps... We didn\'t find your required location.</string>
     <string name="mapSearchButton">Find in Map</string>
     <string name="enter_location">Enter Location Please</string>
@@ -641,6 +641,7 @@ Use Any Form Of Automated Device Or Computer Program \(\"Voting Tool\"\) That En
     <string name="follow">Follow</string>
     <string name="no_users">Oops... you don\'t have any user.</string>
     <string name="findUserButton">Find Treller</string>
+    <string name="new_trell">New Trell</string>
 
 
 </resources>

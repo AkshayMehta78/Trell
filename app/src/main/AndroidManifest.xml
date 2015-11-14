@@ -162,6 +162,41 @@
             android:theme="@style/AppTheme"
             android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
+        <activity
+            android:name="app.geochat.ui.activities.CreateNewTrell"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+
+
+        <activity
+            android:name="app.geochat.ui.activities.AddLocation"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+
+
+        <activity
+            android:name="app.geochat.ui.activities.AddAbout"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+
+
+
+        <activity
+            android:name="app.geochat.ui.activities.AddTags"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+
+
+
+        <activity
+            android:name="app.geochat.ui.activities.AddTrellImage"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
 
 
         <!-- Facebook -->

@@ -3,6 +3,8 @@ package app.geochat.ui.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -17,9 +19,12 @@ import android.widget.TextView;
 
 import com.facebook.android.Util;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
 
 import app.geochat.R;
 import app.geochat.beans.GeoChat;
@@ -33,6 +38,7 @@ import app.geochat.ui.adapters.RecyclerViewAdapter;
 import app.geochat.ui.widgets.SpacesItemDecoration;
 import app.geochat.util.CircularProgressView;
 import app.geochat.util.Constants;
+import app.geochat.util.NetworkManager;
 import app.geochat.util.Utils;
 
 /**
@@ -86,10 +92,22 @@ public class GeoChatListFragment extends Fragment implements View.OnClickListene
     }
 
     public void getAllGeoChats() {
-        loadingProgressBar.setVisibility(View.VISIBLE);
-        mRecylcerlistView.setVisibility(View.GONE);
-        double[] locationData = Utils.getLocationDetails(getActivity());
-        geoChatManager.fetchAllGeoChats(getActivity(), locationData[0] + "", locationData[1] + "", Constants.LOCATIONKEYS.REFRESH);
+        if(NetworkManager.isConnectedToInternet(getActivity())) {
+            loadingProgressBar.setVisibility(View.VISIBLE);
+            mRecylcerlistView.setVisibility(View.GONE);
+            double[] locationData = Utils.getLocationDetails(getActivity());
+            Geocoder gcd = new Geocoder(getActivity(), Locale.getDefault());
+            List<Address> addresses = null;
+            try {
+                addresses = gcd.getFromLocation(locationData[0],locationData[1], 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if(addresses.size()>0){
+                locationTextView.setText(addresses.get(0).getAddressLine(1));
+            }
+            geoChatManager.fetchAllGeoChats(getActivity(), locationData[0] + "", locationData[1] + "", Constants.LOCATIONKEYS.LOCATIONFEEDS);
+        }
     }
 
     public void renderGeoChatListView(ArrayList<GeoChat> result, String status) {

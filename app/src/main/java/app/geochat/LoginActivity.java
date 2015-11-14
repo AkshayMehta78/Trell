@@ -134,6 +134,7 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
 
     @Override
     protected void onStop() {
+        Utils.closeProgress();
         super.onStop();
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
@@ -157,6 +158,7 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
 
     @Override
     public void onConnectionFailed(ConnectionResult result) {
+        Utils.closeProgress();
         if (!result.hasResolution()) {
             GooglePlayServicesUtil.getErrorDialog(result.getErrorCode(), this,
                     0).show();
@@ -199,7 +201,7 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
     @Override
     public void onConnected(Bundle arg0) {
         mSignInClicked = false;
-        Toast.makeText(this, "User is connected!", Toast.LENGTH_LONG).show();
+        Utils.closeProgress();
         if (NetworkManager.isConnectedToInternet(this)) {
             // Update the user interface to reflect that the user is signed in.
             mSignInButton.setEnabled(false);
@@ -218,7 +220,6 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
                     if (currentUser.hasCover()) {
                         coverPhotourl = currentUser.getCover().getCoverPhoto().getUrl();
                     }
-
                     mLoginManager.saveGoogleUserInfo(this, id, userName, accountName, profilePicUrl, coverPhotourl);
                     mLoginManager.executeSocialLogin(this, LoginManager.MODE_GOOGLE, mSharedPreferences.getGooglePlusId(), mSharedPreferences.getGooglePlusEmailId(), mSharedPreferences.getDeviceToken(), mSharedPreferences.getGooglePlusName(), profilePicUrl);
                     mIntentInProgress = false;
@@ -236,6 +237,7 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
 
     @Override
     public void onConnectionSuspended(int arg0) {
+        Utils.closeProgress();
         mGoogleApiClient.connect();
     }
 
@@ -252,7 +254,8 @@ public class LoginActivity extends Activity implements OnClickListener, Connecti
      * Sign-in into google
      */
     private void signInWithGplus() {
-        if (!mGoogleApiClient.isConnecting()) {
+        if (!mGoogleApiClient.isConnecting() && NetworkManager.isConnectedToInternet(this)) {
+            Utils.showProgress(this);
             mSignInClicked = true;
             resolveSignInError();
         }

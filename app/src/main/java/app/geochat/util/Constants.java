@@ -14,7 +14,7 @@ public interface Constants {
     //Auth token
     String API_AUTH_TOKEN = BASE_URL + "signup.php";
     String LOCATIONURL1="https://maps.googleapis.com/maps/api/place/search/json?";
-    String LOCATIONURL2 ="&radius=1000&types=restaurant&sensor=false&key=AIzaSyAB-dwfPHYylEYEUn0Bg74lB1ogi-jCKBs" ;
+    String LOCATIONURL2 ="&radius=1000&types=restaurant&sensor=false&key=AIzaSyDjCkbRnyvAodhIC1UoHIOBYeMdBd-I8IA" ;
     String API_CREATE_GEOCHAT = BASE_URL + "createGeoChat.php";
     String API_FETCH_GEOCHAT = BASE_URL + "displayCreatedGeoChat.php";
     String ANDROID = "android" ;
@@ -44,6 +44,7 @@ public interface Constants {
         int CHECKINID = 1;
         String REFRESH = "refresh";
         String LOCATIONFEEDS = "locationFeeds";
+        String POSITION = "position";
     }
 
     interface GEOCHAT{
@@ -205,5 +206,17 @@ public interface Constants {
     public interface FragmentTags {
         String FRAGMENT_GEOCHATLIST_TAG = "geo_chat_list";
         String FRAGMENT_ACHIEVEMENT_TAG = "achievement_fragment";
+    }
+
+    public interface TRELL {
+        String ACTION_LOCATION = "location";
+        String ACTION_ABOUT = "about";
+        String ACTION_TAGS = "tags";
+        String ACTION_IMAGE = "image";
+
+        int ACTION_LOCATION_ID = 1;
+        int ACTION_ABOUT_ID = 2;
+        int ACTION_TAGS_ID = 3;
+        int ACTION_IMAGE_ID = 4;
     }
 }

@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -48,7 +49,7 @@ public class MapActivity extends AppCompatActivity {
 
     private ArrayList<ClusterGeoChat> mapAreas;
     private Clusterer<ClusterGeoChat> mClusterer;
-
+    private int mLocationPoint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +57,10 @@ public class MapActivity extends AppCompatActivity {
         setContentView(R.layout.map_view_activity);
         //Set up toolbar with back option
         setToolbar();
-        
-        mapJsonArrayString = getIntent().getStringExtra(Constants.USER.MAPDATA);
+        if(getIntent()!=null) {
+            mapJsonArrayString = getIntent().getStringExtra(Constants.USER.MAPDATA);
+            mLocationPoint = getIntent().getIntExtra(Constants.LOCATIONKEYS.POSITION, 0);
+        }
         geWidgetReferences();
         setWidgetEvent();
         initialization();
@@ -141,6 +144,7 @@ public class MapActivity extends AppCompatActivity {
 
     private void prepareArrayList() {
         try {
+
             JSONArray mapArray = new JSONArray(mapJsonArrayString);
             for (int i = 0; i < mapArray.length(); i++) {
                 JSONObject mapObject = mapArray.getJSONObject(i);
@@ -150,6 +154,8 @@ public class MapActivity extends AppCompatActivity {
                 item.setGeoChatImage(mapObject.getString(Constants.JsonKeys.GEOCHATIMAGE));
                 item.setLocationLatLng(new LatLng(Double.parseDouble(mapObject.getString(Constants.LOCATIONKEYS.LATITUDE)), Double.parseDouble(mapObject.getString(Constants.LOCATIONKEYS.LONGITUDE))));
                 mapAreas.add(item);
+                if(i==mLocationPoint)
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(mapObject.getString(Constants.LOCATIONKEYS.LATITUDE)), Double.parseDouble(mapObject.getString(Constants.LOCATIONKEYS.LONGITUDE))), 11.0f));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -191,6 +197,7 @@ public class MapActivity extends AppCompatActivity {
 
             @Override
             public MarkerOptions onCreateMarkerOptions(ClusterGeoChat poi) {
+
                 return new MarkerOptions().position(poi.getPosition()).title(poi.getCheckIn()).snippet(poi.getDescription()).icon(BitmapDescriptorFactory.fromBitmap(Utils.getBitmapFromURL(poi.getGeoChatImage(), getApplicationContext())));
             }
         });
@@ -212,6 +219,10 @@ public class MapActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+
 
 
 
@@ -239,6 +250,20 @@ public class MapActivity extends AppCompatActivity {
         return res;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 
 
 

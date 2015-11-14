@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:weightSum="10">
+
+    <include
+        layout="@layout/layout_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <LinearLayout
+        android:id="@+id/locationLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:padding="@dimen/padding_large"
+                android:tint="@color/black"
+                android:background="@color/grey_border"
+                android:src="@drawable/trell_location_icon"/>
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.7"
+                android:gravity="center"
+                android:id="@+id/locationTextView"
+                android:hint="Add Location"/>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/aboutLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.3"
+            android:tint="@color/black"
+            android:background="@color/grey_border"
+            android:padding="@dimen/padding_large"
+            android:src="@drawable/trell_about_icon"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.7"
+            android:gravity="center"
+            android:id="@+id/aboutTextView"
+            android:hint="Write about the places in 200 chars"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tagLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.3"
+            android:tint="@color/black"
+            android:background="@color/grey_border"
+            android:padding="@dimen/padding_large"
+            android:src="@drawable/trell_tags_icon"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.7"
+            android:gravity="center"
+            android:id="@+id/tagsTextView"
+            android:hint="Add tags"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/imageLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.3"
+            android:tint="@color/black"
+            android:background="@color/grey_border"
+            android:padding="@dimen/padding_large"
+            android:src="@drawable/trell_image_icon"/>
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.7"
+            android:id="@+id/trellImageView"
+            android:padding="@dimen/padding_large"
+            android:src="@drawable/travel_bg"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

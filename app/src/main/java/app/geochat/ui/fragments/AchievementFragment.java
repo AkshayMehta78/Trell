@@ -23,6 +23,7 @@ import app.geochat.ui.adapters.UserExploreRecyclerViewAdapter;
 import app.geochat.ui.widgets.RecyclerViewItemDivider;
 import app.geochat.util.CircularProgressView;
 import app.geochat.util.Constants;
+import app.geochat.util.NetworkManager;
 import app.geochat.util.Utils;
 
 /**
@@ -63,7 +64,8 @@ public class AchievementFragment extends Fragment {
     }
 
     private void fetchExploreDetails() {
-        mProfileManager.fetchUserExploreDetails(getActivity(), mUserId);
+        if(NetworkManager.isConnectedToInternet(getActivity()))
+            mProfileManager.fetchUserExploreDetails(getActivity(), mUserId);
     }
 
 

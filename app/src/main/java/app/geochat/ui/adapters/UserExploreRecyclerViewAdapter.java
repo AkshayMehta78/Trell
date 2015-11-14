@@ -48,6 +48,7 @@ public class UserExploreRecyclerViewAdapter extends RecyclerView.Adapter<UserExp
                 place = jsonObject.getString("cityName");
             }
             holder.placeTextView.setText(place);
+            holder.position = i;
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -68,7 +69,7 @@ public class UserExploreRecyclerViewAdapter extends RecyclerView.Adapter<UserExp
 
     public class PlacesCustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView placeTextView;
-
+        int position;
         public PlacesCustomViewHolder(View view) {
             super(view);
             view.setOnClickListener(this);
@@ -80,6 +81,7 @@ public class UserExploreRecyclerViewAdapter extends RecyclerView.Adapter<UserExp
             if(TabPosition==0){
                 Intent mapIntent = new  Intent(activity,MapActivity.class);
                 mapIntent.putExtra(Constants.USER.MAPDATA,jsonArray.toString());
+                mapIntent.putExtra(Constants.LOCATIONKEYS.POSITION,position);
                 activity.startActivity(mapIntent);
             }
         }

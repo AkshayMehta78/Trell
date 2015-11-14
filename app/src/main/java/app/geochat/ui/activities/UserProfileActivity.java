@@ -79,6 +79,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void fetchUserProfileDetails() {
+        if(NetworkManager.isConnectedToInternet(this))
             mProfileManager.fetchUserDetails(mUserId);
     }
 

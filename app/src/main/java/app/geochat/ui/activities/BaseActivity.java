@@ -39,7 +39,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     private DrawerLayout mDrawerLayout;
     private RelativeLayout mHeaderView;
     private ImageView mUserImage;
-    private ImageView mCoverImageImageView;
+    private ImageView mCoverImageImageView,mCreateGeoNoteImageView;
     private TextView mUserNameTextView, mUserEmailTextView;
     private SharedPreferences mDesidimeSharedPreferences;
     private NavigationView navigationView;
@@ -61,10 +61,12 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setWidgetEvent() {
         mRefreshImageView.setOnClickListener(this);
+        mCreateGeoNoteImageView.setOnClickListener(this);
     }
 
     private void geWidgetReferences() {
         mRefreshImageView = (ImageView) findViewById(R.id.refreshImageView);
+        mCreateGeoNoteImageView = (ImageView) findViewById(R.id.createGeoNoteImageView);
     }
 
 
@@ -210,6 +212,9 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         if(v==mRefreshImageView){
             GeoChatListFragment fragment =  (GeoChatListFragment)getSupportFragmentManager().findFragmentByTag(Constants.FragmentTags.FRAGMENT_GEOCHATLIST_TAG);
             fragment.refreshGeoNotes();
+        } else if (v==mCreateGeoNoteImageView){
+            Intent trellIntent = new Intent(this,CreateNewTrell.class);
+            startActivity(trellIntent);
         }
     }
 
@@ -259,5 +264,13 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
             finish();
         else
             super.onBackPressed();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        GeoChatListFragment fragment = (GeoChatListFragment) getSupportFragmentManager().findFragmentByTag(Constants.FragmentTags.FRAGMENT_GEOCHATLIST_TAG);
+        if(fragment.isAdded()){
+            fragment.getAllGeoChats();
+        }
     }
 }

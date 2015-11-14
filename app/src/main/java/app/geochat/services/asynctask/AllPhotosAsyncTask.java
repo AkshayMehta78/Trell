@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import app.geochat.ui.activities.AddTrellImage;
 import app.geochat.ui.activities.SelectPhotoActivity;
 import app.geochat.util.Utils;
 
@@ -27,7 +28,11 @@ public class AllPhotosAsyncTask extends AsyncTask<String, Void, ArrayList<String
 
     @Override
     protected void onPostExecute(ArrayList<String>  result) {
-        ((SelectPhotoActivity)mContext).renderCameraImages(result);
+        if(mContext instanceof  SelectPhotoActivity)
+            ((SelectPhotoActivity)mContext).renderCameraImages(result);
+        else
+            ((AddTrellImage)mContext).renderCameraImages(result);
+
     }
 
     @Override

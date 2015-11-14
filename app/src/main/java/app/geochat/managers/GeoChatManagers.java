@@ -44,7 +44,7 @@ public class GeoChatManagers implements Constants.LOCATIONKEYS, Constants.JsonKe
         mSharedPreferences = new SharedPreferences(mContext);
     }
 
-    public void createGeoChat(final String location, final String latitude, final String longitude, final String description, final String tags, final String captionText) {
+    public void createGeoChat(final String location, final String latitude, final String longitude, final String description, final String tags, final String captionText, final String cityName) {
         Utils.showProgress(mContext);
         // Tag used to cancel the request
         String tag_create_geochat = "create_geochat";
@@ -83,7 +83,7 @@ public class GeoChatManagers implements Constants.LOCATIONKEYS, Constants.JsonKe
                 params.put(Constants.GEOCHAT.DESCRIPTION, description);
                 params.put(Constants.GEOCHAT.TAGS, tags);
                 params.put(Constants.GEOCHAT.CAPTION, captionText);
-                params.put(Constants.GEOCHAT.CITY, "Mumbai");
+                params.put(Constants.GEOCHAT.CITY, cityName);
                 return params;
             }
         };
