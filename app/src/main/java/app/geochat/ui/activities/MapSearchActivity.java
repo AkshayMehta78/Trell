@@ -58,7 +58,7 @@ public class MapSearchActivity extends AppCompatActivity {
         googleMap = supportMapFragment.getMap();
         etLocation = (AutoCompleteTextView) findViewById(R.id.et_location);
         btnFind = (Button) findViewById(R.id.btn_find);
-
+        action = getIntent().getAction();
         btnFind.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,13 +129,22 @@ public class MapSearchActivity extends AppCompatActivity {
             case R.id.action_next:
                 if(latitude!=null && longitude!=null && location!=null) {
                         if (!latitude.isEmpty() && !longitude.isEmpty()) {
-                            Bundle bundle = new Bundle();
-                            bundle.putString(Constants.LOCATIONKEYS.LOCATION, location);
-                            bundle.putString(Constants.LOCATIONKEYS.LATITUDE, latitude);
-                            bundle.putString(Constants.LOCATIONKEYS.LONGITUDE, longitude);
-                            Intent intent = new Intent(MapSearchActivity.this, AboutLocationActivity.class);
-                            intent.putExtras(bundle);
-                            startActivity(intent);
+                            if(action==null) {
+                                Bundle bundle = new Bundle();
+                                bundle.putString(Constants.LOCATIONKEYS.LOCATION, location);
+                                bundle.putString(Constants.LOCATIONKEYS.LATITUDE, latitude);
+                                bundle.putString(Constants.LOCATIONKEYS.LONGITUDE, longitude);
+                                Intent intent = new Intent(MapSearchActivity.this, AboutLocationActivity.class);
+                                intent.putExtras(bundle);
+                                startActivity(intent);
+                            } else {
+                                Intent intent = new Intent();
+                                intent.putExtra(Constants.LOCATIONKEYS.CHECKIN, location);
+                                intent.putExtra(Constants.LOCATIONKEYS.LATITUDE, latitude);
+                                intent.putExtra(Constants.LOCATIONKEYS.LONGITUDE, longitude);
+                                setResult(Constants.TRELL.ACTION_LOCATION_ID, intent);
+                                finish();
+                            }
                         }
                 } else {
                     Utils.showToast(this, getString(R.string.no_location));
@@ -151,6 +160,7 @@ public class MapSearchActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.next_menu, menu);
+        menu.findItem(R.id.action_next).setTitle(getString(R.string.done));
         return true;
     }
 

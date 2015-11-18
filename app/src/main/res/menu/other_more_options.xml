@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/shareOptions">
+        <item
+            android:id="@+id/fbshare"
+            android:icon="@drawable/facebook_icon"
+            android:title="@string/faceboook"/>
+
+        <item
+            android:id="@+id/instshare"
+            android:icon="@drawable/instagram_icon"
+            android:title="@string/instagram"/>
+        <item
+            android:id="@+id/twittershare"
+            android:icon="@drawable/twitter_icon"
+            android:title="@string/twitter"/>
+        <item
+            android:id="@+id/other"
+            android:icon="@drawable/other_icon"
+            android:title="@string/other"/>
+    </group>
+    <item
+        android:id="@+id/follow"
+        android:icon="@drawable/follow_icon"
+        android:title="@string/follow"/>
+    <item
+        android:id="@+id/report"
+        android:icon="@drawable/report_icon"
+        android:title="@string/report_content"/>
+</menu>

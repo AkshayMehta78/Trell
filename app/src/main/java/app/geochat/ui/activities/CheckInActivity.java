@@ -53,9 +53,7 @@ import app.geochat.util.JSONParser;
 import app.geochat.util.Utils;
 
 public class CheckInActivity extends AppCompatActivity implements View.OnClickListener {
-    private AutoCompleteTextView et_feedLocation;
     private Button mapSearchButton;
-    private static final String API_KEY = "AIzaSyDp5u0Z3h9abid8puEy-sqdrFLZ3fONHN8";
     private LocationService appLocationService;
     private boolean isGPSEnablesManually = false;
     private ArrayList<LocationModel> result;
@@ -135,7 +133,7 @@ public class CheckInActivity extends AppCompatActivity implements View.OnClickLi
                 double latitude =19.23;
                 double longitude = 72.84;
                 fetchNearbyLocation(latitude, longitude);
-    //            lv_locations.setEmptyView(mapViewRelativeLayout);
+        //        lv_locations.setEmptyView(mapViewRelativeLayout);
             }
         }
     }

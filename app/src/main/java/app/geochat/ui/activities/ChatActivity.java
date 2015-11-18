@@ -1,20 +1,20 @@
 package app.geochat.ui.activities;
 
+import android.app.Dialog;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.anton46.collectionitempicker.CollectionPicker;
@@ -32,7 +32,6 @@ import app.geochat.beans.UserChats;
 import app.geochat.db.managers.LoginManager;
 import app.geochat.managers.GeoChatManagers;
 import app.geochat.ui.adapters.ChatListAdapter;
-import app.geochat.ui.adapters.RecyclerViewAdapter;
 import app.geochat.util.CircularProgressView;
 import app.geochat.util.Constants;
 import app.geochat.util.Utils;
@@ -140,6 +139,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setWidgetEvents() {
         mSendImageView.setOnClickListener(this);
+        geoChatImageView.setOnClickListener(this);
     }
 
     private void getAllChats() {
@@ -203,6 +203,8 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 mManager.sendUserMessage(ChatActivity.this, mChatItem, userMessage, mSharedPreferences.getUserId());
             } else
                 Utils.showToast(this, getString(R.string.no_user_message));
+        } else if (v == geoChatImageView) {
+            openDialog(mChatItem.getGeoChatImage());
         }
     }
 
@@ -264,5 +266,21 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         }
         return true;
 
+    }
+
+
+    public void openDialog(String imageUrl) {
+        Dialog mSplashDialog = new Dialog(this,R.style.FullScreenDialogTheme);
+        mSplashDialog.requestWindowFeature((int) Window.FEATURE_NO_TITLE);
+        mSplashDialog.setContentView(R.layout.activity_imageview);
+        mSplashDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        mSplashDialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        mSplashDialog.setCancelable(true);
+        mSplashDialog.show();
+
+        ImageView fullScreenImageview = (ImageView) mSplashDialog.findViewById(R.id.fullScreenImageview);
+        if (!imageUrl.isEmpty()) {
+            Picasso.with(this).load(imageUrl).into(fullScreenImageview);
+        }
     }
 }

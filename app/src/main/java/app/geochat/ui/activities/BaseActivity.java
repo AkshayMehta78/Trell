@@ -270,7 +270,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     protected void onNewIntent(Intent intent) {
         GeoChatListFragment fragment = (GeoChatListFragment) getSupportFragmentManager().findFragmentByTag(Constants.FragmentTags.FRAGMENT_GEOCHATLIST_TAG);
         if(fragment.isAdded()){
-            fragment.getAllGeoChats();
+            fragment.getAllGeoChats(Constants.LOCATIONKEYS.REFRESH);
         }
     }
 }

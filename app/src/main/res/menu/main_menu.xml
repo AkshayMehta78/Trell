@@ -28,5 +28,6 @@
         android:icon="@drawable/ic_create_geochat"
         android:orderInCategory="100"
         android:title="@string/create"
+        android:visible="false"
         app:showAsAction="always" />
 </menu>

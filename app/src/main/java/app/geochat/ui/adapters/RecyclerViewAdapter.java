@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
-import android.text.Spannable;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
@@ -20,11 +19,10 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.anton46.collectionitempicker.CollectionPicker;
-import com.anton46.collectionitempicker.Item;
+import com.cocosw.bottomsheet.BottomSheet;
+import com.facebook.android.Util;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import app.geochat.R;
@@ -120,7 +118,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 if (item.isWishListAdded().equalsIgnoreCase("false")) {
                     mGeoChatManager.addToWishList(activity, item.getGeoChatId(), Constants.GEOCHAT.ADD_WISHLIST, i);
                 } else {
-                    Utils.showToast(activity, activity.getString(R.string.already_added_wishlist));
+                    mGeoChatManager.addToWishList(activity, item.getGeoChatId(), Constants.GEOCHAT.REMOVE_WISHLIST, i);
+            //        Utils.showToast(activity, activity.getString(R.string.already_added_wishlist));
                 }
             }
         });
@@ -149,11 +148,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return (null != feedItemList ? feedItemList.size() : 0);
     }
 
-    public void updateWishList(int position) {
+    public void updateWishList(int position, String wishlist) {
         final GeoChat item = feedItemList.get(position);
         int count = Integer.parseInt(item.getWishListCount());
-        item.setWishListCount((count+1)+"");
-        item.setIsWishListAdded(true+"");
+        if(wishlist.equalsIgnoreCase(Constants.GEOCHAT.ADD_WISHLIST)) {
+            item.setWishListCount((count + 1) + "");
+            item.setIsWishListAdded(true + "");
+        }else {
+            item.setWishListCount((count - 1) + "");
+            item.setIsWishListAdded(false + "");
+        }
         notifyDataSetChanged();
     }
 
@@ -196,20 +200,30 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     private void openSelfMoreOptionDialog(final GeoChat item, final int position) {
-        MaterialDialog dialog = new MaterialDialog.Builder(activity)
-                .title(item.getCheckInLocation())
-                .items(R.array.self_more_options)
-                .itemsCallback(new MaterialDialog.ListCallback() {
-                    @Override
-                    public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                        if (which == 0) {
-                            Utils.openShareIntent(item,activity);
-                        } else if (which == 2) {
-                            openConfirmationDialog(item,position);
-                        }
-                    }
-                })
-                .show();
+
+        new BottomSheet.Builder(activity,R.style.BottomSheet_StyleDialog).title(item.getCheckInLocation()).sheet(R.menu.self_menu).listener(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case R.id.other:
+                        Utils.openShareIntent(item, activity);
+                        break;
+                    case R.id.instshare:
+                        Utils.openInstagramShareIntent(item, activity);
+                        break;
+                    case R.id.fbshare:
+                        Utils.openFacebookShareIntent(item, activity);
+                        break;
+                    case R.id.delete:
+                        openConfirmationDialog(item, position);
+                        break;
+                    case R.id.twittershare:
+                        Utils.openTwitterShareIntent(item, activity);
+                        break;
+                }
+            }
+        }).show();
+
     }
 
     private void openConfirmationDialog(final GeoChat item, final int position) {
@@ -217,10 +231,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         new AlertDialogWrapper.Builder(activity)
                 .setTitle("Remove this Note")
                 .setMessage("Are you sure you want to remove this note?")
+                .setNegativeButton(R.string.cancel_txt,null)
                 .setPositiveButton(R.string.yes_txt, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        mGeoChatManager.removeGeoNoteAPI(activity,item.getGeoChatId(),position);
+                        mGeoChatManager.removeGeoNoteAPI(activity, item.getGeoChatId(), position);
                     }
                 }).show();
 
@@ -229,32 +244,41 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private void openOthersMoreOptionDialog(final GeoChat item) {
         int id;
         if(item.isFollowing().equalsIgnoreCase("true")){
-            id = R.array.other_more_options2;
+            id = R.menu.other_more_options2;
         } else {
-            id = R.array.other_more_options;
+            id = R.menu.other_more_options;
         }
-        new MaterialDialog.Builder(activity)
-                .title(item.getCheckInLocation())
-                .items(id)
-                .itemsCallback(new MaterialDialog.ListCallback() {
-                    @Override
-                    public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                        if (which == 0) {
-                            Utils.openShareIntent(item, activity);
-                        } else if (which == 1) {
-                            if (item.isFollowing().equalsIgnoreCase("true")) {
-                                item.setIsFollowing("false");
-                                mProfileManager.followUser(item.getUserId(),Constants.USER.UNFOLLOWUSER);
-                            } else {
-                                item.setIsFollowing("true");
-                                mProfileManager.followUser(item.getUserId(), Constants.USER.FOLLOWUSER);
-                            }
-                            notifyDataSetChanged();
-                        } else if (which == 2) {
-                            Utils.reportContent(item, activity);
-                        }
-                    }
-                })
-                .show();
+
+        new BottomSheet.Builder(activity,R.style.BottomSheet_StyleDialog).title(item.getCheckInLocation()).sheet(id).listener(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case R.id.other:
+                        Utils.openShareIntent(item, activity);
+                        break;
+                    case R.id.follow:
+                        item.setIsFollowing("true");
+                        mProfileManager.followUser(item.getUserId(), Constants.USER.FOLLOWUSER);
+                        notifyDataSetChanged();
+                        break;
+                    case R.id.unfollow:
+                        item.setIsFollowing("false");
+                        mProfileManager.followUser(item.getUserId(), Constants.USER.UNFOLLOWUSER);
+                        break;
+                    case R.id.report:
+                        Utils.reportContent(item, activity);
+                        break;
+                    case R.id.instshare:
+                        Utils.openInstagramShareIntent(item, activity);
+                        break;
+                    case R.id.fbshare:
+                        Utils.openFacebookShareIntent(item, activity);
+                        break;
+                    case R.id.twittershare:
+                        Utils.openTwitterShareIntent(item, activity);
+                        break;
+                }
+            }
+        }).show();
     }
 }

@@ -69,7 +69,7 @@ public class GeoChatListFragment extends Fragment implements View.OnClickListene
         getWidgetReferences();
         setWidgetEvents();
         initialization();
-        getAllGeoChats();
+        getAllGeoChats(Constants.LOCATIONKEYS.LOCATIONFEEDS);
 
         return rootView;
     }
@@ -91,22 +91,26 @@ public class GeoChatListFragment extends Fragment implements View.OnClickListene
         locationTextView = (TextView) rootView.findViewById(R.id.locationTextView);
     }
 
-    public void getAllGeoChats() {
+    public void getAllGeoChats(String tag) {
         if(NetworkManager.isConnectedToInternet(getActivity())) {
             loadingProgressBar.setVisibility(View.VISIBLE);
             mRecylcerlistView.setVisibility(View.GONE);
-            double[] locationData = Utils.getLocationDetails(getActivity());
-            Geocoder gcd = new Geocoder(getActivity(), Locale.getDefault());
-            List<Address> addresses = null;
-            try {
-                addresses = gcd.getFromLocation(locationData[0],locationData[1], 1);
-            } catch (IOException e) {
-                e.printStackTrace();
+                double[] locationData = Utils.getLocationDetails(getActivity());
+                Geocoder gcd = new Geocoder(getActivity(), Locale.getDefault());
+                List<Address> addresses = null;
+                try {
+                    addresses = gcd.getFromLocation(locationData[0], locationData[1], 1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            if (tag.equalsIgnoreCase(Constants.LOCATIONKEYS.LOCATIONFEEDS)) {
+                if (addresses.size() > 0) {
+                    locationTextView.setText(addresses.get(0).getAddressLine(1));
+                }
+            } else {
+                locationTextView.setText(getString(R.string.select_location));
             }
-            if(addresses.size()>0){
-                locationTextView.setText(addresses.get(0).getAddressLine(1));
-            }
-            geoChatManager.fetchAllGeoChats(getActivity(), locationData[0] + "", locationData[1] + "", Constants.LOCATIONKEYS.LOCATIONFEEDS);
+            geoChatManager.fetchAllGeoChats(getActivity(), locationData[0] + "", locationData[1] + "", tag);
         }
     }
 
@@ -174,7 +178,7 @@ public class GeoChatListFragment extends Fragment implements View.OnClickListene
 
     public void refreshGeoNotes() {
         locationTextView.setText(getString(R.string.select_location));
-        getAllGeoChats();
+        getAllGeoChats(Constants.LOCATIONKEYS.LOCATIONFEEDS);
     }
 
     public void updateGeoNoteList(int position) {
@@ -207,7 +211,7 @@ public class GeoChatListFragment extends Fragment implements View.OnClickListene
         }
     }
 
-    public void updateWishList(int position){
-        adapter.updateWishList(position);
+    public void updateWishList(int position, String wishlist){
+        adapter.updateWishList(position,wishlist);
     }
 }

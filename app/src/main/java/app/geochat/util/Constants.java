@@ -54,6 +54,7 @@ public interface Constants {
         String CITY = "city";
         String SEARCH_TEXT = "search_text";
         String ADD_WISHLIST = "1";
+        String REMOVE_WISHLIST = "0";
     }
 
     interface USER{

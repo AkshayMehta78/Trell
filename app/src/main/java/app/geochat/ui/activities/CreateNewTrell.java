@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Spanned;
@@ -13,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.facebook.android.Util;
 
 import java.io.IOException;
 import java.util.List;
@@ -43,9 +46,26 @@ public class CreateNewTrell extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_new_trell);
         Utils.setActivityToolbar(this, R.string.new_trell, this);
 
+
         geWidgetReferences();
         setWidgetEvent();
         initializations();
+
+
+        // Get intent, action and MIME type
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if ("text/plain".equals(type)) {
+                handleSendText(intent); // Handle text being sent
+            } else if (type.startsWith("image/")) {
+                handleSendImage(intent); // Handle single image being sent
+            }
+        }
+
+
     }
 
     private void initializations() {
@@ -160,14 +180,18 @@ public class CreateNewTrell extends AppCompatActivity implements View.OnClickLis
         switch (item.getItemId()) {
             case R.id.action_done:
                 if(NetworkManager.isConnectedToInternet(this)) {
-                    if (imagePath.isEmpty() && location.isEmpty()) {
-                        Utils.showToast(this, "Please add About/Image");
-                        return true;
-                    } else if (!imagePath.equalsIgnoreCase("")) {
-                        imagePath = Utils.compressImage(imagePath, this);
-                        new MultimediaGeoChatAsyncTask(this).execute(location, latitude, longitude, imagePath, aboutTextView.getText().toString(), tags, location, cityName);
-                    } else {
-                        new GeoChatManagers(this).createGeoChat(location, latitude, longitude, aboutTextView.getText().toString(), tags, location, cityName);
+                    if(!location.isEmpty()) {
+                        if (imagePath.isEmpty() && aboutTextView.getText().toString().isEmpty()) {
+                            Utils.showToast(this, "Please add About/Image");
+                            return true;
+                        } else if (!imagePath.equalsIgnoreCase("")) {
+                            imagePath = Utils.compressImage(imagePath, this);
+                            new MultimediaGeoChatAsyncTask(this).execute(location, latitude, longitude, imagePath, aboutTextView.getText().toString(), tags, location, cityName);
+                        } else {
+                            new GeoChatManagers(this).createGeoChat(location, latitude, longitude, aboutTextView.getText().toString(), tags, location, cityName);
+                        }
+                    }else {
+                        Utils.showToast(this,getString(R.string.please_add_location));
                     }
                 }
                 return true;
@@ -177,5 +201,22 @@ public class CreateNewTrell extends AppCompatActivity implements View.OnClickLis
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
+    void handleSendText(Intent intent) {
+        String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+        if (sharedText != null) {
+            aboutTextView.setText(sharedText);
+        }
+    }
+
+    void handleSendImage(Intent intent) {
+        Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        if (imageUri != null) {
+           trellImageView.setImageURI(imageUri);
+        }
+    }
+
 
 }

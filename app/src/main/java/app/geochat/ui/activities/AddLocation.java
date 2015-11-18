@@ -125,13 +125,10 @@ public class AddLocation extends AppCompatActivity implements View.OnClickListen
                 double longitude = gpsLocation.getLongitude();
                 fetchNearbyLocation(latitude, longitude);
             } else {
-                double latitude = 19.23;
-                double longitude = 72.84;
-                fetchNearbyLocation(latitude, longitude);
+                lv_locations.setEmptyView(mapViewRelativeLayout);
             }
         }
-//
-//        lv_locations.setEmptyView(mapViewRelativeLayout);
+
 
     }
 
@@ -144,7 +141,9 @@ public class AddLocation extends AppCompatActivity implements View.OnClickListen
         if (v == mapSearchButton) {
             Intent intent = new Intent(AddLocation.this, MapSearchActivity.class);
             intent.putExtra(Constants.GEOCHAT.SEARCH_TEXT,mSearchKey);
-            startActivity(intent);
+            intent.setAction(Constants.TRELL.ACTION_LOCATION);
+            startActivityForResult(intent, Constants.TRELL.ACTION_LOCATION_ID);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
     }
 
@@ -290,6 +289,7 @@ public class AddLocation extends AppCompatActivity implements View.OnClickListen
                     } else {
                         adapter.clear();
                         adapter.notifyDataSetChanged();
+                        lv_locations.setEmptyView(mapViewRelativeLayout);
                     }
                 }
                 return false;
@@ -325,6 +325,27 @@ public class AddLocation extends AppCompatActivity implements View.OnClickListen
             }
         }
         return filteredList;
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            if (requestCode == Constants.TRELL.ACTION_LOCATION_ID) {
+                String location = data.getStringExtra(Constants.LOCATIONKEYS.CHECKIN);
+                String latitude = data.getStringExtra(Constants.LOCATIONKEYS.LATITUDE);
+                String longitude = data.getStringExtra(Constants.LOCATIONKEYS.LONGITUDE);
+
+                Intent intent = new Intent();
+                intent.putExtra(Constants.LOCATIONKEYS.CHECKIN, location);
+                intent.putExtra(Constants.LOCATIONKEYS.LATITUDE, latitude);
+                intent.putExtra(Constants.LOCATIONKEYS.LONGITUDE, longitude);
+                setResult(Constants.TRELL.ACTION_LOCATION_ID, intent);
+                finish();
+
+            }
+        }
     }
 
 

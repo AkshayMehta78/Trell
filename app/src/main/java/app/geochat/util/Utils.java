@@ -790,13 +790,18 @@ public class Utils {
     public static void openShareIntent(GeoChat item, Activity activity) {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         Uri uri = Uri.parse(getBitmapFromURl(item.getGeoChatImage(), activity, item.getCity()));
-    //    shareIntent.setType("*/*");
-        shareIntent.setType("text/plain");
-        shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, item.getGeoChatImage());
-        shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, item.getDescripton());
-
-        //  shareIntent.putExtra(Intent.EXTRA_TEXT, item.getDescripton());
+        shareIntent.setType("image/*");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, item.getDescripton());
         shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        activity.startActivity(shareIntent);
+    }
+
+    public static void openInstagramShareIntent(GeoChat item, Activity activity) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        Uri uri = Uri.parse(getBitmapFromURl(item.getGeoChatImage(), activity, item.getCity()));
+        shareIntent.setType("image/*");
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        shareIntent.setPackage("com.instagram.android");
         activity.startActivity(shareIntent);
     }
 
@@ -952,5 +957,27 @@ public class Utils {
             finalTags = (Spanned) TextUtils.concat(wordtoSpan, " ", finalTags);
         }
         return finalTags;
+    }
+
+    public static void openFacebookShareIntent(GeoChat item, FragmentActivity activity) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        Uri uri = Uri.parse(getBitmapFromURl(item.getGeoChatImage(), activity, item.getCity()));
+        shareIntent.setType("image/*");
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+//        shareIntent.putExtra(Intent.EXTRA_TEXT, "www.google.com");
+//        shareIntent.setType("text/plain");
+        shareIntent.setPackage("com.facebook.katana");
+        activity.startActivity(shareIntent);
+    }
+
+    public static void openTwitterShareIntent(GeoChat item, FragmentActivity activity) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        Uri uri = Uri.parse(getBitmapFromURl(item.getGeoChatImage(), activity, item.getCity()));
+        shareIntent.putExtra(Intent.EXTRA_TEXT, item.getDescripton());
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        shareIntent.setType("image/jpeg");
+        shareIntent.setPackage("com.twitter.android");
+        activity.startActivity(shareIntent);
     }
 }

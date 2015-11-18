@@ -134,7 +134,7 @@
     <string name="password_old">Old Password</string>
     <string name="password_new">New Password</string>
     <string name="conf_pass_txt">Confirm Password</string>
-    <string name="done">Done</string>
+    <string name="done">Add</string>
 
 
     <!-- Navigation items -->
@@ -500,72 +500,7 @@ Use Any Form Of Automated Device Or Computer Program \(\"Voting Tool\"\) That En
 
     <!-- Mobile verification activity -->
 
-    <!-- Review values -->
-    <string name="posted_by">Posted By</string>
-    <string name="was_txt">Was the review useful?</string>
-    <string name="prompt_reliable_txt">Prompt and reliable service</string>
-    <string name="of_txt"> of </string>
-    <string name="user_txt"> user found this review helpful</string>
-    <string name="no_more_reviews">No More Reviews</string>
-    <string name="no_reviews">No Review Available</string>
-    <string name="no_reviews_pull_to_refresh">Could not load reviews, pull down to try again.</string>
-    <string name="up_voted_txt">Successfully Up Voted.</string>
-    <string name="down_voted_txt">Successfully Down Voted.</string>
 
-    <!-- notification variables -->
-
-    <string name="deal_add_txt">New Front Page Deal.</string>
-    <string name="deal_added_txt">New Front Page Deals.</string>
-    <string name="exclusive_coupon_added_txt">Exclusive coupon added.</string>
-    <string name="exclusive_coupons_added_text">Exclusive coupons added.</string>
-    <string name="new_msg_txt">new messages</string>
-    <string name="one_new_msg_txt">1 new message</string>
-    <string name="plz_write_rmail_txt">Please write your email</string>
-    <string name="reset_password_link_txt">New password link sent to your E-Mail address.</string>
-
-
-    <!-- Edit profile -->
-    <string name="date_of_birth">Date of birth</string>
-    <string name="profile_pic_txt">Tap to change profile image</string>
-    <string name="gender_txt">Gender</string>
-    <string name="male">Male</string>
-    <string name="female">Female</string>
-    <string name="occupation">Occupation</string>
-    <string name="interests">Interests</string>
-    <string name="website">Website</string>
-    <string name="bio">Bio</string>
-    <string name="update_profile">Update Profile</string>
-    <string name="wrng_birth_date_txt">Please provide correct birth date.</string>
-    <string name="occuation_err_txt">Occupation can not be blank</string>
-    <string name="interest_err_txt">Interest can not be blank</string>
-    <string name="bio_err_txt">Bio can not be blank</string>
-    <string name="website_err_txt">Please enter valid website name.</string>
-    <string name="profile_update_success">Profile Updated Successfully.</string>
-
-
-    <string-array name="dislike_reason">
-        <item>Repost</item>
-        <item>Self Promotion</item>
-        <item>Referral link</item>
-        <item>Better price elsewhere</item>
-        <item>Product not good/not worth the price</item>
-        <item>Bad Reviews for Website/Seller</item>
-        <item>Invalid/User Specific Coupon/Deal</item>
-        <item>Other</item>
-    </string-array>
-
-    <!-- Search Activity -->
-    <string name="search_deals">Type to search for deals.</string>
-    <string name="search_forums">Type to search for forums.</string>
-    <string name="search">Search for Deal, Coupons, Forum etc...</string>
-    <string name="search_coupons">Type to search for coupons.</string>
-    <string name="search_store">Type to search for stores.</string>
-    <string name="search_products">Type to search for products.</string>
-    <string name="could_not_load_more_products">Could not load more products.</string>
-    <string name="dummytext">Helper class for generating large-format notifications that include a lot of text.  If the platform does not provide large-format notifications, this method has no effect. The user will always see the normal notification view.</string>
-    <string name="positive">positive</string>
-    <string name="negative">negative</string>
-    <string name="giveKarma">Give karma</string>
 
     <!-- give karma and karma logs -->
     <string name="karma_log">Karma Log</string>
@@ -642,6 +577,14 @@ Use Any Form Of Automated Device Or Computer Program \(\"Voting Tool\"\) That En
     <string name="no_users">Oops... you don\'t have any user.</string>
     <string name="findUserButton">Find Treller</string>
     <string name="new_trell">New Trell</string>
+    <string name="please_add_location">Please add location</string>
+    <string name="share">Share this trell</string>
+    <string name="delete">Delete trell</string>
+    <string name="report_content">Report Content</string>
+    <string name="faceboook">Facebook</string>
+    <string name="instagram">Instagram</string>
+    <string name="other">Other</string>
+    <string name="twitter">Twitter</string>
 
 
 </resources>

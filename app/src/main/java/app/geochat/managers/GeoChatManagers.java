@@ -338,7 +338,7 @@ public class GeoChatManagers implements Constants.LOCATIONKEYS, Constants.JsonKe
             public void onResponse(String response) {
                 Utils.closeProgress();
                 try {
-                    fragment.updateWishList(position);
+                    fragment.updateWishList(position,Wishlist);
                 } catch (Exception e) {
                 }
             }
