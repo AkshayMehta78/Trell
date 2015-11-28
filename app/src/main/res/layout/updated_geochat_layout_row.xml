@@ -123,7 +123,7 @@
               android:id="@+id/geoChatImageView"
               android:layout_width="fill_parent"
               android:layout_height="150dp"
-              android:scaleType="fitXY"
+              android:scaleType="centerCrop"
               android:layout_below="@+id/spannableTagsTextView"
               android:src="@drawable/travel_bg"/>
 
@@ -143,11 +143,36 @@
       <RelativeLayout
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
-          android:id="@+id/footerLayout"
+          android:id="@+id/subfooterLayout"
           android:layout_below="@+id/bodyLayout"
           android:layout_centerVertical="true"
           android:padding="@dimen/padding_normal"
-          android:background="@color/light_grey_bg">
+          android:background="@color/white">
+
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Add to Trail"
+              android:drawableLeft="@drawable/ic_create_geochat"
+              android:drawablePadding="@dimen/padding_normal"
+              android:id="@+id/addTrailTextView"
+              android:layout_alignParentRight="true"
+              android:layout_centerVertical="true"
+              android:padding="@dimen/padding_normal"
+              android:gravity="center"
+              android:textColor="@color/color_red"/>
+
+      </RelativeLayout>
+
+      <RelativeLayout
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/footerLayout"
+          android:layout_below="@+id/subfooterLayout"
+          android:layout_centerVertical="true"
+          android:padding="@dimen/padding_normal"
+          android:background="@color/white">
 
           <TextView
               android:layout_width="wrap_content"

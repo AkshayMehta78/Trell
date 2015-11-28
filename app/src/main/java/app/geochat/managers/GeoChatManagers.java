@@ -22,11 +22,15 @@ import java.util.Map;
 import app.geochat.R;
 import app.geochat.beans.GeoChat;
 import app.geochat.beans.SharedPreferences;
+import app.geochat.beans.Trail;
 import app.geochat.beans.UserChats;
 import app.geochat.db.managers.LoginManager;
 import app.geochat.ui.activities.ChatActivity;
+import app.geochat.ui.activities.FollowingFeedsActivity;
+import app.geochat.ui.activities.LocationFeedActivity;
 import app.geochat.ui.activities.SearchActivity;
 import app.geochat.ui.fragments.GeoChatListFragment;
+import app.geochat.ui.fragments.TrailListFragmentDialog;
 import app.geochat.util.Constants;
 import app.geochat.util.Utils;
 import app.geochat.util.VolleyController;
@@ -338,7 +342,7 @@ public class GeoChatManagers implements Constants.LOCATIONKEYS, Constants.JsonKe
             public void onResponse(String response) {
                 Utils.closeProgress();
                 try {
-                    fragment.updateWishList(position,Wishlist);
+                    fragment.updateWishList(position, Wishlist);
                 } catch (Exception e) {
                 }
             }
@@ -433,7 +437,7 @@ public class GeoChatManagers implements Constants.LOCATIONKEYS, Constants.JsonKe
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("error",error.networkResponse.statusCode+"");
+                Log.e("error", error.networkResponse.statusCode + "");
                 Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
                 ((SearchActivity)context).failResult();
             }
@@ -451,6 +455,246 @@ public class GeoChatManagers implements Constants.LOCATIONKEYS, Constants.JsonKe
         jsonObjReq.setShouldCache(false);
         jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(Constants.MY_SOCKET_TIMEOUT_MS, Constants.MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         VolleyController.getInstance().addToRequestQueue(jsonObjReq, tag_fetch_geochat);
+
+    }
+
+    public void fetchTrailList(String userId, final FragmentActivity fragmentActivity, final GeoChat mItem) {
+        // Tag used to cancel the request
+        String tag_fetch_geochat = "fetch_trail_list";
+
+        String url = Constants.API_USER_TRAIL_LIST;
+        StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
+                url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject json = new JSONObject(response);
+                    Log.d("json", json.toString());
+                    String status = LoginManager.getAPIStatus(response);
+                    String message = LoginManager.getAPIMessage(response);
+                    TrailListFragmentDialog fragment = (TrailListFragmentDialog) fragmentActivity.getSupportFragmentManager().findFragmentByTag(Constants.FragmentTags.FRAGMENT_TRAIL_LIST);
+                    if(status.equalsIgnoreCase(SUCCESS)) {
+                        ArrayList<Trail> result = new GeoChatParser().parseUserTrails(json);
+                        fragment.sendTrailList(result);
+                    } else {
+                        fragment.sendEmptyTrailList(message);
+                    }
+                } catch (Exception e) {
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error", error.networkResponse.statusCode + "");
+                Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put(USER_ID, mSharedPreferences.getUserId());
+                params.put(GEOCHATID,mItem.getGeoChatId());
+                return params;
+            }
+        };
+        // Adding request to request queue
+        jsonObjReq.setShouldCache(false);
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(Constants.MY_SOCKET_TIMEOUT_MS, Constants.MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        VolleyController.getInstance().addToRequestQueue(jsonObjReq, tag_fetch_geochat);
+
+    }
+
+    public void creatTrail(final String name, final FragmentActivity fragmentActivity) {
+
+        // Tag used to cancel the request
+        String tag_fetch_geochat = "create_trail_list";
+        String url = Constants.API_CREATE_TRAIL_LIST;
+        Utils.showProgress(fragmentActivity);
+        StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
+                url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                try {
+                    Utils.closeProgress();
+                    JSONObject json = new JSONObject(response);
+                    Log.d("json", json.toString());
+                    String status = LoginManager.getAPIStatus(response);
+                    String message = LoginManager.getAPIMessage(response);
+                    TrailListFragmentDialog fragment = (TrailListFragmentDialog) fragmentActivity.getSupportFragmentManager().findFragmentByTag(Constants.FragmentTags.FRAGMENT_TRAIL_LIST);
+                    if(status.equalsIgnoreCase(SUCCESS)) {
+                        Trail item =new Trail();
+                        item.setTrailId(json.getString(LASTTRAILID));
+                        item.setName(name);
+                        fragment.addTrailToList(item);
+                    } else {
+                        Utils.showToast(mContext, message);
+                    }
+                } catch (Exception e) {
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Utils.closeProgress();
+                Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put(USER_ID, mSharedPreferences.getUserId());
+                params.put(NAME, name);
+                return params;
+            }
+        };
+        // Adding request to request queue
+        jsonObjReq.setShouldCache(false);
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(Constants.MY_SOCKET_TIMEOUT_MS, Constants.MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        VolleyController.getInstance().addToRequestQueue(jsonObjReq, tag_fetch_geochat);
+
+
+    }
+
+    public void addTrellToTrail(final String trailId, final String userId, final String geoChatId, final FragmentActivity fragmentActivity) {
+
+
+        // Tag used to cancel the request
+        String tag_fetch_geochat = "add_to_trail_list";
+        String url = Constants.API_ADD_TRELL_TO_TRAIL_LIST;
+        Utils.showProgress(fragmentActivity);
+        StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
+                url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                try {
+                    Utils.closeProgress();
+                    JSONObject json = new JSONObject(response);
+                    Log.d("json", json.toString());
+                    String status = LoginManager.getAPIStatus(response);
+                    String message = LoginManager.getAPIMessage(response);
+                    TrailListFragmentDialog fragment = (TrailListFragmentDialog) fragmentActivity.getSupportFragmentManager().findFragmentByTag(Constants.FragmentTags.FRAGMENT_TRAIL_LIST);
+                    fragment.onSuccess(message);
+                } catch (Exception e) {
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Utils.closeProgress();
+                Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put(USER_ID, userId);
+                params.put(TRAILLISTID, trailId);
+                params.put(GEOCHATID, geoChatId);
+                return params;
+            }
+        };
+        // Adding request to request queue
+        jsonObjReq.setShouldCache(false);
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(Constants.MY_SOCKET_TIMEOUT_MS, Constants.MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        VolleyController.getInstance().addToRequestQueue(jsonObjReq, tag_fetch_geochat);
+
+    }
+
+    public void fetchLocationSpecificFeeds(final Activity activity, final String currentLatitude, final String currentLongitude, final String latitude, final String longitude, String checkIn) {
+
+        // Tag used to cancel the request
+        String tag_fetch_geochat = "fetch_geochat";
+
+        String url = Constants.API_LOCATIONFEED_GEOCHAT;
+
+        StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
+                url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject json = new JSONObject(response);
+                    Log.d("json", json.toString());
+                    ArrayList<GeoChat> result = new GeoChatParser().getGeoChatsInList(json,currentLatitude,currentLongitude);
+                    ((LocationFeedActivity)activity).renderGeoChatListView(result);
+                } catch (Exception e) {
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error", error.networkResponse.statusCode + "");
+                Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
+                ((LocationFeedActivity)activity).failResult();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put(USER_ID, mSharedPreferences.getUserId());
+                params.put(Constants.LOCATIONKEYS.LATITUDE,latitude);
+                params.put(Constants.LOCATIONKEYS.LONGITUDE, longitude);
+                return params;
+            }
+        };
+        // Adding request to request queue
+        jsonObjReq.setShouldCache(false);
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(Constants.MY_SOCKET_TIMEOUT_MS, Constants.MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        VolleyController.getInstance().addToRequestQueue(jsonObjReq, tag_fetch_geochat);
+
+
+    }
+
+    public void fetchFollowingUserFeeds(final Activity activity, final String latitude, final String longitude) {
+
+
+        // Tag used to cancel the request
+        String tag_fetch_geochat = "fetch_geochat";
+
+        String url = Constants.API_FRIENDS_GEOCHAT;
+
+        StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
+                url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject json = new JSONObject(response);
+                    Log.d("json", json.toString());
+                    ArrayList<GeoChat> result = new GeoChatParser().getGeoChatsInList(json,latitude,longitude);
+                    ((FollowingFeedsActivity)activity).renderGeoChatListView(result);
+                } catch (Exception e) {
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error", error.networkResponse.statusCode + "");
+                Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
+                ((FollowingFeedsActivity)activity).failResult();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put(USER_ID, mSharedPreferences.getUserId());
+                return params;
+            }
+        };
+        // Adding request to request queue
+        jsonObjReq.setShouldCache(false);
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(Constants.MY_SOCKET_TIMEOUT_MS, Constants.MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        VolleyController.getInstance().addToRequestQueue(jsonObjReq, tag_fetch_geochat);
+
+
 
     }
 }

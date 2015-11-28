@@ -76,6 +76,7 @@ import app.geochat.services.asynctask.LocationService;
 import app.geochat.ui.activities.BaseActivity;
 import app.geochat.ui.activities.ChatActivity;
 import app.geochat.ui.activities.CreateNewTrell;
+import app.geochat.ui.activities.LocationFeedActivity;
 import app.geochat.ui.activities.MapActivity;
 import app.geochat.ui.activities.SearchActivity;
 
@@ -858,6 +859,14 @@ public class Utils {
         Intent intent = new Intent(activity,SearchActivity.class);
         intent.putExtra(Constants.SEARCH.TYPE,type);
         intent.putExtra(Constants.SEARCH.TAG, tag);
+        activity.startActivity(intent);
+    }
+
+    public static void startLocationFeedActivity(Activity activity, String latitude, String longitude, String checkInLocation) {
+        Intent intent = new Intent(activity,LocationFeedActivity.class);
+        intent.putExtra(Constants.LOCATIONKEYS.LATITUDE,latitude);
+        intent.putExtra(Constants.LOCATIONKEYS.LONGITUDE, longitude);
+        intent.putExtra(Constants.LOCATIONKEYS.CHECKIN, checkInLocation);
         activity.startActivity(intent);
     }
 

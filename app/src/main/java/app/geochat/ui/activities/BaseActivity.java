@@ -39,7 +39,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     private DrawerLayout mDrawerLayout;
     private RelativeLayout mHeaderView;
     private ImageView mUserImage;
-    private ImageView mCoverImageImageView,mCreateGeoNoteImageView;
+    private ImageView mCoverImageImageView,mCreateGeoNoteImageView,friendsImageView;
     private TextView mUserNameTextView, mUserEmailTextView;
     private SharedPreferences mDesidimeSharedPreferences;
     private NavigationView navigationView;
@@ -62,11 +62,13 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     private void setWidgetEvent() {
         mRefreshImageView.setOnClickListener(this);
         mCreateGeoNoteImageView.setOnClickListener(this);
+        friendsImageView.setOnClickListener(this);
     }
 
     private void geWidgetReferences() {
         mRefreshImageView = (ImageView) findViewById(R.id.refreshImageView);
         mCreateGeoNoteImageView = (ImageView) findViewById(R.id.createGeoNoteImageView);
+        friendsImageView = (ImageView) findViewById(R.id.friendsImageView);
     }
 
 
@@ -215,6 +217,9 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v==mCreateGeoNoteImageView){
             Intent trellIntent = new Intent(this,CreateNewTrell.class);
             startActivity(trellIntent);
+        } else if (v==friendsImageView){
+            Intent intent = new Intent(this,FollowingFeedsActivity.class);
+            startActivity(intent);
         }
     }
 

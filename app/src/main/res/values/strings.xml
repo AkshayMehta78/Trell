@@ -585,6 +585,9 @@ Use Any Form Of Automated Device Or Computer Program \(\"Voting Tool\"\) That En
     <string name="instagram">Instagram</string>
     <string name="other">Other</string>
     <string name="twitter">Twitter</string>
+    <string name="no_trail">No Trails Found. Add trail from below</string>
+    <string name="please_add_trail_name">Add name</string>
+    <string name="trails">Trails</string>
 
 
 </resources>

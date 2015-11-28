@@ -210,6 +210,19 @@
             android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
 
+        <activity
+            android:name="app.geochat.ui.activities.LocationFeedActivity"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+
+        <activity
+            android:name="app.geochat.ui.activities.FollowingFeedsActivity"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+
+
 
         <!-- Facebook -->
         <meta-data

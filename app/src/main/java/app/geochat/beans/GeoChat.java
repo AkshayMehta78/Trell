@@ -22,6 +22,15 @@ public class GeoChat implements Parcelable {
     String isFollowing,isWishListAdded;
     String commentCount,wishListCount;
 
+    public String getUserTrails() {
+        return userTrails;
+    }
+
+    public void setUserTrails(String userTrails) {
+        this.userTrails = userTrails;
+    }
+
+    String userTrails;
 
     public String isFollowing() {
         return isFollowing;
@@ -113,7 +122,7 @@ public class GeoChat implements Parcelable {
 
 
 
-    public GeoChat(String userId, String userAvatar, String checkInLocation, String createdByUserName, String createdDateTime, String geoChatId, String comments, String likes,String geoChatImage,String latitude,String longitude, String descripton,String tags,String city,String caption,String distance,String isFollowing,String isWishListAdded,String wishListCount,String commentCount) {
+    public GeoChat(String userId, String userAvatar, String checkInLocation, String createdByUserName, String createdDateTime, String geoChatId, String comments, String likes,String geoChatImage,String latitude,String longitude, String descripton,String tags,String city,String caption,String distance,String isFollowing,String isWishListAdded,String wishListCount,String commentCount,String userTrails) {
         this.userId = userId;
         this.userAvatar = userAvatar;
         this.checkInLocation = checkInLocation;
@@ -134,6 +143,7 @@ public class GeoChat implements Parcelable {
         this.isWishListAdded = isWishListAdded;
         this.wishListCount = wishListCount;
         this.commentCount = commentCount;
+        this.userTrails = userTrails;
     }
 
 
@@ -191,7 +201,7 @@ public class GeoChat implements Parcelable {
 
     // Parcelling part
     public GeoChat(Parcel in) {
-        String[] data = new String[20];
+        String[] data = new String[21];
 
         in.readStringArray(data);
         this.userId = data[0];
@@ -215,6 +225,7 @@ public class GeoChat implements Parcelable {
         this.isWishListAdded = data[17];
         this.wishListCount = data[18];
         this.commentCount = data[19];
+        this.userTrails = data[20];
     }
 
     public String getComments() {
@@ -242,7 +253,7 @@ public class GeoChat implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeStringArray(new String[]{
                 this.userId,
-                this.userAvatar, this.checkInLocation, this.createdByUserName, this.createdDateTime, this.geoChatId, this.comments, this.likes,this.geoChatImage,this.latitude,this.longitude,this.descripton,this.tags,this.city,this.caption,this.distance,this.isFollowing,this.isWishListAdded,this.wishListCount,this.commentCount});
+                this.userAvatar, this.checkInLocation, this.createdByUserName, this.createdDateTime, this.geoChatId, this.comments, this.likes,this.geoChatImage,this.latitude,this.longitude,this.descripton,this.tags,this.city,this.caption,this.distance,this.isFollowing,this.isWishListAdded,this.wishListCount,this.commentCount,this.userTrails});
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {

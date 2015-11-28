@@ -44,11 +44,12 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
     private static final String TAG = UserProfileActivity.class.getSimpleName();
 
-    private static final int[] TITLES = {R.string.achievements, R.string.explore};
+    private static final int[] TITLES = {R.string.achievements, R.string.explore,R.string.trails};
 
     private ArrayList<Fragment> mFragments = new ArrayList<Fragment>() {{
         add(new AchievementFragment());
         add(new UserGeoNoteListFragment());
+        add(new UserTrailListFragment());
     }};
     private ImageView userImageView;
     private TextView userNameTextView,followersTextView,followingTextView;

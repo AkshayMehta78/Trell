@@ -34,6 +34,12 @@ public interface Constants {
     String API_FETCH_USER_EXPLORE_DETAILS_API = BASE_URL + "geoNoteUserExploreDetails.php";
     String API_FETCH_USER_FEED_DETAILS_API = BASE_URL + "geoNoteUserFeedsDetails.php";
     String API_FETCH_USERS_LIST = BASE_URL + "fetchFollowingUsers.php";
+    String API_USER_TRAIL_LIST = BASE_URL + "fetchTrailList.php";
+    String API_CREATE_TRAIL_LIST =BASE_URL + "createTrail.php";
+    String API_ADD_TRELL_TO_TRAIL_LIST =BASE_URL + "addToTrail.php";
+    String API_LOCATIONFEED_GEOCHAT =BASE_URL + "fetchLocationFeeds.php";
+    String API_FRIENDS_GEOCHAT = BASE_URL + "fetchFriendsFeeds.php";
+    String API_FETCH_USER_TRAILS = BASE_URL + "fetchAllTrails.php";
 
     interface LOCATIONKEYS {
         String LOCATION = "location";
@@ -121,6 +127,17 @@ public interface Constants {
         String FRIENDS = "friendsArrays";
         String FOLLOWERSCOUNT ="FollowersCount";
         String FOLLOWINGSCOUNT = "FollowingsCount";
+
+
+        String TRAILID = "trailId";
+        String NAME = "name";
+        String DATETIME = "dateTime";
+        String TRAILLIST = "trailList";
+        String LASTTRAILID = "LastTrailId";
+        String TRAILLISTID = "trailListId";
+        String TRAILS = "trails";
+        String ISADDED = "isAdded";
+        String THUMBIMAGE = "thumbImage";
     }
 
     public interface Config {
@@ -207,6 +224,7 @@ public interface Constants {
     public interface FragmentTags {
         String FRAGMENT_GEOCHATLIST_TAG = "geo_chat_list";
         String FRAGMENT_ACHIEVEMENT_TAG = "achievement_fragment";
+        String FRAGMENT_TRAIL_LIST = "fragment_trail_list";
     }
 
     public interface TRELL {

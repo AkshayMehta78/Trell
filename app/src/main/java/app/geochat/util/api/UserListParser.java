@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import app.geochat.beans.GeoChat;
+import app.geochat.beans.Trail;
 import app.geochat.beans.User;
 import app.geochat.util.Constants;
 
@@ -29,6 +30,29 @@ public class UserListParser implements Constants.JsonKeys,Constants.USER,Constan
                     item.setUserName(geoChatObject.getString(Constants.USER.USERNAME));
                     item.setUserAvatar(geoChatObject.getString(Constants.USER.USERAVATAR));
                     item.setUserStatus(geoChatObject.getString(Constants.USER.STATUS));
+                    result.add(item);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public ArrayList<Trail> getTrailList(JSONObject jsonObject) {
+        ArrayList<Trail> result =new ArrayList<Trail>();
+        try {
+            if(jsonObject.getString(Constants.USER.STATUS).equalsIgnoreCase(SUCCESS))
+            {
+                JSONArray resultArray = jsonObject.getJSONArray(TRAILS);
+                for(int i=0;i<resultArray.length();i++)
+                {
+                    JSONObject geoChatObject = resultArray.getJSONObject(i);
+                    Trail item = new Trail();
+                    item.setName(geoChatObject.getString(NAME));
+                    item.setTrailId(geoChatObject.getString(TRAILID));
+                    item.setDateTime(geoChatObject.getString(DATETIME));
+                    item.setThumbImage(geoChatObject.getString(THUMBIMAGE));
                     result.add(item);
                 }
             }

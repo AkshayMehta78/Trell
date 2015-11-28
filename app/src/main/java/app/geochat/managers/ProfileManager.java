@@ -2,6 +2,7 @@ package app.geochat.managers;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
@@ -20,10 +21,12 @@ import java.util.Map;
 import app.geochat.R;
 import app.geochat.beans.GeoChat;
 import app.geochat.beans.SharedPreferences;
+import app.geochat.beans.Trail;
 import app.geochat.beans.User;
 import app.geochat.db.managers.LoginManager;
 import app.geochat.ui.activities.ChatActivity;
 import app.geochat.ui.activities.UserProfileActivity;
+import app.geochat.ui.activities.UserTrailListFragment;
 import app.geochat.ui.activities.UsersListActivity;
 import app.geochat.ui.fragments.AchievementFragment;
 import app.geochat.ui.fragments.GeoChatListFragment;
@@ -256,6 +259,44 @@ public class ProfileManager implements Constants.JsonKeys,Constants.USER {
                 params.put(USER_ID, userId);
                 params.put(FRIENDID, friendId);
                 params.put(FLAG, flag);
+
+                return params;
+            }
+        };
+        // Adding request to request queue
+        jsonObjReq.setShouldCache(false);
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(Constants.MY_SOCKET_TIMEOUT_MS, Constants.MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        VolleyController.getInstance().addToRequestQueue(jsonObjReq, tag_fetch_geochat);
+    }
+
+    public void getUserProfileTrailList(final String mUserId, final Fragment fragment) {
+        String tag_fetch_geochat = "fetch_userslist";
+        String url = Constants.API_FETCH_USER_TRAILS;
+
+        StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
+                url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                try {
+                    Log.e("response", response);
+                    JSONObject jsonObject = new JSONObject(response);
+                    ArrayList<Trail> result = new UserListParser().getTrailList(jsonObject);
+                    ((UserTrailListFragment)fragment).sendTrailList(result);
+                } catch (Exception e) {
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put(USER_ID, mUserId);
 
                 return params;
             }

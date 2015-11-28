@@ -1,7 +1,5 @@
 package app.geochat.util.api;
 
-import android.location.Location;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,6 +7,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import app.geochat.beans.GeoChat;
+import app.geochat.beans.Trail;
 import app.geochat.beans.UserChats;
 import app.geochat.util.Constants;
 import app.geochat.util.Utils;
@@ -117,11 +116,35 @@ public class GeoChatParser implements Constants.JsonKeys,Constants.GEOCHAT{
                     int distance = Utils.getLocationDistance(geoChatObject.getString(LATITUDE),geoChatObject.getString(LONGITUDE),latitude,longitude);
                     item.setDistance(distance+"");
 
+                    item.setUserTrails(geoChatObject.getJSONObject(TRAILS).toString());
+
                     result.add(item);
                 }
             }
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+        return result;
+    }
+
+    public ArrayList<Trail> parseUserTrails(JSONObject json) {
+        ArrayList<Trail> result = new ArrayList<Trail>();
+        try {
+            if (json != null) {
+                JSONArray trailArray = json.getJSONArray(TRAILLIST);
+                for (int i = 0; i < trailArray.length(); i++) {
+                    JSONObject jsonObject = trailArray.getJSONObject(i);
+                    Trail item = new Trail();
+                    item.setTrailId(jsonObject.getString(TRAILID));
+                    item.setName(jsonObject.getString(NAME));
+                    item.setDateTime(jsonObject.getString(DATETIME));
+                    item.setIsAdded(jsonObject.getBoolean(ISADDED));
+                    result.add(item);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return result;
         }
         return result;
     }
