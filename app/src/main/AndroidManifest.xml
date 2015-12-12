@@ -222,6 +222,11 @@
             android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
 
+        <activity
+            android:name="app.geochat.ui.activities.UserTrailListActivity"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
 
 
         <!-- Facebook -->

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -30,6 +29,7 @@ public class UsersListActivity extends AppCompatActivity {
     ProfileManager mProfileManager;
     String userId, friendId, flag;
     UserListAdapter mAdapter;
+    private String geoChatId;
 
 
     @Override
@@ -41,11 +41,14 @@ public class UsersListActivity extends AppCompatActivity {
         geWidgetReferences();
         setWidgetEvent();
         initialization();
-
-        userId = getIntent().getStringExtra(Constants.USER.USERID);
-        friendId = getIntent().getStringExtra(Constants.USER.FRIENDID);
         flag = getIntent().getStringExtra(Constants.USER.USER_TYPE);
-        Log.e("data", userId + "-" + friendId + "-" + flag);
+        userId = getIntent().getStringExtra(Constants.USER.USERID);
+
+        if (flag.equalsIgnoreCase(Constants.USER.TRY_USERS)) {
+            geoChatId = getIntent().getStringExtra(Constants.JsonKeys.GEOCHATID);
+        } else {
+            friendId = getIntent().getStringExtra(Constants.USER.FRIENDID);
+        }
 
         setToolbar();
 
@@ -63,8 +66,11 @@ public class UsersListActivity extends AppCompatActivity {
         final ActionBar ab = activity.getSupportActionBar();
         if (flag.equalsIgnoreCase(Constants.USER.FOLLOWERID))
             ab.setTitle("Followers");
-        else
+        else if (flag.equalsIgnoreCase(Constants.USER.FOLLOWINGID))
             ab.setTitle("Following");
+        else
+            ab.setTitle("Try Users");
+
         if (ab != null) {
             ab.setDisplayHomeAsUpEnabled(true);
             ab.setDisplayShowHomeEnabled(true);
@@ -76,7 +82,11 @@ public class UsersListActivity extends AppCompatActivity {
     }
 
     private void fetchUsesrList() {
-        mProfileManager.fetchUsersList(userId, friendId, flag);
+        if (flag.equalsIgnoreCase(Constants.USER.TRY_USERS)){
+            mProfileManager.fetchWishListUsersList(userId, geoChatId);
+        } else {
+            mProfileManager.fetchUsersList(userId, friendId, flag);
+        }
     }
 
     private void setWidgetEvent() {

@@ -178,7 +178,7 @@ public class GeoChatListFragment extends Fragment implements View.OnClickListene
 
     public void refreshGeoNotes() {
         locationTextView.setText(getString(R.string.select_location));
-        getAllGeoChats(Constants.LOCATIONKEYS.LOCATIONFEEDS);
+        getAllGeoChats(Constants.LOCATIONKEYS.REFRESH);
     }
 
     public void updateGeoNoteList(int position) {

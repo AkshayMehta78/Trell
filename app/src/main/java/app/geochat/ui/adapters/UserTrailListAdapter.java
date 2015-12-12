@@ -5,6 +5,7 @@ package app.geochat.ui.adapters;
  */
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -24,7 +25,9 @@ import app.geochat.R;
 import app.geochat.beans.Trail;
 import app.geochat.managers.GeoChatManagers;
 import app.geochat.managers.ProfileManager;
+import app.geochat.ui.activities.UserTrailListActivity;
 import app.geochat.ui.fragments.GeoChatListFragment;
+import app.geochat.util.Constants;
 
 public class UserTrailListAdapter extends RecyclerView.Adapter<UserTrailListAdapter.CustomViewHolder> {
     private List<Trail> trailList;
@@ -51,16 +54,17 @@ public class UserTrailListAdapter extends RecyclerView.Adapter<UserTrailListAdap
     @Override
     public void onBindViewHolder(UserTrailListAdapter.CustomViewHolder holder, final int i) {
         final Trail item = trailList.get(i);
-        String name = item.getName();
-        String thumbImage = item.getThumbImage();
-        Log.e("!thumbImage", thumbImage);
-        if(!thumbImage.isEmpty()) {
-            Picasso.with(activity).load(thumbImage).error(R.drawable.travel_bg).into(holder.thumbImageView);
+        holder.name = item.getName();
+        holder.thumbImage = item.getThumbImage();
+        holder.trailListId = item.getTrailId();
+        Log.e("!thumbImage", holder.thumbImage);
+        if(!holder.thumbImage.isEmpty()) {
+            Picasso.with(activity).load(holder.thumbImage).error(R.drawable.travel_bg).into(holder.thumbImageView);
         } else {
             Picasso.with(activity).load(R.drawable.travel_bg).error(R.drawable.travel_bg).into(holder.thumbImageView);
         }
 
-        holder.trailNameTextView.setText(name);
+        holder.trailNameTextView.setText(holder.name);
     }
 
     @Override
@@ -72,6 +76,7 @@ public class UserTrailListAdapter extends RecyclerView.Adapter<UserTrailListAdap
     public class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView trailNameTextView, followTextView;
         ImageView thumbImageView;
+        private String name,thumbImage,trailListId;
 
         public CustomViewHolder(View view) {
             super(view);
@@ -85,7 +90,10 @@ public class UserTrailListAdapter extends RecyclerView.Adapter<UserTrailListAdap
 
         @Override
         public void onClick(View v) {
-
+            Intent trailGeoChats = new Intent(activity,UserTrailListActivity.class);
+            trailGeoChats.putExtra(Constants.JsonKeys.NAME,name);
+            trailGeoChats.putExtra(Constants.JsonKeys.TRAILLISTID,trailListId);
+            activity.startActivity(trailGeoChats);
         }
     }
 

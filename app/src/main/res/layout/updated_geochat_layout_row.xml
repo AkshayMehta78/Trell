@@ -149,6 +149,18 @@
           android:padding="@dimen/padding_normal"
           android:background="@color/white">
 
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="30 Try"
+              android:drawableLeft="@drawable/ic_view"
+              android:drawablePadding="@dimen/padding_normal"
+              android:id="@+id/wishListCountTextView"
+              android:layout_alignParentLeft="true"
+              android:layout_centerVertical="true"
+              android:padding="@dimen/padding_normal"
+              android:gravity="center"
+              android:textColor="@color/color_red"/>
 
           <TextView
               android:layout_width="wrap_content"

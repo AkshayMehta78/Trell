@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import app.geochat.ui.adapters.RecyclerViewAdapter;
 import app.geochat.ui.adapters.UserTrailListAdapter;
 import app.geochat.ui.widgets.SpacesItemDecoration;
 import app.geochat.util.CircularProgressView;
+import app.geochat.util.NetworkManager;
 
 /**
  * Created by akshaymehta on 29/11/15.
@@ -61,7 +63,7 @@ public class UserTrailListFragment extends Fragment {
     private void getWidgetReferences() {
         progressBar = (CircularProgressView) mView.findViewById(R.id.progressBar);
         recyclerView = (RecyclerView) mView.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,1));
         recyclerView.addItemDecoration(new SpacesItemDecoration(20));
     }
 
@@ -72,6 +74,7 @@ public class UserTrailListFragment extends Fragment {
     }
 
     private void getUserTrailList() {
+        if(NetworkManager.isConnectedToInternet(getActivity()))
         mProfileManager.getUserProfileTrailList(mUserId, UserTrailListFragment.this);
     }
 

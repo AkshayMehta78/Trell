@@ -40,6 +40,8 @@ public interface Constants {
     String API_LOCATIONFEED_GEOCHAT =BASE_URL + "fetchLocationFeeds.php";
     String API_FRIENDS_GEOCHAT = BASE_URL + "fetchFriendsFeeds.php";
     String API_FETCH_USER_TRAILS = BASE_URL + "fetchAllTrails.php";
+    String API_ALL_TRAILS_GEOCHAT = BASE_URL + "fetchAllGeoChatTrails.php";
+    String API_FETCH_WISHLIST_USERS_LIST = BASE_URL+"fetchWishListUserDetials.php";
 
     interface LOCATIONKEYS {
         String LOCATION = "location";
@@ -78,6 +80,7 @@ public interface Constants {
         String USERAVATAR = "userAvatar";
         String STATUS = "status";
         String MAPDATA = "map_data";
+        String TRY_USERS = "2";
     }
 
     interface SEARCH{

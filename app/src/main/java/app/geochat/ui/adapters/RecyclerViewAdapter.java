@@ -18,10 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.AlertDialogWrapper;
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.anton46.collectionitempicker.CollectionPicker;
 import com.cocosw.bottomsheet.BottomSheet;
-import com.facebook.android.Util;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -36,6 +34,8 @@ import app.geochat.beans.SharedPreferences;
 import app.geochat.managers.GeoChatManagers;
 import app.geochat.managers.ProfileManager;
 import app.geochat.ui.activities.UserProfileActivity;
+import app.geochat.ui.activities.UserTrailListActivity;
+import app.geochat.ui.activities.UsersListActivity;
 import app.geochat.ui.fragments.GeoChatListFragment;
 import app.geochat.ui.fragments.TrailListFragmentDialog;
 import app.geochat.util.Constants;
@@ -48,10 +48,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ProfileManager mProfileManager;
     private GeoChatManagers mGeoChatManager;
     private JSONArray trailArray;
+    private SharedPreferences mSharedPreferences;
 
     public RecyclerViewAdapter(FragmentActivity activity, List<GeoChat> feedItemList) {
         this.feedItemList = feedItemList;
         this.activity = activity;
+        mSharedPreferences = new SharedPreferences(activity);
         mProfileManager = new ProfileManager(activity);
         mGeoChatManager = new GeoChatManagers(activity);
         this.fragment= (GeoChatListFragment)activity.getSupportFragmentManager().findFragmentByTag(Constants.FragmentTags.FRAGMENT_GEOCHATLIST_TAG);
@@ -59,7 +61,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.updated_geochat_layout_row, null);
+        View view;
+        if (activity instanceof UserTrailListActivity) {
+            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.geochat_layout_grid_row, null);
+        } else {
+            view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.updated_geochat_layout_row, null);
+        }
         CustomViewHolder viewHolder = new CustomViewHolder(view);
         return viewHolder;
     }
@@ -72,112 +79,141 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         String tags = item.getTags();
         String age = Utils.dateDiff(Utils.getDate(item.getCreatedDateTime()));
 
-        if(!tags.isEmpty() && null!=tags) {
-            String[] tagsArray = tags.split(",");
-            Spanned spannabaleTags = Utils.getFormattedTags(tagsArray,activity);
-            holder.spannableTagsTextView.setText(spannabaleTags);
-            holder.spannableTagsTextView.setMovementMethod(LinkMovementMethod.getInstance());
-        }
-        int distaneInKM = Integer.parseInt(item.getDistance())/1000;
-        holder.distanceTextView.setText(distaneInKM+" km");
-        holder.userNameTextView.setText(item.getCreatedByUserName());
-        holder.locationTextView.setText("@ "+item.getCheckInLocation());
-        if (!item.getUserAvatar().isEmpty())
-            Picasso.with(activity).load(item.getUserAvatar()).placeholder(R.drawable.background_blue).into(holder.userImageImageView);
-        else
-            Picasso.with(activity).load(R.drawable.ic_default_profile_pic).placeholder(R.drawable.background_blue).into(holder.userImageImageView);
 
+        if (activity instanceof UserTrailListActivity) {
+            holder.userNameTextView.setText(item.getCreatedByUserName());
+            holder.locationTextView.setText("@ " + item.getCheckInLocation());
 
-        if (!item.getGeoChatImage().isEmpty())
-            Picasso.with(activity).load(item.getGeoChatImage()).placeholder(R.drawable.travel_bg).error(R.drawable.travel_bg).into(holder.geoChatImageView);
-        else
-            Picasso.with(activity).load(R.drawable.travel_bg).placeholder(R.drawable.travel_bg).into(holder.geoChatImageView);
+            if (!item.getGeoChatImage().isEmpty())
+                Picasso.with(activity).load(item.getGeoChatImage()).placeholder(R.drawable.travel_bg).error(R.drawable.travel_bg).into(holder.geoChatImageView);
+            else
+                Picasso.with(activity).load(R.drawable.travel_bg).placeholder(R.drawable.travel_bg).into(holder.geoChatImageView);
+            holder.wishListTextView.setText(item.getWishListCount() + " " + activity.getString(R.string.want_to_try));
 
-        if(description.isEmpty() || description==null){
-            holder.descriptionTextView.setVisibility(View.GONE);
-        }else {
-            holder.descriptionTextView.setVisibility(View.VISIBLE);
-            holder.descriptionTextView.setText(description);
-        }
+        } else {
 
-        holder.ageTextView.setText(age);
-        holder.captionTextView.setText(caption);
+            holder.userNameTextView.setText(item.getCreatedByUserName());
+            holder.locationTextView.setText("@ " + item.getCheckInLocation());
 
+            if (!item.getGeoChatImage().isEmpty())
+                Picasso.with(activity).load(item.getGeoChatImage()).placeholder(R.drawable.travel_bg).error(R.drawable.travel_bg).into(holder.geoChatImageView);
+            else
+                Picasso.with(activity).load(R.drawable.travel_bg).placeholder(R.drawable.travel_bg).into(holder.geoChatImageView);
+            holder.wishListTextView.setText(item.getWishListCount() + " " + activity.getString(R.string.want_to_try));
+            holder.wishListCountTextView.setText(item.getWishListCount());
 
-        holder.locationTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Utils.startLocationFeedActivity(activity,item.getLatitude(),item.getLongitude(),item.getCheckInLocation());
+            if (!tags.isEmpty() && null != tags) {
+                String[] tagsArray = tags.split(",");
+                Spanned spannabaleTags = Utils.getFormattedTags(tagsArray, activity);
+                holder.spannableTagsTextView.setText(spannabaleTags);
+                holder.spannableTagsTextView.setMovementMethod(LinkMovementMethod.getInstance());
             }
-        });
+            int distaneInKM = Integer.parseInt(item.getDistance()) / 1000;
+            holder.distanceTextView.setText(distaneInKM + " km");
 
 
-        try {
-            JSONObject trailJson = new JSONObject(item.getUserTrails());
-            trailArray = trailJson.getJSONArray(Constants.JsonKeys.TRAILS);
-            if (Utils.isMyPost(item.getUserId(), activity)) {
-                    holder.addTrailTextView.setVisibility(View.VISIBLE);
-                if(trailArray.length()>0){
-                    holder.addTrailTextView.setText("Edit Trail");
-                } else {
-                    holder.addTrailTextView.setText("Add to Trail");
-                }
+            if (!item.getUserAvatar().isEmpty())
+                Picasso.with(activity).load(item.getUserAvatar()).placeholder(R.drawable.background_blue).into(holder.userImageImageView);
+            else
+                Picasso.with(activity).load(R.drawable.ic_default_profile_pic).placeholder(R.drawable.background_blue).into(holder.userImageImageView);
+
+
+            if (description.isEmpty() || description == null) {
+                holder.descriptionTextView.setVisibility(View.GONE);
             } else {
-                holder.addTrailTextView.setVisibility(View.GONE);
+                holder.descriptionTextView.setVisibility(View.VISIBLE);
+                holder.descriptionTextView.setText(description);
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
-        holder.moreImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            holder.ageTextView.setText(age);
+            holder.captionTextView.setText(caption);
+
+
+            holder.locationTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Utils.startLocationFeedActivity(activity, item.getLatitude(), item.getLongitude(), item.getCheckInLocation());
+                }
+            });
+
+
+            try {
+                JSONObject trailJson = new JSONObject(item.getUserTrails());
+                trailArray = trailJson.getJSONArray(Constants.JsonKeys.TRAILS);
                 if (Utils.isMyPost(item.getUserId(), activity)) {
-                    openSelfMoreOptionDialog(item, i);
+                    holder.addTrailTextView.setVisibility(View.VISIBLE);
+                    if (trailArray.length() > 0) {
+                        holder.addTrailTextView.setText("Edit Trail");
+                    } else {
+                        holder.addTrailTextView.setText("Add to Trail");
+                    }
                 } else {
-                    openOthersMoreOptionDialog(item);
+                    holder.addTrailTextView.setVisibility(View.GONE);
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        });
 
-        holder.wishListTextView.setText(item.getWishListCount() + " " + activity.getString(R.string.want_to_try));
-        holder.commentTextView.setText(item.getCommentCount()+" "+activity.getString(R.string.discussions));
-
-        holder.wishListTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (item.isWishListAdded().equalsIgnoreCase("false")) {
-                    mGeoChatManager.addToWishList(activity, item.getGeoChatId(), Constants.GEOCHAT.ADD_WISHLIST, i);
-                } else {
-                    mGeoChatManager.addToWishList(activity, item.getGeoChatId(), Constants.GEOCHAT.REMOVE_WISHLIST, i);
-                    //        Utils.showToast(activity, activity.getString(R.string.already_added_wishlist));
+            holder.moreImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (Utils.isMyPost(item.getUserId(), activity)) {
+                        openSelfMoreOptionDialog(item, i);
+                    } else {
+                        openOthersMoreOptionDialog(item);
+                    }
                 }
-            }
-        });
+            });
 
-        holder.commentTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GeoChat item = feedItemList.get(i);
-                Utils.openFullScreenNoteWithComment(activity,item);
-            }
-        });
+            holder.commentTextView.setText(item.getCommentCount() + " " + activity.getString(R.string.discussions));
 
-        holder.userImageImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new SharedPreferences(activity).setUserProfileId(item.getUserId());
-                Intent profileintent = new Intent(activity,UserProfileActivity.class);
-                activity.startActivity(profileintent);
-            }
-        });
+            holder.wishListTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (item.isWishListAdded().equalsIgnoreCase("false")) {
+                        mGeoChatManager.addToWishList(activity, item.getGeoChatId(), Constants.GEOCHAT.ADD_WISHLIST, i);
+                    } else {
+                        mGeoChatManager.addToWishList(activity, item.getGeoChatId(), Constants.GEOCHAT.REMOVE_WISHLIST, i);
+                        //        Utils.showToast(activity, activity.getString(R.string.already_added_wishlist));
+                    }
+                }
+            });
 
-        holder.addTrailTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openFragmentDialogForList(item);
-            }
-        });
+            holder.commentTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    GeoChat item = feedItemList.get(i);
+                    Utils.openFullScreenNoteWithComment(activity, item);
+                }
+            });
+
+            holder.userImageImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new SharedPreferences(activity).setUserProfileId(item.getUserId());
+                    Intent profileintent = new Intent(activity, UserProfileActivity.class);
+                    activity.startActivity(profileintent);
+                }
+            });
+
+            holder.addTrailTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openFragmentDialogForList(item);
+                }
+            });
+
+            holder.wishListCountTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent  = new Intent(activity,UsersListActivity.class);
+                    intent.putExtra(Constants.USER.USER_TYPE,Constants.USER.TRY_USERS);
+                    intent.putExtra(Constants.USER.USERID,mSharedPreferences.getUserId());
+                    intent.putExtra(Constants.JsonKeys.GEOCHATID,item.getGeoChatId());
+                    activity.startActivity(intent);
+                }
+            });
+        }
     }
 
 
@@ -207,7 +243,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView userNameTextView, locationTextView,ageTextView,descriptionTextView,captionTextView,spannableTagsTextView,distanceTextView;
-        TextView wishListTextView,commentTextView,addTrailTextView;
+        TextView wishListTextView,commentTextView,addTrailTextView,wishListCountTextView;
         ImageView userImageImageView,geoChatImageView,moreImageView;
         CollectionPicker collection_item_picker;
 
@@ -228,6 +264,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             this.wishListTextView = (TextView) view.findViewById(R.id.wishListTextView);
             this.commentTextView = (TextView) view.findViewById(R.id.commentTextView);
             this.addTrailTextView = (TextView) view.findViewById(R.id.addTrailTextView);
+            this.wishListCountTextView = (TextView) view.findViewById(R.id.wishListCountTextView);
+
         }
 
         @Override

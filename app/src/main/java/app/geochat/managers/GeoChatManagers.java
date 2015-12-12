@@ -29,6 +29,7 @@ import app.geochat.ui.activities.ChatActivity;
 import app.geochat.ui.activities.FollowingFeedsActivity;
 import app.geochat.ui.activities.LocationFeedActivity;
 import app.geochat.ui.activities.SearchActivity;
+import app.geochat.ui.activities.UserTrailListActivity;
 import app.geochat.ui.fragments.GeoChatListFragment;
 import app.geochat.ui.fragments.TrailListFragmentDialog;
 import app.geochat.util.Constants;
@@ -305,7 +306,6 @@ public class GeoChatManagers implements Constants.LOCATIONKEYS, Constants.JsonKe
             @Override
             public void onErrorResponse(VolleyError error) {
                 if(error!=null) {
-                    Log.e("error", error.networkResponse.statusCode + "");
                     Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
                     fragment.failResult();
                 }else {
@@ -351,7 +351,6 @@ public class GeoChatManagers implements Constants.LOCATIONKEYS, Constants.JsonKe
             @Override
             public void onErrorResponse(VolleyError error) {
                 Utils.closeProgress();
-                Log.e("error", error.networkResponse.statusCode + "");
                 Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
 
             }
@@ -394,7 +393,6 @@ public class GeoChatManagers implements Constants.LOCATIONKEYS, Constants.JsonKe
             @Override
             public void onErrorResponse(VolleyError error) {
                 Utils.closeProgress();
-                Log.e("error", error.networkResponse.statusCode + "");
                 Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
 
             }
@@ -437,7 +435,6 @@ public class GeoChatManagers implements Constants.LOCATIONKEYS, Constants.JsonKe
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("error", error.networkResponse.statusCode + "");
                 Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
                 ((SearchActivity)context).failResult();
             }
@@ -487,7 +484,6 @@ public class GeoChatManagers implements Constants.LOCATIONKEYS, Constants.JsonKe
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("error", error.networkResponse.statusCode + "");
                 Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
             }
         }){
@@ -630,7 +626,6 @@ public class GeoChatManagers implements Constants.LOCATIONKEYS, Constants.JsonKe
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("error", error.networkResponse.statusCode + "");
                 Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
                 ((LocationFeedActivity)activity).failResult();
             }
@@ -677,7 +672,6 @@ public class GeoChatManagers implements Constants.LOCATIONKEYS, Constants.JsonKe
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("error", error.networkResponse.statusCode + "");
                 Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
                 ((FollowingFeedsActivity)activity).failResult();
             }
@@ -686,6 +680,55 @@ public class GeoChatManagers implements Constants.LOCATIONKEYS, Constants.JsonKe
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put(USER_ID, mSharedPreferences.getUserId());
+                return params;
+            }
+        };
+        // Adding request to request queue
+        jsonObjReq.setShouldCache(false);
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(Constants.MY_SOCKET_TIMEOUT_MS, Constants.MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        VolleyController.getInstance().addToRequestQueue(jsonObjReq, tag_fetch_geochat);
+
+
+
+    }
+
+    public void fetchAllGeoChatsTrails(final Activity activity, final String latitude, final String longitude, final String trailListId,final String userId) {
+
+
+
+        // Tag used to cancel the request
+        String tag_fetch_geochat = "fetch_geochat";
+
+        String url = Constants.API_ALL_TRAILS_GEOCHAT;
+
+        StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
+                url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject json = new JSONObject(response);
+                    Log.d("json", json.toString());
+                    ArrayList<GeoChat> result = new GeoChatParser().getGeoChatsInList(json,latitude,longitude);
+                    ((UserTrailListActivity)activity).renderGeoChatListView(result);
+                } catch (Exception e) {
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if(error!=null && error.networkResponse!=null) {
+                    Utils.showToast(mContext, mContext.getResources().getString(R.string.something_went_wrong));
+                    ((UserTrailListActivity) activity).failResult();
+                }
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put(USER_ID, userId);
+                params.put(TRAILLISTID,trailListId);
                 return params;
             }
         };
